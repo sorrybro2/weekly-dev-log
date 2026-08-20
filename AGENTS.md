@@ -50,6 +50,52 @@ git -C <repo> show -s --pretty=format:"%s%n%n%b" <hash>   # 제목 + 본문
 git -C <repo> show --stat --oneline <hash> | tail -n +2   # 변경 파일 목록
 ```
 
+## 2-1. 깃 이슈·코멘트 수집 (필수)
+
+**커밋만으로는 그날 한 일의 절반밖에 안 남는다.** 원인 분석·인프라 조치·운영 판단·설계 결정은
+커밋이 아니라 **이슈 본문과 코멘트**에 기록된다(예: 도메인 이전, GTM 작업, DB 데이터 이관,
+대행사 협의 사항). 그러므로 **금일 새로 생성된 이슈와 금일 달린 코멘트를 반드시 함께 수집해
+보고에 반영한다.**
+
+대상 저장소(GitHub):
+
+- `lawwin-info/main-homepage-v2` — 홈페이지 V2
+- `lawwin-info/case-management` — 사건관리 앱
+- `lawwin-info/centrex-gcs` — 배포/인프라
+
+```bash
+# 금일 생성된 이슈
+for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
+  echo "===== $R ====="
+  gh issue list -R $R --state all --search "created:YYYY-MM-DD" \
+    --json number,title,author,createdAt,state
+done
+
+# 금일 달린 코멘트 (issue_url 끝자리가 이슈 번호)
+for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
+  echo "===== $R ====="
+  gh api "repos/$R/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
+    --jq '.[] | "#\(.issue_url|split("/")|last) | \(.user.login) | \(.created_at)"'
+done
+
+# 본문 읽기
+gh issue view <N> -R <repo> --json number,title,body --jq '"#\(.number) \(.title)\n\n\(.body)"'
+gh api "repos/<repo>/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
+  --jq '.[] | "### #\(.issue_url|split("/")|last)\n\(.body)"'
+```
+
+작성 규칙:
+
+- **작성자 필터는 커밋과 동일**하다 — `js-sohlJin` / `sorrybro` 가 쓴 이슈·코멘트만 내 업무로
+  본다. 타인(`bs-jsPark` 등)이 올린 이슈는 내가 그것을 처리한 커밋이 있을 때만 배경으로 언급한다.
+- **시간대 주의** — GitHub API 는 UTC(`Z`)를 준다. 한국시간 기준일과 맞추려면 +9시간을 감안한다.
+  (KST 09:00 이전 활동은 전날 UTC 날짜로 잡힌다.)
+- 커밋이 없어도 **이슈·코멘트만 있는 작업은 보고에 넣는다.** 인프라·DB·외부 콘솔 작업이 여기 속하며,
+  상세 내역에서는 `### N. <영역> (커밋 없음)` 또는 `**운영 조치**` 항목으로 쓴다.
+- 이슈 번호는 본문에 `이슈 `#104`` 형태로 병기해 근거를 남긴다(커밋 해시와 같은 취급).
+- 커밋 메시지의 이슈 번호가 실제 이슈와 안 맞으면 **그대로 옮기지 않는다.** 확인 후 맞는 번호를
+  쓰거나 번호 없이 작업만 기술한다.
+
 ## 3. 일간 보고 형식 (표준 .md)
 
 아래 골격을 그대로 사용한다. 실제 예시는 `daily/7월/2026-07-02.md`, `2026-07-06.md` 참고.
@@ -85,9 +131,14 @@ git -C <repo> show --stat --oneline <hash> | tail -n +2   # 변경 파일 목록
 
 ## 4. 구글챗(Google Chat)용 변형
 
-**전제: 구글챗용은 그날 `.md`와 "동일한 내용"을 형식만 변환한 것이다.** 새 사실을 넣거나
-빼지 말고(요약 → 섹션 그룹핑 → 상세 불릿 → 금일 종합), 마크업만 구글챗 규칙으로 바꾼다.
-`.md`를 먼저 확정한 뒤 그것을 소스로 변환한다.
+**전제: 구글챗용은 `.md`의 "간단 보고" 버전이다.** (2026-08-05 방침 변경 — 예전에는 `.md`와
+동일 내용을 형식만 바꿔 그대로 옮겼으나, 채팅에서 너무 길어 읽히지 않았다.)
+
+- `.md`를 먼저 확정한 뒤 그것을 소스로 **압축**한다. 없는 사실을 새로 넣지 않는다.
+- 담을 것: 한 줄 종합 + 섹션별 핵심 불릿(섹션당 3~6개) + 금일 종합. **상세 업무 내역 섹션은 옮기지 않는다.**
+- 불릿 하나는 **한 줄**로. `문제 → 조치` 정도만 남기고 배경 설명·부수 변경·파일 경로는 `.md`에만 둔다.
+- 커밋 해시는 그 불릿을 대표하는 것만 병기(여러 개면 쉼표로 묶어 한 번).
+- 분량 기준: 스크롤 없이 훑을 수 있는 정도(대략 40줄 내외). 커밋이 많은 날도 섹션 수를 늘리지 말고 묶는다.
 
 같은 내용을 구글챗에 붙일 때는 마크업이 다르고 **까다롭다.** 아래 규칙을 반드시 지킨다
 (안 지키면 볼드가 아예 안 먹어 전체가 맨 텍스트로 보임):
@@ -111,7 +162,9 @@ git -C <repo> show --stat --oneline <hash> | tail -n +2   # 변경 파일 목록
 - 링크는 URL을 직접 노출.
 - 커밋 해시는 `(abc1234)`로 병기하되 볼드 안 함.
 
-결과는 `daily/<N월>/YYYY-MM-DD.gchat.txt`로 저장한다. 실제 예시: `daily/7월/2026-07-15.gchat.txt`(섹션 이모지·`:` 치환 반영), `daily/7월/2026-07-07.gchat.txt`.
+결과는 `daily/<N월>/YYYY-MM-DD.gchat.txt`로 저장한다.
+실제 예시(간단 보고 방침 반영): `daily/8월/2026-08-05.gchat.txt`, `daily/8월/2026-08-04.gchat.txt`.
+마크업 규칙 참고용 예시(내용은 구 방침이라 길다): `daily/7월/2026-07-15.gchat.txt`.
 
 ## 5. 커밋 컨벤션(참고)
 
