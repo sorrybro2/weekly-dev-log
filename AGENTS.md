@@ -28,29 +28,32 @@ weekly/…                      # 주간 회고
 
 파일명은 항상 `YYYY-MM-DD.md` (예: `daily/7월/2026-07-06.md`).
 
-## 2. 커밋 수집 방법
+## 2. 커밋 수집 방법 — repo당 명령 1개
 
-각 repo에서 해당 날짜 커밋을 뽑는다 (Windows Git Bash 기준):
+**아래 루프 하나가 §2의 전부다.** 커밋 제목·본문·변경 파일 목록이 한 번에 다 나온다.
+**커밋마다 `git show` 를 다시 돌리지 말 것** — 커밋 10건이면 왕복이 20번으로 늘어 보고 작성이
+몇 분씩 길어진다. 수집 자체는 4개 repo 다 합쳐 1초면 끝나는 일이다.
 
 ```bash
 for r in BS_CASE_MANAGEMENT BS_CLOUD_RUN BS_CRM BS_MAIN_HOMEPAGE_V2; do
   echo "===== $r ====="
-  git -C ~/JS_Project/BS/$r log --all \
+  git -C ~/JS_Project/BS/$r log \
     --since="YYYY-MM-DD 00:00" --until="YYYY-MM-DD 23:59:59" \
     --author="mikely329@gmail.com\|sohl.jin@law-win.co.kr\|js-sohlJin\|sorrybro" \
-    --pretty=format:"%h|%an|%ad|%s" --date=format:"%Y-%m-%d %H:%M"
+    --stat --date=format:"%Y-%m-%d %H:%M" \
+    --pretty=format:"@@@ %h|%an|%ad|%s%n%b"
   echo
 done
 ```
 
-각 커밋의 본문·변경 파일을 확인해 상세 내역을 쓴다:
+- `@@@` 가 커밋 경계다. 그 줄 아래가 커밋 본문, 그 아래가 변경 파일 목록.
+- `--all` 은 쓰지 않는다 — 원격 브랜치에 같은 커밋이 중복으로 잡힌다. 로컬 HEAD에 없는
+  브랜치까지 봐야 하는 날만 붙인다.
+- 이 루프와 §2-1의 `gh` 명령들은 서로 의존하지 않는다. **한 메시지에서 같이(병렬로) 실행**한다.
+- 파일 목록이 과하게 긴 커밋(대량 이동·리팩터링)은 다시 조회하지 말고 요약줄
+  (`N files changed`)로 갈음한다.
 
-```bash
-git -C <repo> show -s --pretty=format:"%s%n%n%b" <hash>   # 제목 + 본문
-git -C <repo> show --stat --oneline <hash> | tail -n +2   # 변경 파일 목록
-```
-
-## 2-1. 깃 이슈·코멘트 수집 (필수)
+## 2-1. 깃 이슈·코멘트 수집 (필수) — 1패스로 끝낸다
 
 **커밋만으로는 그날 한 일의 절반밖에 안 남는다.** 원인 분석·인프라 조치·운영 판단·설계 결정은
 커밋이 아니라 **이슈 본문과 코멘트**에 기록된다(예: 도메인 이전, GTM 작업, DB 데이터 이관,
@@ -64,25 +67,24 @@ git -C <repo> show --stat --oneline <hash> | tail -n +2   # 변경 파일 목록
 - `lawwin-info/centrex-gcs` — 배포/인프라
 
 ```bash
-# 금일 생성된 이슈
+# 금일 생성된 이슈 — 본문(body)까지 한 번에 받는다
 for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
   echo "===== $R ====="
   gh issue list -R $R --state all --search "created:YYYY-MM-DD" \
-    --json number,title,author,createdAt,state
+    --json number,title,author,createdAt,state,body
 done
 
-# 금일 달린 코멘트 (issue_url 끝자리가 이슈 번호)
+# 금일 달린 코멘트 — 이슈번호·작성자·본문을 한 번에
 for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
   echo "===== $R ====="
   gh api "repos/$R/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
-    --jq '.[] | "#\(.issue_url|split("/")|last) | \(.user.login) | \(.created_at)"'
+    --jq '.[] | "### #\(.issue_url|split("/")|last) | \(.user.login) | \(.created_at)\n\(.body)\n"'
 done
-
-# 본문 읽기
-gh issue view <N> -R <repo> --json number,title,body --jq '"#\(.number) \(.title)\n\n\(.body)"'
-gh api "repos/<repo>/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
-  --jq '.[] | "### #\(.issue_url|split("/")|last)\n\(.body)"'
 ```
+
+**위 두 명령이 전부다.** 목록을 먼저 받고 본문을 다시 읽는 2차 호출(같은 comments 엔드포인트
+재호출, 이슈마다 `gh issue view`)은 하지 않는다. 예외는 하나 — 금일 생성이 아닌 **과거 이슈**를
+커밋이 참조해 배경 확인이 필요할 때만 `gh issue view <N> -R <repo> --json number,title,body`.
 
 작성 규칙:
 
@@ -128,6 +130,11 @@ gh api "repos/<repo>/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
 - **포트폴리오용**이므로 상세 내역은 컴포넌트/페이지·파일 경로 + `문제 → 작업 → 가치` 구조로 구체적으로.
 - 커밋 해시는 항상 병기(`(abc1234)`).
 - 영역은 repo → 기능묶음 순으로 그룹핑. 커밋 수가 많으면 `#### 소제목`으로 세분.
+- **분량 상한(중요).** 상세 내역은 **커밋 1건당 3~5줄**, 파일 전체 **1만 2천 자 내외**.
+  많은 날도 1만 8천 자를 넘기지 않는다. (2026-08-24 신설 — 8/19~8/20 이 3만 자까지 부풀어
+  작성에만 몇 분이 더 걸렸다. 8/14분 1만 8천 자가 상한 감각의 기준.)
+- 커밋 본문을 옮겨 적지 않는다. 근거로만 쓰고 한 문장으로 재서술한다.
+- `10초 핵심 요약`은 섹션당 3~6불릿, 불릿당 한 줄.
 
 ## 4. 구글챗(Google Chat)용 변형
 
