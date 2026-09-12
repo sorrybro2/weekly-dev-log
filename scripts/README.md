@@ -1,5 +1,8 @@
 # TMI 경력기술서 출력
 
+포트폴리오형 3쪽 요약본과 상세 경력 전체본은 `node scripts/render-portfolio.cjs`로 생성합니다.
+문구·프로필 사진·서비스 캡처를 바꾸는 방법은 [포트폴리오 편집 가이드](../portfolio/README.md)를 참고하세요.
+
 원문은 `경력기술서_TMI.md`, 도식은 `assets/career-tmi/*.svg`입니다.
 도식은 720px 너비에 17px 이상의 글자를 사용하며, 외부 폰트나 Mermaid CDN 없이 표시됩니다.
 

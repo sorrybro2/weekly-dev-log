@@ -1,0 +1,193 @@
+{
+  "name": "진솔",
+  "role": "백엔드 · 풀스택 개발자",
+  "headline": "업무 화면부터 API·데이터·배포까지 연결합니다.",
+  "intro": "법무법인에서 CRM과 홈페이지 V2를 1인 풀스택으로 구축했습니다. 사건관리 앱은 2인 팀에서 상담·문서·전자결재·정산 도메인과 인프라를 담당했습니다.",
+  "contactEmail": null,
+  "images": {
+    "portrait": "assets/portfolio/profile.jpg",
+    "homepage": "assets/portfolio/homepage.png",
+    "crm": "assets/portfolio/crm.png",
+    "caseManagement": "assets/portfolio/case-management.png"
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "text": "github.com/sorrybro2",
+      "url": "https://github.com/sorrybro2"
+    },
+    {
+      "label": "개발 기록",
+      "text": "github.com/sorrybro2/weekly-dev-log",
+      "url": "https://github.com/sorrybro2/weekly-dev-log"
+    },
+    {
+      "label": "구현한 홈페이지",
+      "text": "bslawwin.co.kr",
+      "url": "https://bslawwin.co.kr"
+    }
+  ],
+  "metrics": [
+    {
+      "value": "8초 → 0.05초",
+      "label": "상담료 처리 대기 조회",
+      "note": "FDW 조인 구조 개선 · 약 160배"
+    },
+    {
+      "value": "약 730만 건",
+      "label": "홈페이지 데이터 이관",
+      "note": "SQL Server → PostgreSQL"
+    },
+    {
+      "value": "10개 지사",
+      "label": "사내 CRM 구축 대상",
+      "note": "Flutter 화면부터 API·연동까지"
+    }
+  ],
+  "experience": [
+    {
+      "company": "법무법인 법승",
+      "period": "2026.01.19 – 현재",
+      "position": "백엔드 · 풀스택 개발",
+      "detail": "CRM·홈페이지 V2 단독 구축 / 사건관리 2인 팀 / 레거시 운영"
+    },
+    {
+      "company": "리얼타임테크",
+      "period": "2024.08 – 2025.06",
+      "position": "공간정보융합팀 · 인턴 → 사원",
+      "detail": "CCTV 모니터링 유지보수 / Go 시스템 분석 / 센서 데이터 UI 개선"
+    }
+  ],
+  "stack": [
+    {
+      "label": "Backend",
+      "value": "FastAPI · SQLAlchemy / Node.js · Express / NestJS"
+    },
+    {
+      "label": "Frontend",
+      "value": "React · TypeScript / Next.js / Flutter"
+    },
+    {
+      "label": "Data",
+      "value": "PostgreSQL · Cloud SQL / MySQL / SQL Server 이관"
+    },
+    {
+      "label": "Infra & APIs",
+      "value": "Cloud Run · Cloud Build / Google Workspace / NCP SENS"
+    }
+  ],
+  "projects": [
+    {
+      "id": "homepage",
+      "number": "01",
+      "name": "홈페이지 V2",
+      "period": "2026.05 – 현재",
+      "role": "1인 풀스택",
+      "stack": "Next.js · NestJS · Prisma · PostgreSQL",
+      "anchor": "detail-homepage",
+      "image": "homepage",
+      "screen": "승소사례 상세 화면",
+      "scope": "공개 사이트 · 운영 CMS · API · 데이터 이관 · 배포",
+      "description": "공개 콘텐츠와 상담 접수 화면부터 운영 CMS까지 구축하고, 레거시 SQL Server 데이터를 PostgreSQL로 이관했습니다.",
+      "caption": "CMS 콘텐츠를 공개 페이지로 제공하고, 담당 변호사 정보와 상담 접수 동선으로 연결한 화면입니다.",
+      "url": "https://bslawwin.co.kr",
+      "access": "공개 서비스"
+    },
+    {
+      "id": "crm",
+      "number": "02",
+      "name": "사내 CRM",
+      "period": "2026.01 – 현재",
+      "role": "1인 풀스택",
+      "stack": "Flutter · Express · PostgreSQL",
+      "anchor": "detail-crm",
+      "image": "crm",
+      "screen": "당사자 목록 · 상담 등록",
+      "scope": "PWA·Android · API · 데이터 · 외부 연동",
+      "description": "전국 10개 지사의 고객 조회·변호사 배정·상담 예약·문자 안내를 연결했습니다.",
+      "caption": "고객 조회부터 변호사 배정·상담 예약까지 이어지는 Flutter 업무 화면입니다.",
+      "url": null,
+      "access": "사내 전용"
+    },
+    {
+      "id": "case-management",
+      "number": "03",
+      "name": "사건관리 앱",
+      "period": "2026.06 – 현재",
+      "role": "2인 팀",
+      "stack": "React · FastAPI · PostgreSQL",
+      "anchor": "detail-case",
+      "image": "caseManagement",
+      "screen": "상담료 처리 대기 · 등록 목록",
+      "scope": "상담 · 문서 · 전자결재 · 정산 · 배포",
+      "description": "상담료·문서·결재·정산 도메인을 개발하고, CRM 연동 조회와 실시간 변경 전파를 개선했습니다.",
+      "caption": "CRM 방문상담 확인과 상담료 등록을 연결한 화면입니다. 처리 대기 조회를 8초에서 0.05초로 단축했습니다.",
+      "url": null,
+      "access": "3개 지사 베타"
+    }
+  ],
+  "cases": [
+    {
+      "number": "01",
+      "tag": "조회 성능",
+      "title": "원격 JOIN을 걷어내고 필요한 데이터만 조회",
+      "metric": "8초 → 0.05초",
+      "context": "사건관리 · 상담료 처리 대기 조회",
+      "anchor": "detail-case",
+      "source": "daily/7월/2026-07-01.md",
+      "problem": "CRM 원격 테이블과 로컬 테이블을 인라인 JOIN하면서 목록 조회에 8초 이상이 소요됐습니다.",
+      "decision": "사건·스케줄을 먼저 조회한 뒤 이름·사무소 정보를 배치 조회하도록 데이터 접근 순서를 바꿨습니다.",
+      "result": "해당 조회의 응답시간을 0.05초로 줄였습니다. 화면 지연을 쿼리 구조에서 해결한 사례입니다."
+    },
+    {
+      "number": "02",
+      "tag": "데이터 이관",
+      "title": "레거시 데이터를 새로운 서비스 기반으로 이전",
+      "metric": "약 730만 건",
+      "context": "홈페이지 V2 · SQL Server → PostgreSQL",
+      "anchor": "detail-homepage",
+      "source": "weekly/5월/5월 3주차.md",
+      "problem": "ASP.NET·SQL Server 기반 홈페이지를 새 공개 사이트와 운영 CMS로 전환할 데이터 기반이 필요했습니다.",
+      "decision": "Next.js·NestJS 모노레포를 구축하면서 레거시 SQL Server 데이터를 PostgreSQL로 이관했습니다.",
+      "result": "약 730만 건의 데이터 이관을 완료하고, 공개 화면·CMS·API·배포까지 1인 풀스택으로 담당했습니다."
+    },
+    {
+      "number": "03",
+      "tag": "동시성 제어",
+      "title": "같은 접수 건을 여러 직원이 덮어쓰지 않도록",
+      "metric": "10분 자동 회수",
+      "context": "CRM · 접수 Claim(점유) 처리",
+      "anchor": "detail-crm",
+      "source": null,
+      "problem": "여러 직원이 같은 접수 건을 동시에 열고 처리하면서 변경 내용이 서로 덮어써지는 문제가 있었습니다.",
+      "decision": "처리 시작 시 점유 정보를 기록하고, 다른 화면에는 처리 중 상태를 표시해 수정을 제한했습니다.",
+      "result": "10분간 미조작 시 점유가 만료되도록 구성해 충돌 방지와 업무 인계를 함께 고려했습니다."
+    }
+  ],
+  "appendix": [
+    {
+      "label": "I. 사건관리",
+      "anchor": "detail-case"
+    },
+    {
+      "label": "II. 홈페이지 V2",
+      "anchor": "detail-homepage"
+    },
+    {
+      "label": "III. CRM",
+      "anchor": "detail-crm"
+    },
+    {
+      "label": "IV. 레거시",
+      "anchor": "detail-legacy"
+    },
+    {
+      "label": "V. 인프라",
+      "anchor": "detail-infra"
+    },
+    {
+      "label": "VI–VIII. 이전 경력",
+      "anchor": "detail-previous"
+    }
+  ]
+}
