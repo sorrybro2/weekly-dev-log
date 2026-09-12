@@ -1,0 +1,403 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>진솔 — 상세 경력기술서 (TMI)</title><style>@page { size: A4; margin: 15mm 15mm 16mm; }
+* { box-sizing: border-box; }
+html { background: #e9eef5; }
+body {
+  margin: 0 auto; padding: 44px 48px; max-width: 860px;
+  background: #fff; color: #213047;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 10.5pt; line-height: 1.58;
+  overflow-wrap: anywhere; word-break: normal;
+}
+h1, h2, h3, h4, p.label { break-after: avoid; page-break-after: avoid; }
+h1 { margin: 22px 0 12px; padding-bottom: 10px; border-bottom: 2px solid #203854; font-size: 21pt; line-height: 1.35; letter-spacing: -0.7px; }
+h1:first-child { margin-top: 0; }
+h1:not(:first-child) { font-size: 17pt; }
+h2 { margin: 20px 0 10px; padding: 5px 0 5px 11px; border-left: 4px solid #376795; font-size: 14pt; line-height: 1.4; color: #173b5b; }
+h3 { margin: 15px 0 8px; font-size: 11.7pt; line-height: 1.4; color: #315c7d; }
+h4 { margin: 14px 0 5px; font-size: 10.7pt; line-height: 1.5; color: #173b5b; }
+p { margin: 5px 0 8px; orphans: 3; widows: 3; }
+ul, ol { margin: 5px 0 11px; padding-left: 19px; }
+li { margin: 4px 0; orphans: 3; widows: 3; }
+strong { color: #182b44; }
+code { font-family: Consolas, "Malgun Gothic", monospace; font-size: 0.94em; color: #275472; background: #f0f4f8; padding: 0 3px; border-radius: 3px; }
+blockquote { margin: 12px 0; padding: 8px 12px; background: #f2f6fa; border-left: 3px solid #809db9; }
+blockquote p { margin: 2px 0; }
+hr { border: 0; border-top: 1px solid #d2dde8; margin: 18px 0; }
+figure { margin: 8px 0 10px; padding: 0; break-inside: avoid; page-break-inside: avoid; }
+figure img { display: block; width: 100%; height: auto; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 10pt; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th, td { padding: 6px 9px; text-align: left; vertical-align: top; border: 1px solid #d1dde9; }
+th { background: #eef3f9; font-weight: 700; }
+td:first-child { width: 23%; }
+a { color: #315f88; text-decoration: none; }
+.evidence { font-size: 9pt; color: #56677d; margin-top: 3px; }
+@media screen and (max-width: 740px) {
+  body { padding: 24px 18px; }
+  h1 { font-size: 18pt; }
+  figure { overflow-x: auto; }
+  figure img { min-width: 600px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { width: auto; max-width: none; margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  figure img { min-width: 0; }
+}
+</style></head><body><main><h1>진솔 — 상세 경력기술서 (TMI)</h1>
+<p><strong>이름</strong> 진솔
+<strong>직무</strong> 백엔드 · 풀스택 개발자
+<strong>경력</strong></p>
+<ul>
+<li>법무법인 법승 (law-win.co.kr) · 2026-01-19 – 현재</li>
+<li>리얼타임테크 · 공간정보융합팀 · 인턴(2024-08–2025-02) → 사원(2025-03–2025-06)</li>
+</ul>
+<p class="label"><strong>핵심 기술 스택</strong></p>
+<ul>
+<li><strong>Backend</strong>: Node.js(Express), Python(FastAPI, SQLAlchemy, Pydantic), TypeScript(NestJS)</li>
+<li><strong>Frontend</strong>: React(TypeScript, Vite, TanStack Query/Table), Flutter(Dart, PWA+Android), Next.js(App Router)</li>
+<li><strong>Database</strong>: PostgreSQL(Cloud SQL), MySQL, <code>postgres_fdw</code>, JSONB/GIN 인덱스, 복합 인덱스 설계</li>
+<li><strong>Infra/DevOps</strong>: GCP Cloud Run, Cloud Build, Cloud SQL, Secret Manager, Cloud Scheduler, Firebase Hosting, Certificate Manager/ALB</li>
+<li><strong>연동</strong>: Google Workspace API군(OAuth2, Calendar, Admin Directory, People, Gmail, Drive), NCP SENS(SMS/MMS), 카카오톡 웹훅</li>
+<li><strong>(이전 경력)</strong> Go(gin-gonic), Spring Framework, FFmpeg, Linux(Ubuntu) 운영</li>
+</ul>
+<blockquote>
+<p>법무법인 법승에서는 <strong>CRM · 메인 홈페이지 V2 · 사내 데이터(구글시트→PostgreSQL) 이관</strong>을 스크래치부터 1인 풀스택으로 구축했고, <strong>사건관리 앱</strong>은 2인 팀 개발로 상담 · 문서 · 전자결재 · 정산 도메인과 인프라/배포를 담당했습니다. <strong>레거시 법무법인 홈페이지</strong>는 외주 유지보수 체계를 사내로 전환해 직접 운영 · 개선 중입니다. 이전 직장(리얼타임테크)에서는 실시간 CCTV 모니터링 시스템 유지보수, 신규 개발을 위한 기존 코드 분석, 센서데이터 시각화 시스템 유지보수를 담당했습니다.</p>
+</blockquote>
+<h3>전체 시스템 개관 (법무법인 법승)</h3>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MjAiIGhlaWdodD0iMzE2IiB2aWV3Qm94PSIwIDAgNzIwIDMxNiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj7rspXsirkg7Iuc7Iqk7YWcIOqwnOq0gDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuuEpCDsi5zsiqTthZzsnZgg7ZmU66m0LCDshJzrsoQsIOuNsOydtO2EsCDsoIDsnqXshozrpbwg7ZaJ67OE66GcIO2RnOyLnC4g7Iuc7Iqk7YWcIOqwhCDsl7Drj5nqs7wg64u064u5IOuylOychOuKlCDrs7jrrLgg7ISk66qFIOywuOyhsC48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiIGZpbGw9IiM1MjY3ODIiLz48L21hcmtlcj48bWFya2VyIGlkPSJhcnJvd1N0YXJ0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiIGZpbGw9IiM1MjY3ODIiLz48L21hcmtlcj48L2RlZnM+CjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OiJNYWxndW4gR290aGljIiwiQXBwbGUgU0QgR290aGljIE5lbyIsIk5vdG8gU2FucyBLUiIsc2Fucy1zZXJpZjtmaWxsOiMxODJiNDR9LmxhYmVse2ZvbnQtc2l6ZToyMXB4O2ZvbnQtd2VpZ2h0OjcwMH0uc3Vie2ZvbnQtc2l6ZToxN3B4O2ZpbGw6IzQyNTg3NX0uaGludHtmb250LXNpemU6MTdweDtmaWxsOiM0MjU4NzV9LmFwcHtmaWxsOiNlZmY1ZmY7c3Ryb2tlOiM3Njk1YzQ7c3Ryb2tlLXdpZHRoOjEuN30uYXBpe2ZpbGw6I2VkZjhmNjtzdHJva2U6IzY0YTM5YTtzdHJva2Utd2lkdGg6MS43fS5kYXRhe2ZpbGw6I2Y0ZjBmYTtzdHJva2U6I2EwOGNiODtzdHJva2Utd2lkdGg6MS43fS5leHRlcm5hbHtmaWxsOiNmOGZhZmM7c3Ryb2tlOiM5YmFhYmQ7c3Ryb2tlLXdpZHRoOjEuN30uZWRnZXtmaWxsOm5vbmU7c3Ryb2tlOiM1MjY3ODI7c3Ryb2tlLXdpZHRoOjIuMztzdHJva2UtbGluZWpvaW46cm91bmR9LmRhc2hlZHtzdHJva2UtZGFzaGFycmF5OjYgNH08L3N0eWxlPgo8Zz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMjEyIiBoZWlnaHQ9IjY2IiByeD0iMTEiIGNsYXNzPSJhcHAiLz48dGV4dCB4PSIxMTQiIHk9IjM2IiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuyCrOqxtOq0gOumrCDsm7k8L3RleHQ+PHRleHQgeD0iMTE0IiB5PSI2MSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UmVhY3QgwrcgVHlwZVNjcmlwdDwvdGV4dD48L2c+PGc+PHJlY3QgeD0iMjU0IiB5PSI4IiB3aWR0aD0iMjEyIiBoZWlnaHQ9IjY2IiByeD0iMTEiIGNsYXNzPSJhcGkiLz48dGV4dCB4PSIzNjAiIHk9IjM2IiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuyCrOqxtOq0gOumrCBBUEk8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSI2MSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmFzdEFQSSDCtyBQeXRob248L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjUwMCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI2NiIgcng9IjExIiBjbGFzcz0iZGF0YSIvPjx0ZXh0IHg9IjYwNiIgeT0iMzYiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7IKs6rG06rSA66asIERCPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iNjEiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBvc3RncmVTUUw8L3RleHQ+PC9nPjxwYXRoIGQ9Ik0gMjIyIDQxIEggMjUwIiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNIDQ2OCA0MSBIIDQ5NiIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGc+PHJlY3QgeD0iOCIgeT0iODYiIHdpZHRoPSIyMTIiIGhlaWdodD0iNjYiIHJ4PSIxMSIgY2xhc3M9ImFwcCIvPjx0ZXh0IHg9IjExNCIgeT0iMTE0IiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNSTSDsm7kgwrcg7JWxPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iMTM5IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GbHV0dGVyIMK3IFBXQSAvIEFuZHJvaWQ8L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjI1NCIgeT0iODYiIHdpZHRoPSIyMTIiIGhlaWdodD0iNjYiIHJ4PSIxMSIgY2xhc3M9ImFwaSIvPjx0ZXh0IHg9IjM2MCIgeT0iMTE0IiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNSTSBBUEk8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSIxMzkiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vZGUuanMgwrcgRXhwcmVzczwvdGV4dD48L2c+PGc+PHJlY3QgeD0iNTAwIiB5PSI4NiIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI2NiIgcng9IjExIiBjbGFzcz0iZGF0YSIvPjx0ZXh0IHg9IjYwNiIgeT0iMTE0IiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNSTSBEQjwvdGV4dD48dGV4dCB4PSI2MDYiIHk9IjEzOSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UG9zdGdyZVNRTDwvdGV4dD48L2c+PHBhdGggZD0iTSAyMjIgMTE5IEggMjUwIiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNIDQ2OCAxMTkgSCA0OTYiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxnPjxyZWN0IHg9IjgiIHk9IjE2NCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI2NiIgcng9IjExIiBjbGFzcz0iYXBwIi8+PHRleHQgeD0iMTE0IiB5PSIxOTIiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7ZmI7Y6Y7J207KeAIFYyPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iMjE3IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OZXh0LmpzIMK3IENNUzwvdGV4dD48L2c+PGc+PHJlY3QgeD0iMjU0IiB5PSIxNjQiIHdpZHRoPSIyMTIiIGhlaWdodD0iNjYiIHJ4PSIxMSIgY2xhc3M9ImFwaSIvPjx0ZXh0IHg9IjM2MCIgeT0iMTkyIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu2ZiO2OmOydtOyngCBBUEk8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSIyMTciIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5lc3RKUyDCtyBQcmlzbWE8L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjUwMCIgeT0iMTY0IiB3aWR0aD0iMjEyIiBoZWlnaHQ9IjY2IiByeD0iMTEiIGNsYXNzPSJkYXRhIi8+PHRleHQgeD0iNjA2IiB5PSIxOTIiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7ZmI7Y6Y7J207KeAIFYyIERCPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iMjE3IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Qb3N0Z3JlU1FMPC90ZXh0PjwvZz48cGF0aCBkPSJNIDIyMiAxOTcgSCAyNTAiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0gNDY4IDE5NyBIIDQ5NiIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGc+PHJlY3QgeD0iOCIgeT0iMjQyIiB3aWR0aD0iMjEyIiBoZWlnaHQ9IjY2IiByeD0iMTEiIGNsYXNzPSJhcHAiLz48dGV4dCB4PSIxMTQiIHk9IjI3MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7roIjqsbDsi5wg7ZmI7Y6Y7J207KeAPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iMjk1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DU0hUTUwgwrcgSmF2YVNjcmlwdDwvdGV4dD48L2c+PGc+PHJlY3QgeD0iMjU0IiB5PSIyNDIiIHdpZHRoPSIyMTIiIGhlaWdodD0iNjYiIHJ4PSIxMSIgY2xhc3M9ImFwaSIvPjx0ZXh0IHg9IjM2MCIgeT0iMjcwIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPi5ORVQg7JWg7ZSM66as7LyA7J207IWYPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iMjk1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BU1AuTkVUIENvcmUgwrcgSUlTPC90ZXh0PjwvZz48Zz48cmVjdCB4PSI1MDAiIHk9IjI0MiIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI2NiIgcng9IjExIiBjbGFzcz0iZGF0YSIvPjx0ZXh0IHg9IjYwNiIgeT0iMjcwIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuugiOqxsOyLnCBEQjwvdGV4dD48dGV4dCB4PSI2MDYiIHk9IjI5NSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1FMIFNlcnZlcjwvdGV4dD48L2c+PHBhdGggZD0iTSAyMjIgMjc1IEggMjUwIiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNIDQ2OCAyNzUgSCA0OTYiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjwvc3ZnPgo=" alt="법승 시스템 개관 — 화면, 서버, 데이터를 서비스별로 정렬"></figure>
+<p><strong>시스템 간 연동</strong>: 사건관리↔CRM은 FDW·API, CRM↔Google Sheets는 웹훅으로 연결합니다. V2→CRM 비동기 전달은 구현 이력이며 운영 상태는 II절에 구분했습니다.</p>
+<p><strong>운영 환경</strong>: 신규 시스템은 GCP Cloud Run·Cloud SQL, 레거시는 Windows Server/IIS·SQL Server.</p>
+<hr>
+<h1>법무법인 법승 (2026-01-19 – 현재)</h1>
+<h2>I. 사내 사건관리 앱 (BS_CASE_MANAGEMENT) — 2인 팀 개발</h2>
+<ul>
+<li><strong>기간</strong>: 2026-06 착수 – 진행 중 (베타 운영: 대전 · 부산 · 청주 3개 지사)</li>
+<li><strong>기술스택</strong>: FastAPI(Python) + SQLAlchemy + Pydantic / React + TypeScript + Vite(TanStack Query, TanStack Table, shadcn/ui) / PostgreSQL(Cloud SQL, <code>postgres_fdw</code>) / APScheduler / Google Gmail·Drive·Workspace API / GCP Cloud Run</li>
+<li><strong>시스템 개요</strong>: 상담료 · 수발신 문서대장 · 전자결재 · 열람등사 · 계약/미수금 등 변호사 실무 전 과정을 통합 관리하는 사내 업무 도구. <strong>2인 팀 개발</strong>이며, 본인은 <strong>상담 · 문서 · 전자결재 · 정산(계약/미수금) 도메인</strong>과 <strong>인프라/배포 전반</strong>을 담당. CRM과 데이터를 연동해 사건 · 당사자 정보를 단일 원천으로 관리.</li>
+</ul>
+<h3>아키텍처</h3>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MjAiIGhlaWdodD0iMjMwIiB2aWV3Qm94PSIwIDAgNzIwIDIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj7sgqzqsbTqtIDrpqwg7ZW17IusIOyVhO2CpO2FjeyymDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPu2ZlOuptOyXkOyEnCDsl4XrrLQgQVBJ66W8IO2Gte2VtCBQb3N0Z3JlU1FM7J2EIOyhsO2ajMK367OA6rK9LiDtirjrnpzsnq3shZgg7ZuF7Jy866GcIOqwkOyCrOuhnOq3uOyZgCDsnbTrsqTtirjrpbwg7LKY66as7ZWY6rOgIENSTSDrsI8g7JeF66y0IEFQSeyZgCDsl7Drj5kuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNTI2NzgyIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0iYXJyb3dTdGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNTI2NzgyIi8+PC9tYXJrZXI+PC9kZWZzPgo8c3R5bGU+dGV4dHtmb250LWZhbWlseToiTWFsZ3VuIEdvdGhpYyIsIkFwcGxlIFNEIEdvdGhpYyBOZW8iLCJOb3RvIFNhbnMgS1IiLHNhbnMtc2VyaWY7ZmlsbDojMTgyYjQ0fS5sYWJlbHtmb250LXNpemU6MjFweDtmb250LXdlaWdodDo3MDB9LnN1Yntmb250LXNpemU6MTdweDtmaWxsOiM0MjU4NzV9LmhpbnR7Zm9udC1zaXplOjE3cHg7ZmlsbDojNDI1ODc1fS5hcHB7ZmlsbDojZWZmNWZmO3N0cm9rZTojNzY5NWM0O3N0cm9rZS13aWR0aDoxLjd9LmFwaXtmaWxsOiNlZGY4ZjY7c3Ryb2tlOiM2NGEzOWE7c3Ryb2tlLXdpZHRoOjEuN30uZGF0YXtmaWxsOiNmNGYwZmE7c3Ryb2tlOiNhMDhjYjg7c3Ryb2tlLXdpZHRoOjEuN30uZXh0ZXJuYWx7ZmlsbDojZjhmYWZjO3N0cm9rZTojOWJhYWJkO3N0cm9rZS13aWR0aDoxLjd9LmVkZ2V7ZmlsbDpub25lO3N0cm9rZTojNTI2NzgyO3N0cm9rZS13aWR0aDoyLjM7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfS5kYXNoZWR7c3Ryb2tlLWRhc2hhcnJheTo2IDR9PC9zdHlsZT4KPGc+PHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MCIgcng9IjExIiBjbGFzcz0iYXBwIi8+PHRleHQgeD0iMTE0IiB5PSI0MyIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sgqzqsbTqtIDrpqwg7ZmU66m0PC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlJlYWN0IMK3IFRhblN0YWNrIFF1ZXJ5PC90ZXh0PjwvZz48Zz48cmVjdCB4PSIyNTQiIHk9IjgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODAiIHJ4PSIxMSIgY2xhc3M9ImFwaSIvPjx0ZXh0IHg9IjM2MCIgeT0iNDMiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7JeF66y0IEFQSSDCtyBDUlVEPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhc3RBUEkgwrcgU1FMQWxjaGVteTwvdGV4dD48L2c+PGc+PHJlY3QgeD0iNTAwIiB5PSI4IiB3aWR0aD0iMjEyIiBoZWlnaHQ9IjgwIiByeD0iMTEiIGNsYXNzPSJkYXRhIi8+PHRleHQgeD0iNjA2IiB5PSI0MyIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sl4XrrLQg642w7J207YSwPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBvc3RncmVTUUwgwrcgQ2xvdWQgU1FMPC90ZXh0PjwvZz48cGF0aCBkPSJNIDIyMiA0OCBIIDI1MCIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTSA0NjggNDggSCA0OTYiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGNsYXNzPSJlZGdlIiBkPSJNIDM2MCA4OSBWIDExOCBNIDExNCAxMTggSCA2MDYiLz48cGF0aCBkPSJNIDExNCAxMTggViAxNDQiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxnPjxyZWN0IHg9IjgiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSIxMTQiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7tirjrnpzsnq3shZgg7ZuFPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7qsJDsgqzroZzqt7ggwrcgU1NFIOydtOuypO2KuDwvdGV4dD48L2c+PHBhdGggZD0iTSAzNjAgMTE4IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSIyNTQiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSIzNjAiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DUk0g642w7J207YSwPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GRFcg67Cw7LmYIOyhsO2ajDwvdGV4dD48L2c+PHBhdGggZD0iTSA2MDYgMTE4IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSI1MDAiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSI2MDYiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sl4XrrLQg7Jew64+ZPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HbWFpbCDCtyBEcml2ZSDCtyDrspXsm5A8L3RleHQ+PC9nPjwvc3ZnPgo=" alt="사건관리 아키텍처 — 화면, 업무 API, 데이터와 세 가지 연동"></figure>
+<p><strong>핵심 흐름</strong>: React 화면 → API 라우터 → CRUD → PostgreSQL. 변경사항은 SQLAlchemy 세션 훅에서 감사로그와 SSE 이벤트로 연결합니다. CRM 원격 데이터는 인라인 조인 대신 배치 조회하며, 요청 단위 커밋 이후의 실행취소는 별도 Undo 스택으로 처리합니다.</p>
+<h3>담당 업무 및 핵심 문제 해결 사례</h3>
+<h4>1) FDW 원격 조인 병목 제거 — 응답시간 8초 → 0.05초 (약 160배)</h4>
+<ul>
+<li><strong>문제</strong>: 상담료 &#39;처리 대기&#39; 목록 조회에서, CRM 데이터를 <code>postgres_fdw</code>로 노출한 <code>crm.*</code> 스키마와 로컬 테이블을 인라인 JOIN하는 쿼리가 8초 이상 소요.</li>
+<li><strong>원인 분석</strong>: FDW 포린테이블은 원격 조인이 로컬 옵티마이저에 푸시다운되지 않아, JOIN이 걸릴 때마다 원격 테이블 전체를 끌어와 로컬에서 재필터링하는 구조였음.</li>
+<li><strong>해결</strong>: &quot;스케줄(사건) 선조회 → 이름/사무소 배치(batch) 조회&quot; 구조로 재설계해 원격 인라인 조인 자체를 제거.</li>
+<li><strong>성과</strong>: 응답시간 8초 → 0.05초 (약 160배 개선).</li>
+</ul>
+<h4>2) 타입 불일치로 무효화된 인덱스 복구 — 1695ms → 109ms (약 15배)</h4>
+<ul>
+<li><strong>문제</strong>: 사건목록 조회가 매 요청마다 약 4만 행 Seq Scan을 반복하며 1.7초 가까이 소요.</li>
+<li><strong>원인 분석</strong>: <code>party_detail_local.party_key</code>(<code>text</code>)와 <code>cases</code>/<code>matters.party_key</code>(<code>character(8)</code>, bpchar) 간 타입 불일치로 PostgreSQL 옵티마이저가 기존 인덱스를 사용하지 못하고 있었음.</li>
+<li><strong>해결</strong>: 조인 조건에 <code>::text</code> 명시적 캐스팅을 적용해 인덱스 사용 경로를 복원.</li>
+<li><strong>성과</strong>: 1695ms → 109ms (약 15배). 기일 충돌 판정 기준도 <code>&lt; 3600</code> → <code>&lt;= 3600</code>(60분 경계 포함)으로 함께 정교화.</li>
+</ul>
+<h4>3) SQLAlchemy 세션 훅 기반 &quot;무수정(non-invasive)&quot; 감사로그 + SSE 실시간 동기화</h4>
+<ul>
+<li><strong>문제</strong>: 20초 폴링 기반 화면 갱신의 실시간성 부족. 엔드포인트가 늘어날 때마다 감사로그 · 실시간 알림 발행 코드를 수동으로 삽입해야 하는 구조라 신규 엔드포인트에서 누락 위험 상존.</li>
+<li><strong>해결</strong>: SQLAlchemy <code>before_flush</code> / <code>after_flush</code> / <code>after_commit</code> 세션 훅으로 ORM 변경사항을 전역에서 자동 포착 — <code>before_flush</code>에서 변경 diff를 수집, <code>after_flush</code>에서 PK 확정 후 <strong>같은 트랜잭션</strong>에 기록해 롤백 시 로그도 함께 사라지는 원자성을 보장. 동일한 훅 구조를 실시간 이벤트 발행(<code>core/events.py</code>)에도 재사용해 엔드포인트 50곳을 일일이 수정하지 않고도 전역 커버.</li>
+<li><strong>실시간 브로커</strong>: Redis/Pub-Sub 대신 이미 쓰던 Cloud SQL의 <strong>Postgres <code>LISTEN/NOTIFY</code></strong> 를 채택(추가 인프라 비용 0). 전용 raw 커넥션을 별도 스레드에서 <code>select()</code>로 감시하고 <code>loop.call_soon_threadsafe</code>로 접속자별 asyncio 큐에 전달해, 동기 스택(psycopg2) 위에서 비동기 SSE 스트림을 구현. 프론트는 <code>EventSource</code> 대신 <code>fetch</code> + <code>ReadableStream</code>을 채택해 JWT가 쿼리스트링에 노출되지 않도록 처리.</li>
+<li><strong>성과</strong>: 폴링 → 이벤트 기반 실시간 전환. 운영 실측(24시간) SSE 연결 620건 중 조기종료 0건.</li>
+<li><strong>운영 전용 장애 3건(로컬 재현 불가)</strong>: ① <code>GZipMiddleware</code>가 최소 크기(1000B) 충족을 기다리며 SSE 신호를 무기한 대기하는 문제 → 경로 기반 판정으로 gzip 예외 처리. ② <code>is_disconnected()</code> 오판 → 애플리케이션 로그 대조로 실제 원인 규명 후 불필요한 체크 제거. ③ Firebase Hosting(Fastly CDN) 경유 시 스트리밍 버퍼링 → SSE만 Cloud Run에 직접 연결.</li>
+</ul>
+<p class="label"><strong>실시간 변경 전파 — 4단계</strong></p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>처리와 설계 의도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 변경 수집</td>
+<td>API 수정 요청 → 세션 훅에서 diff 수집 → 업무 데이터와 감사로그를 같은 트랜잭션에 저장</td>
+</tr>
+<tr>
+<td>2. 커밋 후 발행</td>
+<td>COMMIT 완료 후 PostgreSQL NOTIFY를 발행해 확정된 변경만 전달</td>
+</tr>
+<tr>
+<td>3. 접속자별 전송</td>
+<td>LISTEN 브로커 → 접속자별 asyncio 큐 → SSE 스트림</td>
+</tr>
+<tr>
+<td>4. 화면 반영</td>
+<td>브라우저가 이벤트를 수신해 관련 TanStack Query 캐시를 무효화하고 다시 조회</td>
+</tr>
+</tbody></table>
+<h4>4) 전자결재(Approval) 시스템 — Gmail/Drive 위에 구축한 워크플로</h4>
+<ul>
+<li><strong>구현</strong>: Gmail 결재요청 메일 + <strong>서명토큰 기반 무인증 원클릭 결재 페이지</strong>(비밀번호 없이 토큰 검증만으로 승인/반려), 헤더 알림벨 · 폴링 · 토스트로 구성된 인앱 알림까지 결재 워크플로(요청→승인→반려→재상신)를 구축. 결재 참조자(Cc) 기능은 JSONB(<code>cc_approver_keys</code>) + GIN 인덱스로 설계해 별도 상태 컬럼 없이 <code>approval_status</code>를 미러링(상태 이원화로 인한 불일치 방지).</li>
+<li><strong>시도와 롤백</strong>: 페이지 이동 없이 Gmail 안에서 바로 승인/반려하는 <strong>AMP for Email 인이메일 결재</strong>를 구현했으나, 최종 점검에서 AMP 발신자 등록 요건인 <strong>DKIM · DMARC가 도메인에 설정되어 있지 않아</strong> 등록 전까지는 전 수신자가 HTML 폴백만 받는다는 사실을 확인. &quot;동작하지 않을 코드를 남기지 않는다&quot;는 원칙으로 AMP 관련 코드를 전량 롤백하고, 링크 메일 + 인앱 결재 방식으로 운영을 유지.</li>
+<li><strong>재설계</strong>: 결재 흔적을 파일명 prepend 방식에서 <strong>Google Drive 라벨 배지(대기/완료/반려) 자동 동기화</strong>로 재설계해, Drive에서 파일을 열지 않고도 결재 상태를 바로 확인 가능하도록 개선.</li>
+</ul>
+<h4>5) 열람등사(Record Request) 자동화 — &#39;도과&#39;의 재정의와 무인 알림</h4>
+<ul>
+<li><strong>문제</strong>: 열람 · 등사 신청 후 &quot;도과&quot;(기한 경과) 여부를 사람이 직접 계산 · 추적해야 했음.</li>
+<li><strong>해결</strong>: &#39;도과&#39;를 &quot;등사일자 미등록 상태로 방치&quot;로 재정의해, 발의일 + 7영업일 도달 시 자동 알림을 발송(등록/종결 시 알림 중단)하도록 설계. 공공데이터포털 <strong>특일정보 API</strong>로 공휴일을 판정해 영업일 계산에 반영하고, 외부 스케줄러 없이 <strong>인앱 APScheduler(매일 10:00 KST cron)</strong> 로 자동화, 알림 채널을 카카오톡 웹훅 단일 경로로 통합.</li>
+<li><strong>트러블슈팅</strong>: 이 API 키가 배포 과정에서 두 번 유실된 사고를 겪음 — 키가 없어도 앱이 죽지 않고 빈 공휴일 목록으로 조용히 폴백하는 구조라 증상이 바로 드러나지 않았고(캐시된 연도 데이터로 당장은 정상 작동, 연도가 바뀌면 조용히 틀어지는 시한폭탄 구조), 묶음 <code>.env</code> 대신 전용 Secret Manager 시크릿으로 분리해 &quot;빠뜨리면 배포 자체가 실패&quot;하는 구조로 재발을 방지.</li>
+</ul>
+<h4>6) 프론트엔드 공통화 — TanStack Table 기반 공통 DataTable</h4>
+<ul>
+<li><code>@tanstack/react-table</code> 기반 공통 DataTable 컴포넌트를 도입해 <strong>미수금 · 열람등사 · 계약 · 상담료 4종 목록을 일원화</strong>. 컬럼 폭 · 순서 · 표시 · 정렬을 <code>tableId</code> 단위로 localStorage에 저장해 사용자별 설정을 유지하도록 구현.</li>
+</ul>
+<h4>7) 요청 단위 자동 커밋 구조에서의 동시성 · 일관성 제어 (실제 메커니즘)</h4>
+<ul>
+<li>이 시스템은 FastAPI 요청 단위로 트랜잭션이 즉시 커밋되는 구조라, DB 트랜잭션 롤백만으로는 실행취소가 불가능함. 따라서 <strong>애플리케이션 레벨에서 역동작 클로저를 스택으로 쌓는 방식의 Undo 기능</strong>을 별도로 설계 · 구현.</li>
+<li>raw SQL 변경은 세션 훅이 감지하지 못하는 사각지대라 <code>record_manual()</code> 헬퍼로 같은 세션 · 같은 트랜잭션에 수동 기록해, &quot;롤백돼도 로그만 남는&quot; 유령 기록을 방지.</li>
+<li><strong>트러블슈팅</strong>: 감사로그 대상을 6개 → 22개 테이블로 확대한 직후, <code>executemany</code> 배치 삽입에서 insert/update가 혼합돼 행마다 파라미터 키 집합이 달라지며 배치 자체가 실패해 요청 트랜잭션 전체가 롤백되는 장애 발생. 액션과 무관하게 항상 동일한 키 집합을 채우도록 수정해 해결.</li>
+</ul>
+<h4>8) Cloud Run 빌드·배포 절차 표준화 — 명시적 이미지 배포와 응답 검증</h4>
+<ul>
+<li><strong>개선 배경</strong>: 소스 기반 배포에서 의도한 루트 Dockerfile 대신 프론트엔드 정적서빙 이미지가 배포되어, API가 HTML을 반환하는 문제를 분석하고 이전 리비전으로 롤백. 당시 영향은 각각 27분·9분의 서비스 중단으로 확인.</li>
+<li><strong>조치와 가치</strong>: 루트 Dockerfile 명시 → 이미지 빌드 → <code>--image</code> 배포 → 응답 본문·Content-Type 검증의 절차를 정립. 배포 성공 여부와 실제 API 응답의 정상 여부를 함께 확인하도록 만들고, 이후 신규 시스템에도 같은 절차를 적용.</li>
+</ul>
+<h4>9) Cloud Run 실시간 서비스 설정 튜닝 (SSE 지원) + 프론트 · 백엔드 단일 서비스 통합 배포</h4>
+<ul>
+<li><code>--timeout 3600</code>(기본 300초로는 SSE가 5분마다 강제 종료), <code>--concurrency 250</code>, <code>--cpu 1000m</code>(1 vCPU 미만이면 최대 동시성이 1로 강제돼 SSE와 양립 불가) 등 제약을 파악한 뒤 적용.</li>
+<li>프론트(Vite 빌드)와 백엔드(FastAPI)를 <strong>단일 Cloud Run 서비스</strong>로 통합 배포(멀티스테이지 Docker), <code>--min-instances</code>를 서비스 레벨로 관리해 예열창(평일 08:30–19:30 KST) 토글이 리비전 재배포를 유발하지 않도록 설계.</li>
+</ul>
+<h4>10) 자체 마이그레이션 프레임워크 및 스키마-모델 정합성 자동 검사</h4>
+<ul>
+<li>Alembic 대신 순번 기반 자체 마이그레이션 러너 운용. 계약일 기준 재설정 마이그레이션을 운영 DB에 무중단 적용, 회계 컬럼 재구조화(<code>consultation_fees</code>를 <code>fee_kind</code>+<code>fee_group_id</code>로 분리) 시 &quot;구코드와 신코드가 동시에 적재되면 금액이 2배로 집계되는&quot; 위험을 근거로 배포 순서를 명시적으로 고정.</li>
+<li>계약 등록 API가 &quot;마이그레이션은 반영됐는데 SQLAlchemy 모델 컬럼만 누락되어&quot; 전면 500 장애가 발생한 사고를 계기로, 쓰기 스키마 필드가 모델 컬럼의 부분집합인지 자동 검사하는 정합성 체크 도구를 도입.</li>
+</ul>
+<h4>11) 회계 데이터 정합성 감사 (읽기 전용 전수 대사)</h4>
+<ul>
+<li>구글시트-앱 간 미수금 동기화가 <strong>DB→시트 단방향</strong>인 구조적 결함을 실측으로 규명. 월 차액 10,836,000원을 원인 2가지로 1원 단위까지 완전 분해.</li>
+<li>조사 범위를 전 기간으로 확장해 DB 자체 미수금 중복 27쌍(43,818,000원)을 발견 — 전 과정 SELECT-only(운영 데이터 변경 0건)로 수행.</li>
+</ul>
+<hr>
+<h2>II. 법무법인 홈페이지 V2 리뉴얼 (BS_MAIN_HOMEPAGE_V2) — 1인 풀스택</h2>
+<ul>
+<li><strong>기간</strong>: 2026-05 착수 – 진행 중</li>
+<li><strong>기술스택</strong>: Next.js(App Router) + NestJS, TypeScript, Prisma, PostgreSQL(Cloud SQL, 레거시는 SQL Server), Turborepo, Tailwind, NextAuth/Google OAuth, GCP Cloud Run · Cloud Build · GCS</li>
+<li><strong>시스템 개요</strong>: 레거시 ASP.NET/SQL Server 기반 대고객 홈페이지(승소사례 · 변호사소개 등 홍보용 공개 사이트)를 Next.js 기반으로 전면 리뉴얼. 공개 사이트부터 사내 운영용 어드민 CMS까지 <strong>스크래치부터 1인 풀스택</strong>으로 구축.</li>
+</ul>
+<h3>아키텍처</h3>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MjAiIGhlaWdodD0iMjMwIiB2aWV3Qm94PSIwIDAgNzIwIDIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPg0KPHRpdGxlIGlkPSJ0aXRsZSI+7ZmI7Y6Y7J207KeAIFYyIO2VteyLrCDslYTtgqTthY3sspg8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5OZXh0LmpzIO2ZlOuptOqzvCBOZXN0SlMgQVBJLCBQb3N0Z3JlU1FMIOuNsOydtO2EsCDqs4TsuLUuIOyDgeuLtCDsoJHsiJjsnZggQ1JNIOu5hOuPmeq4sCDsoITri6wg6rK966Gc64qUIOq1rO2YhCDsnbTroKXsnbTrqbAgOOyblCDrs7Tqs6Ag6riw7KSAIOyatOyYgSDruYTtmZzshLEuIEdDUyDsl4XroZzrk5zsmYAgR29vZ2xlIE9BdXRo64qUIO2ZlOuptCDsuKEg7Jew64+Z7J2066mwIEFQSSDqsr3roZzsmYAg6rWs67aE7ZW0IOuzuOusuOyXkCDquLDsiKAuPC9kZXNjPg0KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzUyNjc4MiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9ImFycm93U3RhcnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzUyNjc4MiIvPjwvbWFya2VyPjwvZGVmcz4NCjxzdHlsZT50ZXh0e2ZvbnQtZmFtaWx5OiJNYWxndW4gR290aGljIiwiQXBwbGUgU0QgR290aGljIE5lbyIsIk5vdG8gU2FucyBLUiIsc2Fucy1zZXJpZjtmaWxsOiMxODJiNDR9LmxhYmVse2ZvbnQtc2l6ZToyMXB4O2ZvbnQtd2VpZ2h0OjcwMH0uc3Vie2ZvbnQtc2l6ZToxN3B4O2ZpbGw6IzQyNTg3NX0uaGludHtmb250LXNpemU6MTdweDtmaWxsOiM0MjU4NzV9LmFwcHtmaWxsOiNlZmY1ZmY7c3Ryb2tlOiM3Njk1YzQ7c3Ryb2tlLXdpZHRoOjEuN30uYXBpe2ZpbGw6I2VkZjhmNjtzdHJva2U6IzY0YTM5YTtzdHJva2Utd2lkdGg6MS43fS5kYXRhe2ZpbGw6I2Y0ZjBmYTtzdHJva2U6I2EwOGNiODtzdHJva2Utd2lkdGg6MS43fS5leHRlcm5hbHtmaWxsOiNmOGZhZmM7c3Ryb2tlOiM5YmFhYmQ7c3Ryb2tlLXdpZHRoOjEuN30uZWRnZXtmaWxsOm5vbmU7c3Ryb2tlOiM1MjY3ODI7c3Ryb2tlLXdpZHRoOjIuMztzdHJva2UtbGluZWpvaW46cm91bmR9LmRhc2hlZHtzdHJva2UtZGFzaGFycmF5OjYgNH08L3N0eWxlPg0KPGc+PHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MCIgcng9IjExIiBjbGFzcz0iYXBwIi8+PHRleHQgeD0iMTE0IiB5PSI0MyIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7qs7XqsJwg7IKs7J207Yq4IMK3IENNUzwvdGV4dD48dGV4dCB4PSIxMTQiIHk9IjY4IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OZXh0LmpzIMK3IEFwcCBSb3V0ZXI8L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjI1NCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MCIgcng9IjExIiBjbGFzcz0iYXBpIi8+PHRleHQgeD0iMzYwIiB5PSI0MyIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7tmYjtjpjsnbTsp4AgQVBJPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5lc3RKUyDCtyBQcmlzbWE8L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjUwMCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MCIgcng9IjExIiBjbGFzcz0iZGF0YSIvPjx0ZXh0IHg9IjYwNiIgeT0iNDMiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7L2Y7YWQ7LigIMK3IOyDgeuLtCDrjbDsnbTthLA8L3RleHQ+PHRleHQgeD0iNjA2IiB5PSI2OCIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UG9zdGdyZVNRTCDCtyBDbG91ZCBTUUw8L3RleHQ+PC9nPjxwYXRoIGQ9Ik0gMjIyIDQ4IEggMjUwIiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNIDQ2OCA0OCBIIDQ5NiIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggY2xhc3M9ImVkZ2UiIGQ9Ik0gMzYwIDg5IFYgMTE4IE0gMzYwIDExOCBIIDYwNiIvPjxwYXRoIGQ9Ik0gMTE0IDg5IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSI4IiB5PSIxNDgiIHdpZHRoPSIyMTIiIGhlaWdodD0iNzQiIHJ4PSIxMSIgY2xhc3M9ImV4dGVybmFsIi8+PHRleHQgeD0iMTE0IiB5PSIxODAiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7L2Y7YWQ7LigIMK3IOyduOymnTwvdGV4dD48dGV4dCB4PSIxMTQiIHk9IjIwNSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R0NTIMK3IEdvb2dsZSBPQXV0aDwvdGV4dD48L2c+PHBhdGggZD0iTSAzNjAgMTE4IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSIyNTQiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSIzNjAiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sg4Hri7Qg6rKA7KadPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5yZUNBUFRDSEEgdjM8L3RleHQ+PC9nPjxwYXRoIGQ9Ik0gNjA2IDExOCBWIDE0NCIgY2xhc3M9ImVkZ2UgZGFzaGVkIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxnPjxyZWN0IHg9IjUwMCIgeT0iMTQ4IiB3aWR0aD0iMjEyIiBoZWlnaHQ9Ijc0IiByeD0iMTEiIGNsYXNzPSJleHRlcm5hbCIvPjx0ZXh0IHg9IjYwNiIgeT0iMTgwIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNSTSDsoITri6wg6rK966GcPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7qtaztmIQgwrcg7Jq07JiB7J2AIOu5hO2ZnOyEsTwvdGV4dD48L2c+PC9zdmc+DQo=" alt="홈페이지 V2 아키텍처 — 공개 사이트와 CMS, API, 데이터 및 외부 연동"></figure>
+<p><strong>상담 접수</strong>: reCAPTCHA 검증과 카테고리 조회를 병렬 처리하고, CRM 전달은 응답을 기다리지 않는 비동기 경로로 구현했습니다. GCS 업로드와 Google OAuth는 화면에서 사용하는 연동입니다.</p>
+<p><strong>연동 운영</strong>: CRM 전달은 8/7에 비활성화했으며, <a href="daily/8%EC%9B%94/2026-08-24.md">8/24 보고</a>에서도 <code>CRM_FORWARD_ENABLED=false</code> 상태를 확인했습니다. 도식의 점선은 구현된 전달 경로를 뜻합니다.</p>
+<p><strong>배포 경로</strong>: 사용자 → Global ALB → Cloud Run. 인증서는 Certificate Manager로 관리하며, 콘텐츠와 상담 데이터는 SQL Server에서 이관한 PostgreSQL에 저장합니다.</p>
+<h3>담당 업무 및 핵심 문제 해결 사례</h3>
+<h4>1) SQL Server → PostgreSQL 730만 건 데이터 이관</h4>
+<ul>
+<li>Turborepo 기반 프론트/백엔드 모노레포 뼈대 구축과 함께, 레거시 SQL Server 데이터 <strong>약 730만 건</strong>을 PostgreSQL(Cloud SQL)로 이관 완료.</li>
+</ul>
+<h4>2) 상담 접수 API — <code>Promise.all</code> 병렬 처리 + fire-and-forget — 콜드스타트 대기 4초 제거</h4>
+<ul>
+<li><strong>문제</strong>: 상담 접수 시 reCAPTCHA 검증(구글 API 왕복)과 카테고리 조회(DB)가 순차 실행되어 응답 지연, 콜드스타트 시 최대 4초 대기.</li>
+<li><strong>해결</strong>: <code>Promise.all</code>로 두 작업을 병렬화해 대기시간을 겹치고(<code>backend/consult.service.ts</code>), CRM 요청함 전달은 결과를 기다리지 않는 <strong>fire-and-forget</strong>으로 전환 — CRM 측 장애가 홈페이지 상담 접수 자체를 막지 않도록 장애를 격리.</li>
+<li><strong>성과</strong>: 콜드스타트 최대 4초 대기 제거.</li>
+</ul>
+<h4>3) SEO/AEO — 검색 · 답변엔진(AI) 양쪽에 최적화</h4>
+<ul>
+<li><strong>레거시 주소 보존 이전</strong>: 옛 주소(<code>/{지역}/wincasedetail</code>)를 지역 · ID 그대로 보존한 채 V2 경로로 301 이전, 페이지 자기 canonical 위임 처리(홈으로 canonical이 흡수되던 버그 해소).</li>
+<li><strong>사이트맵 정리</strong>: 2024년 옛 주소 <strong>2,328건</strong>이 담긴 정적 sitemap을 제거하고 동적 sitemap으로 통합.</li>
+<li><strong>답변엔진 엔티티 혼동 대응</strong>: Perplexity · Gemini · 네이버 CUE 등 AI 답변엔진이 법인을 다른 개체와 혼동하는 문제에 대응해, <code>LegalService</code> JSON-LD에 공식 SNS와 지사 10곳의 네이버 플레이스 <code>sameAs</code>를 주입. 칼럼 · 사례의 저자를 담당 변호사(<code>Person</code>)로 귀속해 E-E-A-T(전문성 · 권위 · 신뢰성) 신호를 강화.</li>
+</ul>
+<h4>4) 보안 — 상담자 개인정보 · 어드민 접근 통제</h4>
+<ul>
+<li>권한 없는 어드민 계정에는 상담 내용 <strong>PII 마스킹</strong> 처리. 전역 보안 헤더(클릭재킹 · MIME 스니핑 방어) 적용, 상담 접수 API에 <strong>IP 기준 빈도 제한</strong>. <strong>reCAPTCHA v3</strong> 봇 차단 로직을 구글 장애 시 fail-open(통과)이 아니라 <strong>fail-closed(차단)</strong> 로 전환해 봇 유입 리스크를 줄임. 어드민 로그인을 Google 전용으로 일원화.</li>
+</ul>
+<h4>5) CMS — 어드민 콘텐츠 관리 기능</h4>
+<ul>
+<li>예약 발행(발행 시각 도래 전 404 차단), 이미지 드래그 업로드(로컬 → GCS 직접 업로드), 자동 목차(TOC) 생성, 20MB PDF 첨부, 최대 1만 건 CSV 다운로드(한글 인코딩 깨짐 방지 + 개인정보 마스킹). Google Workspace <strong>역할 기반 인증 + 하이브리드 폴백</strong>으로 어드민 계정 관리를 일원화.</li>
+</ul>
+<h4>6) Cloud SQL 보안 7항목 전수 점검 및 리스크 판단</h4>
+<ul>
+<li>삭제 보호 비활성(백업 7일치와 함께 영구 삭제될 수 있는 상태) 즉시 조치, 평문 접속 허용 구간을 <code>ENCRYPTED_ONLY</code>로 전환(Cloud Run이 커넥터 소켓 경유임을 사전 확인해 운영 무중단 보장).</li>
+<li>반대로, <strong>멀티리전 복제는 의도적으로 미실행</strong> — 한국 GCP 리전이 서울 하나뿐이라 복제본이 일본에 놓여 상담자 개인정보 국외이전이 되는 리스크를 근거로 보류. &quot;경고를 없애는 조치&quot;와 &quot;리스크를 새로 만드는 조치&quot;를 구분해 판단.</li>
+<li><strong>부작용 대응</strong>: SSL 강제 조치 직후 마이그레이션 도구 12개가 인증서 검증 방식 차이로 파손된 것을 실측 확인 후 libpq 호환 플래그로 수정.</li>
+</ul>
+<h4>7) Cloud SQL 커넥터 순간 장애에 대한 앱 레벨 내결함성</h4>
+<ul>
+<li><strong>문제</strong>: Cloud SQL 커넥터가 순간 타임아웃될 때 <code>PrismaService.onModuleInit</code>이 재시도 없이 예외를 던져 Nest 부팅 자체가 실패 → Cloud Run이 인스턴스를 <code>exit(1)</code>로 종료 → STARTUP probe 실패로 6분 39초 전면 500 장애.</li>
+<li><strong>해결</strong>: 기동 시 0.5초–8초 간격 5회 재시도, 재시도 소진해도 예외를 던지지 않고 기동을 이어가 DB 복구 시 자동 재연결하도록 변경.</li>
+</ul>
+<h4>8) 배포/도메인 컷오버 인프라</h4>
+<ul>
+<li>Cloud Run 도메인 매핑이 서울 리전을 지원하지 않음을 확인한 뒤, 글로벌 외부 로드밸런서(ALB, 고정 IP) + Certificate Manager(DNS Authorization 방식 인증서)로 경로 전환 — 다운타임 0으로 컷오버 완료.</li>
+<li>Kaniko → BuildKit 빌드 전환으로 프론트 빌드시간 3분 4초 → 2분 23초 단축. <code>.gcloudignore</code> 적용으로 배포 업로드 용량 <strong>7.6GB → 115MB</strong>로 축소.</li>
+<li>레거시 GSC 미색인 17.8만 건 원인 분석 — 필터 조합 URL이 크롤 예산을 소진하는 구조적 문제를 확인해 <code>robots.ts</code>로 차단.</li>
+</ul>
+<hr>
+<h2>III. 사내 CRM (BS_CRM) — 1인 풀스택</h2>
+<ul>
+<li><strong>기간</strong>: 2026-01 착수 – 진행 중 (정식 오픈 2026-05)</li>
+<li><strong>기술스택</strong>: Node.js(Express) 백엔드 + Flutter(Dart) 클라이언트(PWA + Android) / Google Sheets(Apps Script) → MySQL → PostgreSQL(Cloud SQL) / Google Workspace API 연동</li>
+<li><strong>시스템 개요</strong>: 전국 10개 지사의 고객 유입 → 변호사 배정 → 상담 예약 → 문자 안내로 이어지는 전 과정을 통합 관리하는 맞춤형 CRM. <strong>스크래치부터 1인 풀스택으로 구축</strong>(API 54개, 16개 테이블, 약 49,000 LOC 규모).</li>
+</ul>
+<h3>아키텍처</h3>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MjAiIGhlaWdodD0iMjMwIiB2aWV3Qm94PSIwIDAgNzIwIDIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5DUk0g7ZW17IusIOyVhO2CpO2FjeyymDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkZsdXR0ZXIg7YG065287J207Ja47Yq47JmAIEV4cHJlc3MgQVBJLCBQb3N0Z3JlU1FMIOuNsOydtO2EsCDqs4TsuLUuIEdvb2dsZSBXb3Jrc3BhY2XsmYAgTkNQIFNFTlMg7Jew64+ZLCDquLDsobQg6rWs6riA7Iuc7Yq47JmAIOybue2bhSDslpHrsKntlqUg64+Z6riw7ZmULjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzUyNjc4MiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9ImFycm93U3RhcnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzUyNjc4MiIvPjwvbWFya2VyPjwvZGVmcz4KPHN0eWxlPnRleHR7Zm9udC1mYW1pbHk6Ik1hbGd1biBHb3RoaWMiLCJBcHBsZSBTRCBHb3RoaWMgTmVvIiwiTm90byBTYW5zIEtSIixzYW5zLXNlcmlmO2ZpbGw6IzE4MmI0NH0ubGFiZWx7Zm9udC1zaXplOjIxcHg7Zm9udC13ZWlnaHQ6NzAwfS5zdWJ7Zm9udC1zaXplOjE3cHg7ZmlsbDojNDI1ODc1fS5oaW50e2ZvbnQtc2l6ZToxN3B4O2ZpbGw6IzQyNTg3NX0uYXBwe2ZpbGw6I2VmZjVmZjtzdHJva2U6Izc2OTVjNDtzdHJva2Utd2lkdGg6MS43fS5hcGl7ZmlsbDojZWRmOGY2O3N0cm9rZTojNjRhMzlhO3N0cm9rZS13aWR0aDoxLjd9LmRhdGF7ZmlsbDojZjRmMGZhO3N0cm9rZTojYTA4Y2I4O3N0cm9rZS13aWR0aDoxLjd9LmV4dGVybmFse2ZpbGw6I2Y4ZmFmYztzdHJva2U6IzliYWFiZDtzdHJva2Utd2lkdGg6MS43fS5lZGdle2ZpbGw6bm9uZTtzdHJva2U6IzUyNjc4MjtzdHJva2Utd2lkdGg6Mi4zO3N0cm9rZS1saW5lam9pbjpyb3VuZH0uZGFzaGVke3N0cm9rZS1kYXNoYXJyYXk6NiA0fTwvc3R5bGU+CjxnPjxyZWN0IHg9IjgiIHk9IjgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODAiIHJ4PSIxMSIgY2xhc3M9ImFwcCIvPjx0ZXh0IHg9IjExNCIgeT0iNDMiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q1JNIOybuSDCtyBBbmRyb2lkPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZsdXR0ZXIgwrcgUFdBPC90ZXh0PjwvZz48Zz48cmVjdCB4PSIyNTQiIHk9IjgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODAiIHJ4PSIxMSIgY2xhc3M9ImFwaSIvPjx0ZXh0IHg9IjM2MCIgeT0iNDMiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7JeF66y0IEFQSSDCtyDshJzruYTsiqQ8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSI2OCIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm9kZS5qcyDCtyBFeHByZXNzPC90ZXh0PjwvZz48Zz48cmVjdCB4PSI1MDAiIHk9IjgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODAiIHJ4PSIxMSIgY2xhc3M9ImRhdGEiLz48dGV4dCB4PSI2MDYiIHk9IjQzIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuqzoOqwnSDCtyDsg4Hri7Qgwrcg7KCR7IiYPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iNjgiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBvc3RncmVTUUwgwrcgQ2xvdWQgU1FMPC90ZXh0PjwvZz48cGF0aCBkPSJNIDIyMiA0OCBIIDI1MCIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTSA0NjggNDggSCA0OTYiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGNsYXNzPSJlZGdlIiBkPSJNIDM2MCA4OSBWIDExOCBNIDExNCAxMTggSCA2MDYiLz48cGF0aCBkPSJNIDExNCAxMTggViAxNDQiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxnPjxyZWN0IHg9IjgiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSIxMTQiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Hb29nbGUgV29ya3NwYWNlPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7snbzsoJUgwrcg7KeB7JuQIMK3IOyXsOudveyymDwvdGV4dD48L2c+PHBhdGggZD0iTSAzNjAgMTE4IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiIG1hcmtlci1zdGFydD0idXJsKCNhcnJvd1N0YXJ0KSIvPjxnPjxyZWN0IHg9IjI1NCIgeT0iMTQ4IiB3aWR0aD0iMjEyIiBoZWlnaHQ9Ijc0IiByeD0iMTEiIGNsYXNzPSJleHRlcm5hbCIvPjx0ZXh0IHg9IjM2MCIgeT0iMTgwIiBjbGFzcz0ibGFiZWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuq4sOyhtCBHb29nbGUgU2hlZXRzPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sm7ntm4Ug7JaR67Cp7ZalIOuPmeq4sO2ZlDwvdGV4dD48L2c+PHBhdGggZD0iTSA2MDYgMTE4IFYgMTQ0IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSI1MDAiIHk9IjE0OCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI3NCIgcng9IjExIiBjbGFzcz0iZXh0ZXJuYWwiLz48dGV4dCB4PSI2MDYiIHk9IjE4MCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7rrLjsnpAg67Cc7IahPC90ZXh0Pjx0ZXh0IHg9IjYwNiIgeT0iMjA1IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OQ1AgU0VOUyDCtyBTTVMvTU1TPC90ZXh0PjwvZz48L3N2Zz4K" alt="CRM 아키텍처 — Flutter 클라이언트, Express API와 업무 연동"></figure>
+<p><strong>데이터와 연동</strong>: 고객·상담·접수 정보를 PostgreSQL에서 관리합니다. 홈페이지 접수용 요청함 연동 경로를 CRM API에 구현했고, 사건관리는 CRM API 및 FDW로 관련 정보를 조회합니다. 데이터 저장소는 Google Sheets → MySQL → PostgreSQL 순서로 전환했습니다.</p>
+<h3>담당 업무 및 핵심 문제 해결 사례</h3>
+<h4>1) Google Sheets(Apps Script) → Cloud SQL → PostgreSQL — CRM의 시작점을 직접 이관</h4>
+<ul>
+<li><strong>배경</strong>: CRM 구축 이전, 전 직원이 구글시트에 당사자 · 상담 · 문자 기록을 수기로 관리하고 있었음.</li>
+<li><strong>구현</strong>: 1차로 당사자 · 상담 · 문자/전화 등 <strong>약 9.8만 건</strong>을 Cloud SQL로 이관하는 스크립트를 작성해 초기 적재. 이후 <strong>Apps Script 트리거 → 웹훅 → DB 반영</strong>의 실시간 양방향 동기화 구조를 자체 구축해, 신규 CRM과 기존 구글시트 워크플로가 과도기 동안 공존하도록 설계. 최종적으로 MySQL(Cloud SQL)을 거쳐 PostgreSQL(Cloud SQL)로 이관까지 전 과정을 단독 수행.</li>
+</ul>
+<h4>2) [성능] 서브쿼리 480개 제거 + 복합 인덱스 + <code>Promise.all</code> 병렬처리</h4>
+<ul>
+<li><strong>문제</strong>: 당사자 목록 조회가 행 단위 서브쿼리 구조라, 페이지당 최대 480개의 서브쿼리가 발생해 조회 속도 저하 및 무한 로딩 현상 발생.</li>
+<li><strong>해결</strong>: 서브쿼리 구조를 <code>LEFT JOIN</code>으로 통합해 재작성. 상태(<code>status</code>)와 등록일(<code>created_at</code>)에 <strong>복합 인덱스</strong>를 추가해 목록 조회의 주요 필터 조건을 인덱스로 커버. 데이터 조회 쿼리와 카운트(전체 건수) 쿼리를 <code>Promise.all</code>로 병렬 처리해, 두 쿼리의 순차 대기 시간을 겹쳐 화면 대기 시간을 단축.</li>
+</ul>
+<h4>3) [동시성] Cloud Run 다중 인스턴스 스케줄러 중복 실행 — MySQL Named Lock(<code>GET_LOCK</code>)</h4>
+<ul>
+<li><strong>문제</strong>: Cloud Run이 다중 인스턴스로 확장될 때, 동일한 자동 동기화 스케줄러(Google Admin 동기화 등)가 인스턴스마다 중복 실행되어 데이터 중복 처리 위험 발생.</li>
+<li><strong>해결</strong>: Redis 등 추가 인프라 도입 없이, <strong>MySQL Named Lock(<code>GET_LOCK</code>)</strong> 으로 스케줄러 실행을 인스턴스 간 상호 배제(mutual exclusion) 처리 — 하나의 인스턴스만 락을 획득해 실행하고 나머지는 스킵하도록 구현. 이는 SQL 세션에 종속된 어드바이저리 락으로, 별도 락 테이블이나 외부 캐시 없이 DB 커넥션만으로 분산 잠금을 구현한 방식.</li>
+<li><strong>함께 처리</strong>: 직원 식별 기준을 이름에서 <strong><code>employee_key</code></strong> 로 통일하고, 레거시 데이터에는 폴백 로직을 적용해 서비스 중단 없이 식별체계를 전환.</li>
+</ul>
+<h4>4) 동시 접수 처리 충돌 방지 — Claim(점유) 기반 동시성 제어</h4>
+<ul>
+<li><strong>문제</strong>: 다수 직원이 동일 홈페이지 접수 건을 동시에 열람 · 처리하면서 데이터가 서로 덮어써지는 충돌 발생.</li>
+<li><strong>해결</strong>: 접수 처리 시작 시점에 해당 건을 즉시 점유(claim) 상태로 전환하는 컬럼/로직을 추가하고, <strong>10분간 미조작 시 자동 회수</strong>되는 타임아웃을 설계 — 애플리케이션 레벨의 <strong>낙관적 점유(claim) 방식</strong>을 채택해, 다른 직원 화면에는 &quot;처리 중&quot; 잠금 표시로 즉시 충돌을 차단.</li>
+</ul>
+<p class="label"><strong>접수 점유 흐름</strong></p>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>처리</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>직원 A가 처리 시작</td>
+<td>접수 건에 claimed_by·claimed_at을 기록하고 처리 화면 진입</td>
+</tr>
+<tr>
+<td>직원 B가 같은 건 접근</td>
+<td>점유 상태를 확인해 &#39;처리 중&#39;으로 표시하고 수정 제한</td>
+</tr>
+<tr>
+<td>10분간 미조작</td>
+<td>점유가 만료되어 다른 직원이 이어서 처리 가능</td>
+</tr>
+</tbody></table>
+<h4>5) Google Workspace 연동 — Calendar / Admin Directory / People API</h4>
+<ul>
+<li>상담 등록 · 수정 · 삭제 시 Google Calendar 이벤트를 자동 반영(다중 상담사 지원), 지사별 고유 캘린더 매핑. Google Admin Directory · People API로 직원 계정 동기화, 고객 연락처 저장, 일정 생성을 자동화.</li>
+<li>직원 식별체계를 이름 기반에서 <code>employee_key</code>(고유키)로 전면 통일 — 개명 · 표기 흔들림에도 안전하게 연결.</li>
+</ul>
+<h4>6) NCP SMS/MMS 발송 — 바이트 기준 타입 자동 판정 + 예약 · 템플릿 시스템</h4>
+<ul>
+<li>문자 길이를 글자 수가 아닌 <strong>실제 바이트 수</strong> 기준으로 SMS/LMS/MMS 타입을 자동 판정해 발송 오류를 방지. 예약 전송과 템플릿 시스템을 자체 구축. MMS 이미지 자동 변환(PNG→JPEG, 비율 유지 최적화)과 GCS 인증 폴백 처리를 구현.</li>
+</ul>
+<h4>7) 안정성 — DB 자동 재연결, Rate Limit, OAuth 화이트리스트</h4>
+<ul>
+<li>MySQL/PostgreSQL 커넥션 끊김 시 자동 재연결 및 503 응답 변환 처리로 순간 장애가 전체 장애로 번지지 않도록 방어. 별도 라이브러리 없이 <strong>직접 구현한 Rate Limit</strong> 미들웨어로 로그인 · 문자 발송 등 민감 API에 호출 제한 적용. 도메인 화이트리스트(<code>@law-win.co.kr</code>) 기반 OAuth로 인가되지 않은 계정의 접근을 원천 차단.</li>
+</ul>
+<h4>8) Flutter 클라이언트 — PWA + Android 크로스플랫폼</h4>
+<ul>
+<li>GoRouter 기반 라우팅, Google 네이티브 로그인(<code>google_sign_in</code>), Android 빌드환경(Java 17 + AGP 8.2.1) 대응. PDF/PNG 문서 출력(<code>printing</code>/<code>pdf</code> 패키지 + 한글 폰트 임베딩). 크로스플랫폼 빌드 형상관리: OS별 개행문자 차이로 발생하는 가짜 diff를 <code>.gitattributes</code>/<code>.gitignore</code>로 제거.</li>
+</ul>
+<blockquote>
+<p><strong>회고</strong> — Sheet 기반 레거시를 RDBMS로 전환하며 성능 · 동시성 · 보안을 1인이 전담했습니다. 4개월간 643개 커밋 중 SMS · 타임존 관련 수정이 가장 많았는데, UTC↔KST 변환과 외부 발송 API의 엣지 케이스를 다루며 &quot;기능 구현보다 운영 환경의 디테일이 더 어렵다&quot;는 점을 체득했습니다.</p>
+</blockquote>
+<hr>
+<h2>IV. 법무법인 법승 공식 홈페이지(레거시) 유지보수</h2>
+<ul>
+<li><strong>기간</strong>: 2026-01 – 진행 중</li>
+<li><strong>기술스택</strong>: ASP.NET Core 6.0 · CSHTML · Vanilla JavaScript/CSS · SQL Server · Windows Server/IIS · FileZilla</li>
+<li><strong>담당 범위</strong>: 기존 대고객 홈페이지의 화면 개선, 검색엔진 대응, 백엔드 API 개발, 소스 이관 및 배포 환경 분석. 외주 소스를 사내 저장소로 이관하고 운영 절차를 문서화해 직접 유지보수할 수 있는 기반을 마련.</li>
+</ul>
+<h3>담당 업무 및 핵심 문제 해결 사례</h3>
+<h4>1) 변호사 상세 페이지 진입 지연과 모바일 레이아웃 개선 — 2026-01</h4>
+<ul>
+<li><strong>문제</strong>: 변호사 상세 페이지 진입에 2~3초 지연이 발생하고, 모바일에서 검색창·소개 영역·이동 화살표가 겹치는 문제가 있었음.</li>
+<li><strong>조치와 결과</strong>: Chrome DevTools로 <code>member.cshtml</code>의 불필요한 prefetch 스크립트와 이벤트 핸들러를 찾아 정리해 진입 지연을 해소. 절대 좌표에 의존하던 화면에는 Flex 레이아웃과 <code>max-width</code> 미디어 쿼리를 적용해 모바일 요소 간 간섭을 수정.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/1%EC%9B%94/1%EC%9B%94%203%EC%A3%BC%EC%B0%A8.md">1월 3주차 업무 회고</a>.</li>
+</ul>
+<h4>2) 검색용 URL 정리와 뒤로가기 상태 보존 — 2026-02</h4>
+<ul>
+<li><strong>문제</strong>: 상세 페이지 URL에 <code>ReturnUrl</code> 쿼리 파라미터가 노출되어 주소 정리가 필요했으며, 단순 제거 시 이전 목록으로 돌아가는 경로가 유실될 수 있었음.</li>
+<li><strong>조치와 결과</strong>: URL에서 해당 파라미터를 제거하고 Web Storage에 복귀 경로를 저장·복원하도록 변경해 검색용 주소 정리와 기존 탐색 동작을 함께 유지.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/2%EC%9B%94/2%EC%9B%94%203%EC%A3%BC%EC%B0%A8.md">2월 3주차 업무 회고</a>.</li>
+</ul>
+<h4>3) 전국 10개 지점 사이트맵 갱신 자동화 — 2026-03</h4>
+<ul>
+<li><strong>작업과 가치</strong>: Playwright로 전국 10개 지점의 콘텐츠를 크롤링하고 XML 사이트맵을 갱신하는 자동화 스크립트를 구축. <code>robots.txt</code>에 지역별 사이트맵을 등록해 지점별 콘텐츠 갱신을 검색엔진에 전달할 수 있는 관리 경로를 정리.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/3%EC%9B%94/3%EC%9B%94%202%EC%A3%BC%EC%B0%A8.md">3월 2주차 업무 회고</a>.</li>
+</ul>
+<h4>4) 외주 ASP.NET 소스 이관과 유지보수 구조 문서화 — 2026-04</h4>
+<ul>
+<li><strong>작업</strong>: 외주 개발 ASP.NET Core 6.0 소스를 사내 저장소로 최초 이관하고, WEB/BLL/DAL 3계층의 역할과 빌드·업로드 배포 절차를 문서화.</li>
+<li><strong>결과</strong>: 기존 시스템을 사내에서 분석·수정하고 배포 절차를 확인할 수 있는 유지보수 기반을 마련.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/4%EC%9B%94/4%EC%9B%94%202%EC%A3%BC%EC%B0%A8.md">4월 2주차 업무 회고</a>.</li>
+</ul>
+<h4>5) 외부 업체 SEO 데이터 업로드 API와 URL 매칭 개선 — 2026-04</h4>
+<ul>
+<li><strong>작업</strong>: <code>POST /api/seo/upload</code>와 <code>X-API-KEY</code> 인증을 구현하고, <code>wwwroot/seo</code> 디렉터리가 없을 때 자동 생성하도록 방어 처리.</li>
+<li><strong>고도화</strong>: URL별 문구 조회에 쿼리스트링·후행 슬래시 정규화를 적용해 주소 표기 차이에도 일관되게 매칭되도록 개선. 업로드 데이터는 메모리에 캐싱하고, 빌드 시 <code>publish_output</code> 폴더가 중복 포함되지 않도록 산출물 규칙도 정리.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/4%EC%9B%94/4%EC%9B%94%203%EC%A3%BC%EC%B0%A8.md">4월 3주차</a>, <a href="weekly/4%EC%9B%94/4%EC%9B%94%204%EC%A3%BC%EC%B0%A8.md">4월 4주차 업무 회고</a>.</li>
+</ul>
+<h4>6) HTTP 500.30·500.31과 DB 연결 오류의 원인 분리 — 2026-04</h4>
+<ul>
+<li><strong>문제</strong>: 기존 홈페이지의 500 계열 접속 오류에 대해 애플리케이션 코드와 서버 환경 중 어느 계층을 조치해야 하는지 판단이 필요했음.</li>
+<li><strong>분석과 결과</strong>: 500.30·500.31은 서버 디스크 부족에 따른 호스팅 번들(DLL) 설치 누락, 일반 500은 <code>appsettings.json</code>의 DB 주소 매핑 오류로 원인을 분리. 디스크 확보·번들 재설치와 DB 설정 수정 등 후속 조치의 범위를 구체화.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/4%EC%9B%94/4%EC%9B%94%204%EC%A3%BC%EC%B0%A8.md">4월 4주차 업무 회고</a>. 해당 기록에서는 원인 규명까지 확인되며, 서버 복구는 후속 과제로 남아 있음.</li>
+</ul>
+<h4>7) FileZilla 업로드와 IIS 오류 대응 절차 정리 — 2026-05</h4>
+<ul>
+<li><strong>작업과 가치</strong>: 반복되는 FileZilla 업로드 이슈와 DLL 버전 불일치 등 IIS 500.x 오류의 대처 방법을 README에 정리해, 배포 시 확인할 항목과 팀 내 트러블슈팅 기준을 문서화.</li>
+<li class="evidence"><strong>근거</strong>: <a href="weekly/5%EC%9B%94/5%EC%9B%94%204%EC%A3%BC%EC%B0%A8.md">5월 4주차 업무 회고</a>.</li>
+</ul>
+<hr>
+<h2>V. GCP 인프라 / DevOps — 여러 시스템 공통 적용 원칙</h2>
+<ul>
+<li><strong>배포 안전 원칙 전파</strong>: 사건관리 앱에서 발생한 <code>--source=.</code> 오배포 장애를 계기로 &quot;빌드 · 배포 2단계 분리 + 배포 후 응답 본문 검증&quot;을 원칙화하고, 이후 신규 시스템(사내 포털)에도 선제 적용.</li>
+<li><strong>Cloud Scheduler 기반 예열/해제 스케줄링</strong>: 서비스 레벨 <code>--min-instances</code> + Cloud Scheduler로 업무시간(08:30–19:30 KST)만 인스턴스를 예열하고, 리비전 재배포 없이 토글되도록 설계.</li>
+<li><strong>시크릿 관리 원칙</strong>: 묶음 <code>.env</code> 대신 전용 Secret Manager 시크릿으로 분리해 &quot;빠뜨리면 배포 자체가 실패&quot;하는 구조로 전환.</li>
+<li><strong>비용 우선 실측 원칙</strong>: 리전별 Cloud Run 요금 티어(서울 = Tier 2), egress 단가 등을 &quot;주석에 적힌 값&quot;이 아니라 공식 문서 · 실측으로 재확인해 웹소켓/SSE/폴링 등 기술 선택에 직접 반영.</li>
+</ul>
+<hr>
+<h1>리얼타임테크 (공간정보융합팀)</h1>
+<p>인턴(2024-08–2025-02) → 사원(2025-03–2025-06). 일학습병행제 기반으로 실무 프로젝트 및 유지보수 업무를 수행하며, 월 단위 평가로 실무 이해도와 기술 숙련도를 검증받음.</p>
+<h2>VI. ETRI(한국전자통신연구원) — CCTV 실시간 모니터링 웹서비스 유지보수</h2>
+<ul>
+<li><strong>기간</strong>: 2025-03 – 2025-06 (사원)</li>
+<li><strong>기술스택</strong>: Node.js, FFmpeg, Linux(Ubuntu)</li>
+<li><strong>서비스/용도</strong>: 공사 현장의 CCTV 스트림을 웹 UI에서 실시간으로 모니터링하는 관리 시스템.</li>
+</ul>
+<p class="label"><strong>핵심 업무</strong></p>
+<ul>
+<li>Node.js 기반 CCTV 실시간 모니터링 웹 서비스 유지보수.</li>
+<li>FFmpeg 스트림 처리 로직을 Windows / Ubuntu 환경별로 분기 적용.</li>
+<li>Ubuntu 환경에서 FFmpeg를 리눅스 스크립트 형태로 실행 · 배포하여 운영 환경 대응.</li>
+</ul>
+<h2>VII. KOGAS(한국가스기술공사) — 신규 개발 착수를 위한 기존 시스템 코드 분석</h2>
+<ul>
+<li><strong>기간</strong>: 2025-03 – 2025-06 (사원)</li>
+<li><strong>직무 성격</strong>: 가스 누수 의심 등 고객 이벤트 요청 → 직원 점검 → 운영자 현황 확인으로 이어지는 앱의 <strong>신규 개발에 앞서, 기존에 운영 중이던 시스템의 코드 흐름 전체를 분석</strong>하는 역할.</li>
+</ul>
+<blockquote>
+<p>아래 아키텍처와 기술 상세는 <strong>본인이 구현한 것이 아니라</strong>, 신규 개발 설계 근거자료를 만들기 위해 기존 운영 시스템(Go 백엔드 + JavaScript 프론트엔드)을 직접 읽고 분석해 파악한 내용입니다.</p>
+</blockquote>
+<h3>분석 대상 시스템 구조</h3>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MjAiIGhlaWdodD0iMjU0IiB2aWV3Qm94PSIwIDAgNzIwIDI1NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5LT0dBUyDrtoTshJ0g64yA7IOBIOyLnOyKpO2FnDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuyngeygkSDqtaztmITsnbQg7JWE64uMIOq4sOyhtCDsvZTrk5wg67aE7ISdIOuylOychC4g7Ju5wrftmITsnqUg7JWx6rO8IEdvIEFQSSwg7J247KadIOqyveqzhCDrsI8gV2ViU29ja2V0IOyLpOyLnOqwhCDqsr3roZwuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNTI2NzgyIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0iYXJyb3dTdGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjNTI2NzgyIi8+PC9tYXJrZXI+PC9kZWZzPgo8c3R5bGU+dGV4dHtmb250LWZhbWlseToiTWFsZ3VuIEdvdGhpYyIsIkFwcGxlIFNEIEdvdGhpYyBOZW8iLCJOb3RvIFNhbnMgS1IiLHNhbnMtc2VyaWY7ZmlsbDojMTgyYjQ0fS5sYWJlbHtmb250LXNpemU6MjFweDtmb250LXdlaWdodDo3MDB9LnN1Yntmb250LXNpemU6MTdweDtmaWxsOiM0MjU4NzV9LmhpbnR7Zm9udC1zaXplOjE3cHg7ZmlsbDojNDI1ODc1fS5hcHB7ZmlsbDojZWZmNWZmO3N0cm9rZTojNzY5NWM0O3N0cm9rZS13aWR0aDoxLjd9LmFwaXtmaWxsOiNlZGY4ZjY7c3Ryb2tlOiM2NGEzOWE7c3Ryb2tlLXdpZHRoOjEuN30uZGF0YXtmaWxsOiNmNGYwZmE7c3Ryb2tlOiNhMDhjYjg7c3Ryb2tlLXdpZHRoOjEuN30uZXh0ZXJuYWx7ZmlsbDojZjhmYWZjO3N0cm9rZTojOWJhYWJkO3N0cm9rZS13aWR0aDoxLjd9LmVkZ2V7ZmlsbDpub25lO3N0cm9rZTojNTI2NzgyO3N0cm9rZS13aWR0aDoyLjM7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfS5kYXNoZWR7c3Ryb2tlLWRhc2hhcnJheTo2IDR9PC9zdHlsZT4KPGc+PHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MiIgcng9IjExIiBjbGFzcz0iYXBwIi8+PHRleHQgeD0iMTE0IiB5PSI0NCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7sm7kgwrcgQW5kcm9pZCDslbE8L3RleHQ+PHRleHQgeD0iMTE0IiB5PSI2OSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+6riw7KG0IOyatOyYgSDtgbTrnbzsnbTslrjtirg8L3RleHQ+PC9nPjxnPjxyZWN0IHg9IjI1NCIgeT0iOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MiIgcng9IjExIiBjbGFzcz0iYXBpIi8+PHRleHQgeD0iMzYwIiB5PSI0NCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HbyBBUEkg7ISc67KEPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iNjkiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmdpbi1nb25pYyDCtyBSRVNUPC90ZXh0PjwvZz48Zz48cmVjdCB4PSI1MDAiIHk9IjgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODIiIHJ4PSIxMSIgY2xhc3M9ImV4dGVybmFsIi8+PHRleHQgeD0iNjA2IiB5PSI0NCIgY2xhc3M9ImxhYmVsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7snbjspp0gwrcg7YyM7Yq464SIIOyXsOuPmTwvdGV4dD48dGV4dCB4PSI2MDYiIHk9IjY5IiBjbGFzcz0ic3ViIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5KV1QgwrcgQVBJLUtleTwvdGV4dD48L2c+PHBhdGggZD0iTSAyMjIgNDkgSCAyNTAiIGNsYXNzPSJlZGdlIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0gNDY4IDQ5IEggNDk2IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Zz48cmVjdCB4PSI4IiB5PSIxMzgiIHdpZHRoPSIyMTIiIGhlaWdodD0iODIiIHJ4PSIxMSIgY2xhc3M9ImV4dGVybmFsIi8+PHRleHQgeD0iMTE0IiB5PSIxNzQiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7ZiE7J6lIElvVCDshKTruYQ8L3RleHQ+PHRleHQgeD0iMTE0IiB5PSIxOTkiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuyEpOu5hOuzhCDsi6Tsi5zqsIQg6rCSPC90ZXh0PjwvZz48Zz48cmVjdCB4PSIyNTQiIHk9IjEzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MiIgcng9IjExIiBjbGFzcz0iYXBpIi8+PHRleHQgeD0iMzYwIiB5PSIxNzQiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+V2ViU29ja2V0IEh1YjwvdGV4dD48dGV4dCB4PSIzNjAiIHk9IjE5OSIgY2xhc3M9InN1YiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R29yaWxsYSDCtyDqt7jro7nrs4Qg7KCE7IahPC90ZXh0PjwvZz48Zz48cmVjdCB4PSI1MDAiIHk9IjEzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSI4MiIgcng9IjExIiBjbGFzcz0iYXBwIi8+PHRleHQgeD0iNjA2IiB5PSIxNzQiIGNsYXNzPSJsYWJlbCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+7Ju5IMK3IO2YhOyepSDslbE8L3RleHQ+PHRleHQgeD0iNjA2IiB5PSIxOTkiIGNsYXNzPSJzdWIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuyLpOyLnOqwhCDrqqjri4jthLDrp4E8L3RleHQ+PC9nPjxwYXRoIGQ9Ik0gMjIyIDE3OSBIIDI1MCIgY2xhc3M9ImVkZ2UiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTSA0NjggMTc5IEggNDk2IiBjbGFzcz0iZWRnZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzNjAiIHk9IjI0NyIgY2xhc3M9ImhpbnQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuu2hOyEnSDrspTsnIQ6IOyalOyyrSDsspjrpqwgwrcg7J247KadIOqyveqzhCDCtyDsi6Tsi5zqsIQg7KCE64usIMK3IOuwsO2PrCDqtazsobA8L3RleHQ+PC9zdmc+Cg==" alt="KOGAS 기존 시스템 분석 범위 — 요청 처리와 실시간 전달을 두 줄로 구분"></figure>
+<p><strong>분석한 배포 구조</strong>: Docker 멀티스테이지 빌드로 생성한 Go 바이너리를 Linux systemd 서비스로 운영. 아래 항목은 기존 시스템을 읽고 파악한 내용이며 본인의 신규 구현 범위와 구분합니다.</p>
+<h3>분석을 통해 파악한 내용</h3>
+<ul>
+<li><strong>백엔드 로직 이해</strong>: Go(gin-gonic) 기반 REST API 서버에서 가스 점검 이벤트(Order/Task/Target) 생성 · 조회 · 수정 로직과, 점검 프로세스 유형(PCM/SCM/COM/OMS 4종)마다 &quot;처리 시작 → 상태 갱신 → 재오픈 → 목표값 저장&quot;이 반복되는 API 패턴을 파악.</li>
+<li><strong>프론트엔드 구조 이해</strong>: JavaScript(CommonJS) 기반 프론트엔드(서버렌더링 템플릿 + vanilla JS)의 코드 구조를 파악해 점검 요청 · 응답 UI 상호작용 로직을 이해.</li>
+<li><strong>연동 관계 분석</strong>: 프론트엔드 ↔ 백엔드 REST API 연동 관계를 분석하고 API 요청/응답 흐름을 검증.</li>
+<li><strong>인증 체계 확인</strong>: 사용자 JWT(쿠키 기반) + 파트너사(MD/TYL) API-Key + 특정 민감 엔드포인트 대상 토큰 화이트리스트로, 신뢰 경계가 3단으로 분리된 인증 구조임을 확인.</li>
+<li><strong>실시간 처리 구조 확인</strong>: Gorilla WebSocket 기반 허브가 설비(IOT) 단위로 클라이언트를 그룹핑해 데이터를 브로드캐스트하는 구조, 논블로킹 전송(<code>select</code>/<code>default</code>) 처리 방식을 코드 레벨로 확인.</li>
+<li><strong>배포 구조 확인</strong>: Docker 멀티스테이지 빌드(정적 바이너리) + Linux systemd 서비스로 운영되는 배포 방식을 확인.</li>
+<li><strong>문서화</strong>: 디렉터리 구조와 컴포넌트 단위 코드 흐름을 분석해 유지보수성과 전체 코드 구조에 대한 이해를 신규 개발팀에 전달할 수 있도록 정리.</li>
+</ul>
+<h2>VIII. Jubix — 공장 센서데이터 웹 유지보수 · UI 개선</h2>
+<ul>
+<li><strong>기간</strong>: 2024-10 – 2025-02 (인턴)</li>
+<li><strong>기술스택</strong>: Spring Framework, PostgreSQL, JavaScript, CSS</li>
+<li><strong>서비스/용도</strong>: 공장 현장 데이터(온도 · 습도 · 풍향 등)를 시각화 · 관리하는 B2B 운영 웹 시스템.</li>
+</ul>
+<p class="label"><strong>핵심 업무</strong></p>
+<ul>
+<li>PostgreSQL 센서 데이터 기반으로 Spring Framework 서비스의 데이터 출력 · 가공 로직 수정 및 화면 연동 구조 개선.</li>
+<li>JavaScript/CSS로 화면 이벤트 · UI 기능 개선, 레거시 코드 리팩토링으로 유지보수성 · UI 안정성 향상.</li>
+</ul>
+</main></body></html>
