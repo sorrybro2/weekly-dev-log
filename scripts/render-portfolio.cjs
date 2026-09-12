@@ -6,9 +6,10 @@ const os = require('node:os');
 const { pathToFileURL } = require('node:url');
 const { marked } = require(process.env.MARKED_MODULE || 'marked');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { fontCss } = require('./document-fonts.cjs');
 const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'portfolio/content.json'), 'utf8'));
-const styles = ['career-print.css', 'portfolio-print.css'].map(file => fs.readFileSync(path.join(__dirname, file), 'utf8')).join('\n');
+const styles = fontCss + ['career-print.css', 'portfolio-print.css'].map(file => fs.readFileSync(path.join(__dirname, file), 'utf8')).join('\n');
 const repoUrl = 'https://github.com/sorrybro2/weekly-dev-log/blob/main/';
 const sourceUrl = file => repoUrl + file.split('/').map(part => encodeURIComponent(decodeURIComponent(part))).join('/');
 const detailUrl = sourceUrl('경력기술서_TMI.md');
@@ -34,18 +35,21 @@ function asset(relative) {
   return value;
 }
 function detailLink(anchor, full) { return full ? '#' + anchor : anchor === 'detail-personal' ? sourceUrl('portfolio/personal-projects.md') : detailUrl; }
+function masthead(number, label) {
+  return '<div class="page-masthead"><p class="kicker"><span class="folio-index">' + number + '</span>' + label + '</p><span class="folio-owner">' + escape(data.name) + ' / FRONTEND & FULL STACK</span></div>';
+}
 function imageSlot(project) {
   const image = asset(data.images[project.image]);
   const content = image
     ? '<img src="' + image + '" alt="' + escape(project.screen) + '">'
-    : '<div class="image-placeholder" role="img" aria-label="' + escape(project.screen + ' 캡처 자리') + '"><span class="frame-icon" aria-hidden="true"></span><strong>' + escape(project.screen) + '</strong><small>화면 캡처 영역</small></div>';
-  return '<div class="screenshot">' + content + '</div>';
+    : '<div class="image-placeholder" role="img" aria-label="' + escape(project.screen + ' 캡처 자리') + '"><span class="capture-index" aria-hidden="true">' + escape(project.number) + '</span><div class="capture-label"><small>실제 화면 캡처 예정</small><strong>' + escape(project.screen) + '</strong></div><span class="capture-mark" aria-hidden="true">↗</span></div>';
+  return '<div class="screenshot-frame"><div class="screenshot-bar"><span>SCREEN / ' + escape(project.number) + '</span><span>' + escape(project.access) + '</span></div><div class="screenshot">' + content + '</div></div>';
 }
 function profilePage() {
   const portrait = asset(data.images.portrait);
   const contact = data.contactEmail ? '<div class="link-row"><strong>연락처</strong><a href="mailto:' + escape(data.contactEmail) + '">' + escape(data.contactEmail) + '</a></div>' : '';
   return '<section class="front-page" id="overview">' +
-    '<p class="kicker">PORTFOLIO / CAREER</p><header class="profile-head"><div class="profile-copy"><h1>' + escape(data.name) + '</h1><p class="role">' + escape(data.role) + '</p><p class="headline">' + escape(data.headline) + '</p><p class="intro">' + escape(data.intro) + '</p></div>' +
+    masthead('01', 'PROFILE') + '<header class="profile-head"><div class="profile-copy"><div class="identity-line"><h1>' + escape(data.name) + '<span class="name-dot" aria-hidden="true">.</span></h1><p class="role">' + escape(data.role) + '</p></div><p class="headline">' + escape(data.headline) + '</p><p class="intro">' + escape(data.intro) + '</p></div>' +
     (portrait ? '<img class="portrait" src="' + portrait + '" alt="' + escape(data.name + ' 프로필 사진') + '">' : '') + '</header>' +
     '<div class="metric-grid">' + data.metrics.map(m => '<div class="metric"><b>' + escape(m.value) + '</b><span>' + escape(m.label) + '</span><small>' + escape(m.note) + '</small></div>').join('') + '</div>' +
     '<section class="p-section"><h2 class="section-title">경력</h2>' + data.experience.map(e => '<div class="experience-row"><div><strong>' + escape(e.company) + '</strong><small>' + escape(e.period) + '</small></div><div><strong>' + escape(e.position) + '</strong><p>' + escape(e.detail) + '</p></div></div>').join('') + '</section>' +
@@ -56,21 +60,21 @@ function profilePage() {
 }
 function projectCard(p, full, wide) {
   return '<article class="' + (wide ? 'project-wide' : 'project-small') + '">' +
-    '<div class="project-heading"><h3>' + escape(p.number + '. ' + p.name) + '</h3><small>' + escape(p.role + ' · ' + p.period) + '</small></div>' +
+    '<div class="project-heading"><h3><span class="project-number">' + escape(p.number) + '</span>' + escape(p.name) + '</h3><small>' + escape(p.role + ' · ' + p.period) + '</small></div>' +
     '<p class="project-label">' + escape(p.stack + ' · ' + p.access) + '</p>' + imageSlot(p) +
     '<p class="caption">' + escape(p.caption) + '</p><p class="project-description">' + escape(p.description) + '</p>' +
     '<p class="project-scope"><strong>담당</strong> ' + escape(p.scope) + '</p>' +
-    (p.url ? '<a class="project-link" href="' + escape(p.url) + '">서비스 보기 · ' + escape(p.url.replace('https://', '')) + '</a> &nbsp; ' : '') +
-    '<a class="project-link" href="' + escape(detailLink(p.anchor, full)) + '">상세 경력 보기 →</a></article>';
+    '<div class="project-actions">' + (p.url ? '<a class="project-link" href="' + escape(p.url) + '">서비스 보기 ↗</a>' : '') +
+    '<a class="project-link" href="' + escape(detailLink(p.anchor, full)) + '">상세 경력 →</a></div></article>';
 }
 function projectsPage(full) {
-  return '<section class="front-page" id="projects"><p class="kicker">SELECTED PROJECTS</p><h2 class="page-title">직접 구현한 서비스와 업무 화면</h2>' +
+  return '<section class="front-page" id="projects">' + masthead('02', 'SELECTED WORK') + '<h2 class="page-title">직접 구현한 서비스와 업무 화면<span class="title-dot">.</span></h2>' +
     '<p class="page-lead">공개 홈페이지와 사내 업무 도구를 화면·API·데이터까지 연결했습니다.</p>' +
     projectCard(data.projects[0], full, true) + '<div class="project-grid">' + data.projects.slice(1).map(p => projectCard(p, full, false)).join('') + '</div>' +
     '<div class="page-end"><p class="document-note">홈페이지는 공개 URL로 확인할 수 있습니다. 사내 시스템은 화면과 담당 기능을 중심으로 소개합니다.</p></div></section>';
 }
 function casesPage(full) {
-  return '<section class="front-page' + (full ? '' : ' last-summary') + '" id="engineering"><p class="kicker">FRONTEND & FULL STACK</p><h2 class="page-title">화면·상태·데이터를 함께 설계합니다</h2><p class="page-lead">공통 UI와 상태 공유, Next.js 첫 화면, 업무 데이터 조회의 문제를 해결했습니다.</p>' +
+  return '<section class="front-page' + (full ? '' : ' last-summary') + '" id="engineering">' + masthead('03', 'ENGINEERING') + '<h2 class="page-title">화면·상태·데이터를 함께 설계합니다<span class="title-dot">.</span></h2><p class="page-lead">공통 UI와 상태 공유, Next.js 첫 화면, 업무 데이터 조회의 문제를 해결했습니다.</p>' +
     data.cases.map(c => '<article class="case-card"><div class="case-top"><span class="case-tag">' + escape(c.number + ' / ' + c.tag) + '</span><span class="case-metric">' + escape(c.metric) + '</span></div><h3>' + escape(c.title) + '</h3><p class="case-context">' + escape(c.context) + '</p><dl><dt>문제</dt><dd>' + escape(c.problem) + '</dd><dt>판단</dt><dd>' + escape(c.decision) + '</dd><dt>결과</dt><dd>' + escape(c.result) + '</dd></dl><p class="case-ref"><a href="' + escape(detailLink(c.anchor, full)) + '">구현 상세 →</a>' + (c.source ? ' &nbsp; <a href="' + escape(sourceUrl(c.source)) + '">업무 기록 ↗</a>' : '') + '</p></article>').join('') +
     '<div class="page-end"><h3 class="section-title">' + (full ? '상세 경력 · 개인 포트폴리오' : '경력 · 개인 프로젝트 기록') + '</h3><nav class="detail-nav" aria-label="상세 경력 목차">' + data.appendix.map(a => '<a href="' + escape(detailLink(a.anchor, full)) + '">' + escape(a.label) + '</a>').join('') + '</nav></div></section>';
 }

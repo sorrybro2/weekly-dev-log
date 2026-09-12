@@ -8,6 +8,7 @@ const os = require('node:os');
 const { pathToFileURL } = require('node:url');
 const { marked } = require(process.env.MARKED_MODULE || 'marked');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { fontCss } = require('./document-fonts.cjs');
 
 const root = path.resolve(__dirname, '..');
 const brief = process.argv.includes('--brief');
@@ -15,7 +16,7 @@ const source = path.join(root, brief ? '경력기술서.md' : '경력기술서_T
 const basename = brief ? '진솔_경력기술서' : '진솔_경력기술서_TMI';
 const htmlPath = path.join(root, basename + '.html');
 const pdfPath = path.join(root, basename + '.pdf');
-const css = fs.readFileSync(path.join(__dirname, 'career-print.css'), 'utf8');
+const css = fontCss + fs.readFileSync(path.join(__dirname, 'career-print.css'), 'utf8');
 const md = fs.readFileSync(source, 'utf8');
 if (/^```mermaid/m.test(md)) throw new Error('Convert Mermaid blocks to local SVG before export.');
 let body = marked.parse(md, { gfm: true, breaks: false });

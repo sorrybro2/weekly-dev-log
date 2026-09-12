@@ -6,6 +6,10 @@
 원문은 `경력기술서_TMI.md`, 도식은 `assets/career-tmi/*.svg`입니다.
 도식은 720px 너비에 17px 이상의 글자를 사용하며, 외부 폰트나 Mermaid CDN 없이 표시됩니다.
 
+공통 서체는 Pretendard Variable입니다. `scripts/document-fonts.cjs`가 `assets/fonts/`의 폰트와
+OFL 라이선스를 HTML에 내장하고, PDF에도 사용 글리프를 포함합니다. 렌더링 중 폰트 다운로드는 없습니다.
+본문 스타일은 `career-print.css`, 포트폴리오 앞부분은 `portfolio-print.css`에서 관리합니다.
+
 `node scripts/render-career.cjs`를 실행하면 같은 원문으로 아래 두 파일을 갱신합니다.
 
 - `진솔_경력기술서_TMI.html`: 도식을 내장한 HTML
