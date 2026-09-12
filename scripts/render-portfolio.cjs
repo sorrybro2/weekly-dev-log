@@ -33,7 +33,7 @@ function asset(relative) {
   assetCache.set(relative, value);
   return value;
 }
-function detailLink(anchor, full) { return full ? '#' + anchor : detailUrl; }
+function detailLink(anchor, full) { return full ? '#' + anchor : anchor === 'detail-personal' ? sourceUrl('portfolio/personal-projects.md') : detailUrl; }
 function imageSlot(project) {
   const image = asset(data.images[project.image]);
   const content = image
@@ -49,8 +49,8 @@ function profilePage() {
     (portrait ? '<img class="portrait" src="' + portrait + '" alt="' + escape(data.name + ' 프로필 사진') + '">' : '') + '</header>' +
     '<div class="metric-grid">' + data.metrics.map(m => '<div class="metric"><b>' + escape(m.value) + '</b><span>' + escape(m.label) + '</span><small>' + escape(m.note) + '</small></div>').join('') + '</div>' +
     '<section class="p-section"><h2 class="section-title">경력</h2>' + data.experience.map(e => '<div class="experience-row"><div><strong>' + escape(e.company) + '</strong><small>' + escape(e.period) + '</small></div><div><strong>' + escape(e.position) + '</strong><p>' + escape(e.detail) + '</p></div></div>').join('') + '</section>' +
-    '<section class="p-section"><h2 class="section-title">프로젝트별 담당 범위</h2><table class="role-table"><tbody>' +
-    data.projects.map(p => '<tr><td>' + escape(p.name) + '</td><td>' + escape(p.role) + '</td><td>' + escape(p.scope) + '</td></tr>').join('') + '</tbody></table></section>' +
+    '<section class="p-section"><h2 class="section-title">React·Next.js 경험 — 2025 → 2026</h2><ol class="experience-timeline">' +
+    data.timeline.map(t => '<li><b>' + escape(t.period) + '</b><span class="timeline-type">' + escape(t.type) + '</span><a href="' + escape(t.url) + '">' + escape(t.title) + ' ↗</a><small>' + escape(t.detail) + '</small></li>').join('') + '</ol></section>' +
     '<section class="p-section"><h2 class="section-title">주요 기술</h2><div class="stack-grid">' + data.stack.map(s => '<div><strong>' + escape(s.label) + '</strong><p>' + escape(s.value) + '</p></div>').join('') + '</div></section>' +
     '<div class="page-end link-list">' + data.links.map(l => '<div class="link-row"><strong>' + escape(l.label) + '</strong><a href="' + escape(l.url) + '">' + escape(l.text) + '</a></div>').join('') + contact + '</div></section>';
 }
@@ -70,9 +70,9 @@ function projectsPage(full) {
     '<div class="page-end"><p class="document-note">홈페이지는 공개 URL로 확인할 수 있습니다. 사내 시스템은 화면과 담당 기능을 중심으로 소개합니다.</p></div></section>';
 }
 function casesPage(full) {
-  return '<section class="front-page' + (full ? '' : ' last-summary') + '" id="engineering"><p class="kicker">ENGINEERING DECISIONS</p><h2 class="page-title">문제에서 설계 판단과 결과까지</h2><p class="page-lead">기능 구현에 더해 조회 성능, 데이터 이전, 다중 사용자 환경의 문제를 해결했습니다.</p>' +
+  return '<section class="front-page' + (full ? '' : ' last-summary') + '" id="engineering"><p class="kicker">FRONTEND & FULL STACK</p><h2 class="page-title">화면·상태·데이터를 함께 설계합니다</h2><p class="page-lead">공통 UI와 상태 공유, Next.js 첫 화면, 업무 데이터 조회의 문제를 해결했습니다.</p>' +
     data.cases.map(c => '<article class="case-card"><div class="case-top"><span class="case-tag">' + escape(c.number + ' / ' + c.tag) + '</span><span class="case-metric">' + escape(c.metric) + '</span></div><h3>' + escape(c.title) + '</h3><p class="case-context">' + escape(c.context) + '</p><dl><dt>문제</dt><dd>' + escape(c.problem) + '</dd><dt>판단</dt><dd>' + escape(c.decision) + '</dd><dt>결과</dt><dd>' + escape(c.result) + '</dd></dl><p class="case-ref"><a href="' + escape(detailLink(c.anchor, full)) + '">구현 상세 →</a>' + (c.source ? ' &nbsp; <a href="' + escape(sourceUrl(c.source)) + '">업무 기록 ↗</a>' : '') + '</p></article>').join('') +
-    '<div class="page-end"><h3 class="section-title">' + (full ? '이어지는 상세 경력기술서' : '프로젝트별 상세 기록') + '</h3><nav class="detail-nav" aria-label="상세 경력 목차">' + data.appendix.map(a => '<a href="' + escape(detailLink(a.anchor, full)) + '">' + escape(a.label) + '</a>').join('') + '</nav></div></section>';
+    '<div class="page-end"><h3 class="section-title">' + (full ? '상세 경력 · 개인 포트폴리오' : '경력 · 개인 프로젝트 기록') + '</h3><nav class="detail-nav" aria-label="상세 경력 목차">' + data.appendix.map(a => '<a href="' + escape(detailLink(a.anchor, full)) + '">' + escape(a.label) + '</a>').join('') + '</nav></div></section>';
 }
 function appendix() {
   const md = fs.readFileSync(path.join(root, '경력기술서_TMI.md'), 'utf8');
@@ -96,9 +96,13 @@ function appendix() {
   html = html.replace(/href="((?:daily|weekly)\/[^"]+)"/g, (_, file) => 'href="' + escape(sourceUrl(file)) + '"');
   return '<article class="appendix" id="details"><p class="kicker">DETAILED EXPERIENCE</p>' + html + '</article>';
 }
+function personalPortfolio() {
+  const md = fs.readFileSync(path.join(root, 'portfolio/personal-projects.md'), 'utf8');
+  return '<article class="personal-portfolio" id="detail-personal"><p class="kicker">PERSONAL PORTFOLIO</p>' + marked.parse(md, { gfm: true, breaks: false }) + '</article>';
+}
 function documentHtml(full) {
   const title = full ? '진솔 — 포트폴리오·경력기술서' : '진솔 — 포트폴리오 요약';
-  return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + '</title><style>' + styles + '</style></head><body><main>' + profilePage() + projectsPage(full) + casesPage(full) + (full ? appendix() : '') + '</main></body></html>';
+  return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + '</title><style>' + styles + '</style></head><body><main>' + profilePage() + projectsPage(full) + casesPage(full) + (full ? appendix() + personalPortfolio() : '') + '</main></body></html>';
 }
 
 async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
@@ -132,7 +136,8 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
       return pages;
     }, { encoded: fs.readFileSync(pdfFile).toString('base64'), worker: pathToFileURL(path.join(path.dirname(modulePath), 'pdf.worker.js')).href });
     await page.locator('#proof').screenshot({ path: path.join(qaDir, label + '-all.png') });
-    for (let i = 1; i <= Math.min(report.length, 4); i++) {
+    const previewPages = new Set([1, 2, 3, 4, report.length - 1, report.length].filter(i => i > 0 && i <= report.length));
+    for (const i of previewPages) {
       const png = await page.locator('#proof-' + i).evaluate(canvas => canvas.toDataURL('image/png').split(',')[1]);
       fs.writeFileSync(path.join(qaDir, label + '-' + i + '.png'), Buffer.from(png, 'base64'));
     }

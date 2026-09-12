@@ -11,6 +11,9 @@
 - `진솔_경력기술서_TMI.html`: 도식을 내장한 HTML
 - `진솔_경력기술서_TMI.pdf`: A4 PDF, 본문 10.5pt, 페이지 번호만 표시
 
+일반 경력기술서 원문 `경력기술서.md`는 `node scripts/render-career.cjs --brief`로
+`진솔_경력기술서.html`과 `진솔_경력기술서.pdf`를 갱신합니다. 포트폴리오 3쪽 요약과는 별도 문서입니다.
+
 필요 모듈은 marked 12.0.2와 Playwright입니다. 준비되지 않은 환경에서는
 `npm install --prefix scripts --no-save marked@12.0.2 playwright`와
 `npx playwright install chromium`으로 설치합니다.
@@ -20,4 +23,4 @@
 글자 크기를 줄여 페이지 수를 맞추지 않고, 강제 새 페이지 없이 본문이 이어지도록 출력합니다.
 본문의 기술 설명은 분할할 수 있고, 제목과 그림에는 필요한 범위에서만 페이지 나눔 제한을 적용합니다.
 레거시 사례의 원본 보고 링크는 저장소에서 확인할 수 있습니다.
-HTML을 단독 공유할 때도 그림은 유지되며, 원본 보고 링크를 이용하려면 weekly 폴더를 함께 두어야 합니다.
+HTML을 단독 공유할 때도 그림은 유지되며, 원본 보고 링크는 GitHub의 업무 기록으로 연결합니다.

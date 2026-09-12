@@ -26,10 +26,12 @@ body { max-width: 860px; }
 .experience-row strong { display: block; }
 .experience-row small { font-size: 9pt; color: #5e7184; }
 .experience-row p { margin: 2px 0 0; font-size: 9.6pt; color: #465b6f; }
-.role-table { margin: 0; font-size: 9.8pt; }
-.role-table td { border: 0; border-bottom: 1px solid #e1e8ef; padding: 7px 4px; }
-.role-table td:first-child { width: 23%; font-weight: 700; }
-.role-table td:nth-child(2) { width: 18%; color: #315c7d; }
+.experience-timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; gap: 12px; }
+.experience-timeline li { margin: 0; border-top: 2px solid #8aa6bb; padding-top: 9px; }
+.experience-timeline b { display: block; font-size: 10.5pt; color: #214e70; white-space: nowrap; }
+.timeline-type { display: block; font-size: 8.5pt; color: #667c8e; margin: 2px 0 5px; }
+.experience-timeline a { display: block; font-size: 9.3pt; font-weight: 700; line-height: 1.45; }
+.experience-timeline small { display: block; font-size: 8.5pt; color: #526b81; margin-top: 4px; }
 .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
 .stack-grid strong { display: block; font-size: 9.5pt; color: #315c7d; }
 .stack-grid p { margin: 3px 0 0; font-size: 9.5pt; }
@@ -80,6 +82,11 @@ body { max-width: 860px; }
 .detail-nav a { display: block; font-size: 9pt; background: #eef4f8; border-radius: 4px; padding: 6px 9px; }
 .appendix .kicker { margin-bottom: 10px; }
 .appendix h1:first-of-type { margin-top: 0; }
+.personal-portfolio { break-before: page; page-break-before: always; }
+.personal-portfolio h1 { font-size: 19pt; margin-top: 0; }
+.personal-portfolio h2 { font-size: 12pt; }
+.personal-portfolio td:first-child { width: 17%; }
+.personal-portfolio td:last-child { width: 22%; }
 @media screen {
   .front-page { margin-bottom: 40px; padding-bottom: 15px; border-bottom: 1px solid #d6e1ea; }
 }
@@ -90,6 +97,7 @@ body { max-width: 860px; }
   .metric { padding: 10px 7px; }
   .metric b { font-size: 14pt; }
   .experience-row { grid-template-columns: 1fr; gap: 3px; }
+  .experience-timeline { grid-template-columns: 1fr 1fr; }
   .project-grid { grid-template-columns: 1fr; }
   .page-end { margin-top: 20px; }
   .detail-nav { grid-template-columns: 1fr 1fr; }

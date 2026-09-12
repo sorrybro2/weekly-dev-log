@@ -10,9 +10,11 @@ const { marked } = require(process.env.MARKED_MODULE || 'marked');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const root = path.resolve(__dirname, '..');
-const source = path.join(root, '경력기술서_TMI.md');
-const htmlPath = path.join(root, '진솔_경력기술서_TMI.html');
-const pdfPath = path.join(root, '진솔_경력기술서_TMI.pdf');
+const brief = process.argv.includes('--brief');
+const source = path.join(root, brief ? '경력기술서.md' : '경력기술서_TMI.md');
+const basename = brief ? '진솔_경력기술서' : '진솔_경력기술서_TMI';
+const htmlPath = path.join(root, basename + '.html');
+const pdfPath = path.join(root, basename + '.pdf');
 const css = fs.readFileSync(path.join(__dirname, 'career-print.css'), 'utf8');
 const md = fs.readFileSync(source, 'utf8');
 if (/^```mermaid/m.test(md)) throw new Error('Convert Mermaid blocks to local SVG before export.');
@@ -29,9 +31,10 @@ body = body.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) 
 body = body.replace(/<li><strong>근거<\/strong>([\s\S]*?)<\/li>/g, '<li class="evidence"><strong>근거</strong>$1</li>');
 // Keep paragraph and section markers with the first following text block in print.
 body = body.replace(/<p><strong>([^<]+)<\/strong><\/p>/g, '<p class="label"><strong>$1</strong></p>');
+body = body.replace(/href="((?:daily|weekly)\/[^\"]+)"/g, (_, file) => 'href="https://github.com/sorrybro2/weekly-dev-log/blob/main/' + file.split('/').map(part => encodeURIComponent(decodeURIComponent(part))).join('/') + '"');
 const html = '<!doctype html><html lang="ko"><head><meta charset="utf-8">' +
   '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-  '<title>진솔 — 상세 경력기술서 (TMI)</title><style>' + css + '</style></head><body><main>' +
+  '<title>진솔 — ' + (brief ? '경력기술서' : '상세 경력기술서 (TMI)') + '</title><style>' + css + '</style></head><body><main>' +
   body + '</main></body></html>';
 fs.writeFileSync(htmlPath, html);
 
@@ -51,7 +54,7 @@ fs.writeFileSync(htmlPath, html);
     const imageChecks = await page.locator('figure img').evaluateAll(images => images.map(img => ({
       alt: img.alt, width: img.clientWidth, height: img.clientHeight, loaded: img.naturalWidth > 0
     })));
-    if (imageChecks.length !== 5 || imageChecks.some(x => !x.loaded)) throw new Error('Incomplete architecture images');
+    if (imageChecks.length !== (brief ? 0 : 5) || imageChecks.some(x => !x.loaded)) throw new Error('Incomplete architecture images');
     if (errors.length) throw new Error(errors.join('\n'));
     const svgSources = fs.readdirSync(path.join(root, 'assets/career-tmi'))
       .filter(file => file.endsWith('.svg'))
@@ -126,7 +129,7 @@ fs.writeFileSync(htmlPath, html);
       }, { encoded, workerUrl: pathToFileURL(workerPath).href });
       const qaDir = fs.mkdtempSync(path.join(os.tmpdir(), 'career-tmi-qa-'));
       await qa.locator('#sheet').screenshot({ path: path.join(qaDir, 'all-pages.png') });
-      for (const i of [1, 2, 3, report.find(x => x.top.includes('IV.'))?.page].filter(Boolean)) {
+      for (const i of new Set([1, 2, 3, report.find(x => x.top.includes('IV.'))?.page, report.length - 1, report.length].filter(i => i > 0 && i <= report.length))) {
         const png = await qa.locator('#page-' + i).evaluate(canvas => canvas.toDataURL('image/png').split(',')[1]);
         fs.writeFileSync(path.join(qaDir, 'page-' + i + '.png'), Buffer.from(png, 'base64'));
       }
