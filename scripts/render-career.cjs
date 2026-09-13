@@ -9,6 +9,7 @@ const { pathToFileURL } = require('node:url');
 const { marked } = require(process.env.MARKED_MODULE || 'marked');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fontCss } = require('./document-fonts.cjs');
+const { publicText, publicHtml, assertPublicDocument } = require('./public-document.cjs');
 
 const root = path.resolve(__dirname, '..');
 const brief = process.argv.includes('--brief');
@@ -25,18 +26,19 @@ body = body.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) 
   const file = path.resolve(root, decodeURIComponent(src));
   const relative = path.relative(root, file);
   if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error('Image outside workspace');
-  const bytes = fs.readFileSync(file);
+  const bytes = Buffer.from(publicText(fs.readFileSync(file, 'utf8')));
   return '<figure><img src="data:image/svg+xml;base64,' + bytes.toString('base64') + '" alt="' + alt + '"></figure>';
 });
 // Evidence stays legible but visually secondary; normal body text keeps its size.
 body = body.replace(/<li><strong>근거<\/strong>([\s\S]*?)<\/li>/g, '<li class="evidence"><strong>근거</strong>$1</li>');
 // Keep paragraph and section markers with the first following text block in print.
 body = body.replace(/<p><strong>([^<]+)<\/strong><\/p>/g, '<p class="label"><strong>$1</strong></p>');
-body = body.replace(/href="((?:daily|weekly)\/[^\"]+)"/g, (_, file) => 'href="https://github.com/sorrybro2/weekly-dev-log/blob/main/' + file.split('/').map(part => encodeURIComponent(decodeURIComponent(part))).join('/') + '"');
+body = publicHtml(body);
 const html = '<!doctype html><html lang="ko"><head><meta charset="utf-8">' +
   '<meta name="viewport" content="width=device-width, initial-scale=1">' +
   '<title>진솔 — ' + (brief ? '경력기술서' : '상세 경력기술서 (TMI)') + '</title><style>' + css + '</style></head><body><main>' +
   body + '</main></body></html>';
+assertPublicDocument(html, basename);
 fs.writeFileSync(htmlPath, html);
 
 (async () => {
@@ -59,7 +61,7 @@ fs.writeFileSync(htmlPath, html);
     if (errors.length) throw new Error(errors.join('\n'));
     const svgSources = fs.readdirSync(path.join(root, 'assets/career-tmi'))
       .filter(file => file.endsWith('.svg'))
-      .map(file => ({ file, svg: fs.readFileSync(path.join(root, 'assets/career-tmi', file), 'utf8') }));
+      .map(file => ({ file, svg: publicText(fs.readFileSync(path.join(root, 'assets/career-tmi', file), 'utf8')) }));
     const diagramOverflow = await page.evaluate(sources => {
       const failures = [];
       for (const source of sources) {

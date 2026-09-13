@@ -2,37 +2,14 @@
   "name": "진솔",
   "role": "프론트엔드 · 풀스택 개발자",
   "headline": "React·Next.js로 업무 흐름을 화면과 서비스로 구현합니다.",
-  "intro": "2025년 React 개인 개발과 학습을 시작해 팀 프로젝트, 사내 업무시스템으로 경험을 넓혔습니다. UI·상태관리부터 API·DB·배포까지 연결하며, CRM과 홈페이지 V2를 1인 풀스택으로 구축했습니다.",
-  "contactEmail": null,
+  "intro": "사용자가 업무를 끝내는 데 필요한 화면과 데이터 흐름을 만듭니다. React 업무 UI와 상태관리를 설계하고, 홈페이지와 CRM을 API·DB·배포까지 1인 풀스택으로 구축했습니다.",
   "images": {
     "portrait": "assets/portfolio/profile.jpg",
     "homepage": "assets/portfolio/homepage.png",
     "crm": "assets/portfolio/crm.png",
     "caseManagement": "assets/portfolio/case-management.png"
   },
-  "links": [
-    {
-      "label": "GitHub",
-      "text": "github.com/sorrybro2",
-      "url": "https://github.com/sorrybro2"
-    },
-    {
-      "label": "개발 기록",
-      "text": "github.com/sorrybro2/weekly-dev-log",
-      "url": "https://github.com/sorrybro2/weekly-dev-log"
-    },
-    {
-      "label": "구현한 홈페이지",
-      "text": "bslawwin.co.kr",
-      "url": "https://bslawwin.co.kr"
-    }
-  ],
   "metrics": [
-    {
-      "value": "2025.04",
-      "label": "React 개인 개발 시작",
-      "note": "공통 버튼·테마 구현 커밋"
-    },
     {
       "value": "8초 → 0.05초",
       "label": "상담료 처리 대기 조회",
@@ -42,20 +19,25 @@
       "value": "약 730만 건",
       "label": "홈페이지 데이터 이관",
       "note": "SQL Server → PostgreSQL"
-    }
-  ],
-  "experience": [
-    {
-      "company": "법무법인 법승",
-      "period": "2026.01.19 – 현재",
-      "position": "프론트엔드 · 풀스택 개발",
-      "detail": "React 업무 UI·상태관리 / Next.js·CMS / CRM 단독 구축"
     },
     {
-      "company": "리얼타임테크",
-      "period": "2024.08 – 2025.06",
-      "position": "공간정보융합팀 · 인턴 → 사원",
-      "detail": "CCTV 모니터링 유지보수 / Go 시스템 분석 / 센서 데이터 UI 개선"
+      "value": "4종 공통화",
+      "label": "업무 목록 UI",
+      "note": "표·모바일 카드의 정렬 상태 공유"
+    }
+  ],
+  "focus": [
+    {
+      "title": "업무 흐름을 이해하는 화면",
+      "detail": "조회·등록·결재를 연결하고, 공통 테이블과 모바일 카드에서 같은 상태를 유지합니다."
+    },
+    {
+      "title": "화면부터 데이터까지 이어지는 구현",
+      "detail": "React·Next.js 화면을 API와 DB에 연결하고, 실시간 갱신·외부 연동·데이터 이관을 구현합니다."
+    },
+    {
+      "title": "원인을 확인하고 개선하는 운영",
+      "detail": "느린 조회와 첫 화면 지연을 분석하고, 배포 후 실제 응답을 확인하는 절차를 정립했습니다."
     }
   ],
   "stack": [
@@ -86,10 +68,11 @@
       "stack": "React · TypeScript · TanStack Query/Table · FastAPI",
       "anchor": "detail-case",
       "image": "caseManagement",
-      "screen": "상담료 처리 대기 · 등록 목록",
-      "scope": "공통 UI · 결재 UX · 상태관리 · API · 배포",
-      "description": "공통 테이블·모바일 카드, 결재함·대시보드를 설계하고 실시간 데이터 갱신을 구현했습니다. 상담료·문서·결재·정산 도메인을 담당했습니다.",
-      "caption": "목록과 처리 대기를 좌우로 배치하고, 선택한 상담 정보를 등록 폼에 자동 반영했습니다. 관련 조회는 8초에서 0.05초로 개선했습니다.",
+      "screen": "사건 관리 · 전체 사건 목록",
+      "flow": ["상담 확인", "정보 자동 반영", "등록·결재"],
+      "scope": "공통 UI · 결재 UX · 상태관리 · API",
+      "description": "공통 테이블·모바일 카드, 결재함·대시보드를 설계하고 실시간 데이터 갱신을 구현했습니다. 상담료 조회는 8초에서 0.05초로 개선했습니다.",
+      "caption": "사무소·변호사·사건유형별로 필터링한 사건 목록에서 기일과 담당자를 한 화면에서 확인합니다.",
       "url": null,
       "access": "3개 지사 베타"
     },
@@ -102,11 +85,12 @@
       "stack": "Next.js · NestJS · Prisma · PostgreSQL",
       "anchor": "detail-homepage",
       "image": "homepage",
-      "screen": "승소사례 상세 화면",
-      "scope": "공개 UI · CMS · 이미지 최적화 · API · 이관",
-      "description": "공개 사이트·CMS의 반응형 화면과 공통 레이아웃을 구축하고, Next.js 렌더링·이미지 로딩을 개선했습니다.",
-      "caption": "공통 콘텐츠 화면에서 담당 변호사 정보와 상담 접수 동선을 연결합니다.",
-      "url": "https://bslawwin.co.kr",
+      "screen": "사건별 업무사례 목록",
+      "flow": ["CMS 편집", "콘텐츠 발행", "상담 접수"],
+      "scope": "공개 UI · CMS · API · 데이터 이관 · GCP 인프라",
+      "description": "기획부터 GCP 인프라·배포까지 1인 풀스택으로 구축했습니다. SQL Server 데이터 약 730만 건을 PostgreSQL로 이관하고, Google Workspace 인증 기반 CMS를 직접 구현했습니다.",
+      "caption": "공개 사이트에서 사건 유형·키워드로 해결 사례를 찾아보는 목록 화면입니다.",
+      "url": null,
       "access": "공개 서비스"
     },
     {
@@ -118,10 +102,11 @@
       "stack": "Flutter · Express · PostgreSQL",
       "anchor": "detail-crm",
       "image": "crm",
-      "screen": "당사자 목록 · 상담 등록",
-      "scope": "Flutter 업무 UI · API · 데이터 · 외부 연동",
-      "description": "전국 10개 지사의 고객 조회·변호사 배정·상담 예약·문자 안내를 연결한 업무시스템을 단독 구축했습니다.",
-      "caption": "고객 조회와 상담 등록을 연결하고 처리 중 상태·중복 작업을 제어한 화면입니다.",
+      "screen": "당사자 목록",
+      "flow": ["고객 조회", "상담 배정", "일정·문자 연동"],
+      "scope": "Flutter 업무 UI · API · 데이터 이관 · GWS 연동",
+      "description": "전국 10개 지사의 고객 조회·변호사 배정·상담 예약·문자 안내를 잇는 업무시스템을 API·DB·배포까지 1인 풀스택으로 구축했습니다. Google Sheets 데이터를 PostgreSQL로 직접 이관하고 Calendar·Admin Directory 등 Google Workspace API를 연동했습니다.",
+      "caption": "유입 정보와 담당자를 연결해 상담 배정을 지원하는 당사자 목록입니다. (화면은 테스트 데이터)",
       "url": null,
       "access": "사내 전용"
     }
@@ -188,40 +173,6 @@
     {
       "label": "VI–VIII. 이전 경력",
       "anchor": "detail-previous"
-    },
-    {
-      "label": "개인 포트폴리오",
-      "anchor": "detail-personal"
-    }
-  ],
-  "timeline": [
-    {
-      "period": "2025.04",
-      "type": "개인 개발",
-      "title": "DateWebApp",
-      "detail": "React·TS 버튼·테마",
-      "url": "https://github.com/sorrybro2/DateWebApp/commit/e836916aca75ca4e0fca2bbe0e3f91f7d41a2041"
-    },
-    {
-      "period": "2025.12",
-      "type": "학습",
-      "title": "React·Next.js",
-      "detail": "Todo·Hook·라우팅",
-      "url": "https://github.com/sorrybro2/react-todolist"
-    },
-    {
-      "period": "2026.01–04",
-      "type": "팀 프로젝트",
-      "title": "내 냉장고를 구해줘",
-      "detail": "Context·무한 스크롤",
-      "url": "https://github.com/cliffside-potatoes/Frontend"
-    },
-    {
-      "period": "2026.05–현재",
-      "type": "회사 개발",
-      "title": "홈페이지·사건관리",
-      "detail": "Next.js·React 업무 UI",
-      "url": "https://github.com/sorrybro2/weekly-dev-log/blob/main/%EA%B2%BD%EB%A0%A5%EA%B8%B0%EC%88%A0%EC%84%9C_TMI.md"
     }
   ]
 }

@@ -1,4 +1,4 @@
-// Portfolio summary (3 pages) + detailed career appendix from the existing TMI source.
+// Public portfolio (3 pages) + career statement from page 4.
 // Uses the same MARKED_MODULE / PLAYWRIGHT_MODULE / PDFJS_MODULE options as render-career.cjs.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -7,12 +7,10 @@ const { pathToFileURL } = require('node:url');
 const { marked } = require(process.env.MARKED_MODULE || 'marked');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fontCss } = require('./document-fonts.cjs');
+const { publicHtml, assertPublicDocument } = require('./public-document.cjs');
 const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'portfolio/content.json'), 'utf8'));
 const styles = fontCss + ['career-print.css', 'portfolio-print.css'].map(file => fs.readFileSync(path.join(__dirname, file), 'utf8')).join('\n');
-const repoUrl = 'https://github.com/sorrybro2/weekly-dev-log/blob/main/';
-const sourceUrl = file => repoUrl + file.split('/').map(part => encodeURIComponent(decodeURIComponent(part))).join('/');
-const detailUrl = sourceUrl('경력기술서_TMI.md');
 const escape = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const missingImages = new Set();
 const assetCache = new Map();
@@ -34,49 +32,42 @@ function asset(relative) {
   assetCache.set(relative, value);
   return value;
 }
-function detailLink(anchor, full) { return full ? '#' + anchor : anchor === 'detail-personal' ? sourceUrl('portfolio/personal-projects.md') : detailUrl; }
 function masthead(number, label) {
-  return '<div class="page-masthead"><p class="kicker"><span class="folio-index">' + number + '</span>' + label + '</p><span class="folio-owner">' + escape(data.name) + ' / FRONTEND & FULL STACK</span></div>';
+  return '<div class="page-masthead"><p class="kicker"><span class="folio-index">' + number + '</span>포트폴리오 <span class="masthead-label">/ ' + label + '</span></p><span class="folio-owner">' + escape(data.name) + ' · PORTFOLIO</span></div>';
 }
 function imageSlot(project) {
   const image = asset(data.images[project.image]);
-  const content = image
-    ? '<img src="' + image + '" alt="' + escape(project.screen) + '">'
-    : '<div class="image-placeholder" role="img" aria-label="' + escape(project.screen + ' 캡처 자리') + '"><span class="capture-index" aria-hidden="true">' + escape(project.number) + '</span><div class="capture-label"><small>실제 화면 캡처 예정</small><strong>' + escape(project.screen) + '</strong></div><span class="capture-mark" aria-hidden="true">↗</span></div>';
-  return '<div class="screenshot-frame"><div class="screenshot-bar"><span>SCREEN / ' + escape(project.number) + '</span><span>' + escape(project.access) + '</span></div><div class="screenshot">' + content + '</div></div>';
+  if (image) return '<div class="screenshot-frame"><div class="screenshot-bar"><span>' + escape(project.screen) + '</span><span>' + escape(project.access) + '</span></div><div class="screenshot"><img src="' + image + '" alt="' + escape(project.screen) + '"></div></div>';
+  return '<div class="workflow"><p class="workflow-label">구현한 업무 흐름</p><ol>' + project.flow.map(step => '<li>' + escape(step) + '</li>').join('') + '</ol></div>';
 }
-function profilePage() {
+function profilePage(full) {
   const portrait = asset(data.images.portrait);
-  const contact = data.contactEmail ? '<div class="link-row"><strong>연락처</strong><a href="mailto:' + escape(data.contactEmail) + '">' + escape(data.contactEmail) + '</a></div>' : '';
   return '<section class="front-page" id="overview">' +
-    masthead('01', 'PROFILE') + '<header class="profile-head"><div class="profile-copy"><div class="identity-line"><h1>' + escape(data.name) + '<span class="name-dot" aria-hidden="true">.</span></h1><p class="role">' + escape(data.role) + '</p></div><p class="headline">' + escape(data.headline) + '</p><p class="intro">' + escape(data.intro) + '</p></div>' +
+    masthead('01', '소개') + '<header class="profile-head"><div class="profile-copy"><div class="identity-line"><h1>' + escape(data.name) + '<span class="name-dot" aria-hidden="true">.</span></h1><p class="role">' + escape(data.role) + '</p></div><p class="headline">' + escape(data.headline) + '</p><p class="intro">' + escape(data.intro) + '</p></div>' +
     (portrait ? '<img class="portrait" src="' + portrait + '" alt="' + escape(data.name + ' 프로필 사진') + '">' : '') + '</header>' +
     '<div class="metric-grid">' + data.metrics.map(m => '<div class="metric"><b>' + escape(m.value) + '</b><span>' + escape(m.label) + '</span><small>' + escape(m.note) + '</small></div>').join('') + '</div>' +
-    '<section class="p-section"><h2 class="section-title">경력</h2>' + data.experience.map(e => '<div class="experience-row"><div><strong>' + escape(e.company) + '</strong><small>' + escape(e.period) + '</small></div><div><strong>' + escape(e.position) + '</strong><p>' + escape(e.detail) + '</p></div></div>').join('') + '</section>' +
-    '<section class="p-section"><h2 class="section-title">React·Next.js 경험 — 2025 → 2026</h2><ol class="experience-timeline">' +
-    data.timeline.map(t => '<li><b>' + escape(t.period) + '</b><span class="timeline-type">' + escape(t.type) + '</span><a href="' + escape(t.url) + '">' + escape(t.title) + ' ↗</a><small>' + escape(t.detail) + '</small></li>').join('') + '</ol></section>' +
+    '<section class="p-section focus-section"><h2 class="section-title">이 포트폴리오에서 보여드릴 역량</h2>' + data.focus.map((f, i) => '<div class="focus-row"><span class="focus-index">0' + (i + 1) + '</span><div><h3>' + escape(f.title) + '</h3><p>' + escape(f.detail) + '</p></div></div>').join('') + '</section>' +
     '<section class="p-section"><h2 class="section-title">주요 기술</h2><div class="stack-grid">' + data.stack.map(s => '<div><strong>' + escape(s.label) + '</strong><p>' + escape(s.value) + '</p></div>').join('') + '</div></section>' +
-    '<div class="page-end link-list">' + data.links.map(l => '<div class="link-row"><strong>' + escape(l.label) + '</strong><a href="' + escape(l.url) + '">' + escape(l.text) + '</a></div>').join('') + contact + '</div></section>';
+    '<p class="page-end reading-guide">' + (full ? '01–03  포트폴리오 소개 <span>04부터  경력기술서</span>' : '01  소개 <span>02  대표 프로젝트</span><span>03  문제 해결 사례</span>') + '</p></section>';
 }
-function projectCard(p, full, wide) {
-  return '<article class="' + (wide ? 'project-wide' : 'project-small') + '">' +
+function projectCard(p, full) {
+  return '<article class="project-card">' +
     '<div class="project-heading"><h3><span class="project-number">' + escape(p.number) + '</span>' + escape(p.name) + '</h3><small>' + escape(p.role + ' · ' + p.period) + '</small></div>' +
     '<p class="project-label">' + escape(p.stack + ' · ' + p.access) + '</p>' + imageSlot(p) +
     '<p class="caption">' + escape(p.caption) + '</p><p class="project-description">' + escape(p.description) + '</p>' +
     '<p class="project-scope"><strong>담당</strong> ' + escape(p.scope) + '</p>' +
-    '<div class="project-actions">' + (p.url ? '<a class="project-link" href="' + escape(p.url) + '">서비스 보기 ↗</a>' : '') +
-    '<a class="project-link" href="' + escape(detailLink(p.anchor, full)) + '">상세 경력 →</a></div></article>';
+    (full ? '<div class="project-actions"><a class="project-link" href="#' + escape(p.anchor) + '"><span class="project-link-icon" aria-hidden="true">&#8594;</span>상세 경력</a></div>' : '') + '</article>';
 }
 function projectsPage(full) {
-  return '<section class="front-page" id="projects">' + masthead('02', 'SELECTED WORK') + '<h2 class="page-title">직접 구현한 서비스와 업무 화면<span class="title-dot">.</span></h2>' +
+  return '<section class="front-page" id="projects">' + masthead('02', '대표 프로젝트') + '<h2 class="page-title">직접 구축하고 개선한 세 가지 서비스<span class="title-dot">.</span></h2>' +
     '<p class="page-lead">공개 홈페이지와 사내 업무 도구를 화면·API·데이터까지 연결했습니다.</p>' +
-    projectCard(data.projects[0], full, true) + '<div class="project-grid">' + data.projects.slice(1).map(p => projectCard(p, full, false)).join('') + '</div>' +
-    '<div class="page-end"><p class="document-note">홈페이지는 공개 URL로 확인할 수 있습니다. 사내 시스템은 화면과 담당 기능을 중심으로 소개합니다.</p></div></section>';
+    '<div class="project-grid">' + data.projects.map(p => projectCard(p, full)).join('') + '</div>' +
+    '<div class="page-end"><p class="document-note">화면은 실제 서비스 캡처이며, 의뢰인 정보는 테스트 데이터로 대체하거나 가렸습니다.</p></div></section>';
 }
 function casesPage(full) {
-  return '<section class="front-page' + (full ? '' : ' last-summary') + '" id="engineering">' + masthead('03', 'ENGINEERING') + '<h2 class="page-title">화면·상태·데이터를 함께 설계합니다<span class="title-dot">.</span></h2><p class="page-lead">공통 UI와 상태 공유, Next.js 첫 화면, 업무 데이터 조회의 문제를 해결했습니다.</p>' +
-    data.cases.map(c => '<article class="case-card"><div class="case-top"><span class="case-tag">' + escape(c.number + ' / ' + c.tag) + '</span><span class="case-metric">' + escape(c.metric) + '</span></div><h3>' + escape(c.title) + '</h3><p class="case-context">' + escape(c.context) + '</p><dl><dt>문제</dt><dd>' + escape(c.problem) + '</dd><dt>판단</dt><dd>' + escape(c.decision) + '</dd><dt>결과</dt><dd>' + escape(c.result) + '</dd></dl><p class="case-ref"><a href="' + escape(detailLink(c.anchor, full)) + '">구현 상세 →</a>' + (c.source ? ' &nbsp; <a href="' + escape(sourceUrl(c.source)) + '">업무 기록 ↗</a>' : '') + '</p></article>').join('') +
-    '<div class="page-end"><h3 class="section-title">' + (full ? '상세 경력 · 개인 포트폴리오' : '경력 · 개인 프로젝트 기록') + '</h3><nav class="detail-nav" aria-label="상세 경력 목차">' + data.appendix.map(a => '<a href="' + escape(detailLink(a.anchor, full)) + '">' + escape(a.label) + '</a>').join('') + '</nav></div></section>';
+  return '<section class="front-page last-summary" id="engineering">' + masthead('03', '문제 해결 사례') + '<h2 class="page-title">화면·상태·데이터를 함께 설계합니다<span class="title-dot">.</span></h2><p class="page-lead">공통 UI와 상태 공유, Next.js 첫 화면, 업무 데이터 조회의 문제를 해결했습니다.</p>' +
+    data.cases.map(c => '<article class="case-card"><div class="case-top"><span class="case-tag">' + escape(c.number + ' / ' + c.tag) + '</span><span class="case-metric">' + escape(c.metric) + '</span></div><h3>' + escape(c.title) + '</h3><p class="case-context">' + escape(c.context) + '</p><dl><dt>문제</dt><dd>' + escape(c.problem) + '</dd><dt>판단</dt><dd>' + escape(c.decision) + '</dd><dt>결과</dt><dd>' + escape(c.result) + '</dd></dl>' + (full ? '<p class="case-ref"><a href="#' + escape(c.anchor) + '">경력기술서에서 구현 상세 →</a></p>' : '') + '</article>').join('') +
+    '<div class="page-end portfolio-end"><span>포트폴리오 끝</span>' + (full ? '<strong>다음 페이지부터 경력기술서 →</strong>' : '<strong>대표 프로젝트와 문제 해결 사례 요약</strong>') + '</div></section>';
 }
 function appendix() {
   const md = fs.readFileSync(path.join(root, '경력기술서_TMI.md'), 'utf8');
@@ -97,16 +88,13 @@ function appendix() {
   });
   html = html.replace(/<li><strong>근거<\/strong>([\s\S]*?)<\/li>/g, '<li class="evidence"><strong>근거</strong>$1</li>');
   html = html.replace(/<p><strong>([^<]+)<\/strong><\/p>/g, '<p class="label"><strong>$1</strong></p>');
-  html = html.replace(/href="((?:daily|weekly)\/[^"]+)"/g, (_, file) => 'href="' + escape(sourceUrl(file)) + '"');
-  return '<article class="appendix" id="details"><p class="kicker">DETAILED EXPERIENCE</p>' + html + '</article>';
-}
-function personalPortfolio() {
-  const md = fs.readFileSync(path.join(root, 'portfolio/personal-projects.md'), 'utf8');
-  return '<article class="personal-portfolio" id="detail-personal"><p class="kicker">PERSONAL PORTFOLIO</p>' + marked.parse(md, { gfm: true, breaks: false }) + '</article>';
+  return '<article class="appendix" id="details"><header class="career-opening"><p class="kicker">PART 02 · CAREER EXPERIENCE</p><h1 class="career-title">경력기술서<span class="title-dot">.</span></h1><p>근무 이력과 프로젝트별 담당 업무 · 기술적 의사결정 · 성과</p><nav class="detail-nav" aria-label="경력기술서 목차">' + data.appendix.map(a => '<a href="#' + escape(a.anchor) + '">' + escape(a.label) + '</a>').join('') + '</nav></header>' + html + '</article>';
 }
 function documentHtml(full) {
   const title = full ? '진솔 — 포트폴리오·경력기술서' : '진솔 — 포트폴리오 요약';
-  return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + '</title><style>' + styles + '</style></head><body><main>' + profilePage() + projectsPage(full) + casesPage(full) + (full ? appendix() + personalPortfolio() : '') + '</main></body></html>';
+  const html = publicHtml('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + '</title><style>' + styles + '</style></head><body><main>' + profilePage(full) + projectsPage(full) + casesPage(full) + (full ? appendix() : '') + '</main></body></html>');
+  assertPublicDocument(html, title);
+  return html;
 }
 
 async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
@@ -128,7 +116,9 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
         const { items } = await p.getTextContent();
         const lines = items.filter(x => x.str.trim() && x.transform[5] > 32);
         const annotations = await p.getAnnotations();
-        pages.push({ page: i, characters: lines.reduce((sum, x) => sum + x.str.length, 0), top: lines.slice(0,4).map(x => x.str).join(' '), minY: Math.min(...lines.map(x => x.transform[5])), externalLinks: annotations.filter(a => a.url).length, internalLinks: annotations.filter(a => a.dest).length });
+        const text = items.map(x => x.str).join('');
+        const externalUrls = annotations.filter(a => a.url).map(a => a.url);
+        pages.push({ page: i, characters: lines.reduce((sum, x) => sum + x.str.length, 0), top: lines.map(x => x.str).join('').slice(0,140), minY: Math.min(...lines.map(x => x.transform[5])), externalLinks: externalUrls.length, internalLinks: annotations.filter(a => a.dest).length, text, externalUrls });
         const canvas = document.createElement('canvas');
         canvas.id = 'proof-' + i;
         const viewport = p.getViewport({ scale: 1.4 });
@@ -148,7 +138,15 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
     fs.writeFileSync(path.join(qaDir, label + '-pages.json'), JSON.stringify(report, null, 2));
     if (report.some(p => p.characters < 120)) throw new Error(label + ': nearly empty page');
     if (label === 'summary' && report.length !== 3) throw new Error('Summary must be exactly 3 pages, got ' + report.length);
-    if (label === 'full' && !report[3]?.top.replace(/\s+/g, '').includes('DETAILEDEXPERIENCE')) throw new Error('Detailed section must start on page 4');
+    for (const p of report) {
+      assertPublicDocument(p.text + '\n' + p.externalUrls.join('\n'), label + ' page ' + p.page);
+      if (p.externalLinks) throw new Error(label + ': unexpected external PDF link on page ' + p.page);
+      if (/2025\s*[.\-/]\s*0?4\b/.test(p.text)) throw new Error(label + ': removed start date remains');
+    }
+    if (report[0].internalLinks || report[0].externalLinks) throw new Error('Page 1 must contain no links');
+    if (report.slice(0,3).some(p => !p.top.replace(/\s+/g, '').includes('포트폴리오'))) throw new Error('First 3 pages must identify as portfolio');
+    if (label === 'full' && !report[3]?.top.replace(/\s+/g, '').includes('경력기술서')) throw new Error('Career statement must start on page 4');
+    if (label === 'full' && report.slice(3).some(p => /개인\s*포트폴리오|PERSONAL\s*PORTFOLIO/.test(p.text))) throw new Error('Portfolio content must not follow career statement');
     if (label === 'full' && report.slice(0,3).reduce((sum,p) => sum + p.internalLinks,0) < 6) throw new Error('Missing internal PDF navigation');
     return report;
   } finally { await page.close(); }
@@ -207,6 +205,6 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
       fs.copyFileSync(stagedPdf, pdfFile);
       console.log(JSON.stringify({ label, html: htmlFile, pdf: pdfFile, pages: report?.length, contentByPage: report?.map(p => ({ page:p.page, characters:p.characters, internalLinks:p.internalLinks })) }));
     }
-    console.log(JSON.stringify({ qaDir, missingImages: Array.from(missingImages), note: 'Missing project images use labeled capture slots; missing portrait stays hidden.' }, null, 2));
+    console.log(JSON.stringify({ qaDir, missingImages: Array.from(missingImages), note: 'Projects without screenshots show their implemented workflow; images and fonts are embedded.' }, null, 2));
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
