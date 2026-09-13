@@ -11,6 +11,11 @@ const { publicHtml, assertPublicDocument } = require('./public-document.cjs');
 const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'portfolio/content.json'), 'utf8'));
 const styles = fontCss + ['career-print.css', 'portfolio-print.css'].map(file => fs.readFileSync(path.join(__dirname, file), 'utf8')).join('\n');
+const normalizeUrl = url => url.replace(/\/+$/, '');
+// The legacy homepage domain (referenced in appendix section IV) isn't a project card
+// with a `url` field, so it's allowed alongside the featured projects' live URLs.
+const additionalAllowedUrls = ['https://lawwin.co.kr'];
+const allowedExternalUrls = new Set([...data.projects.filter(p => p.url).map(p => p.url), ...additionalAllowedUrls].map(normalizeUrl));
 const escape = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const missingImages = new Set();
 const assetCache = new Map();
@@ -51,12 +56,16 @@ function profilePage(full) {
     '<p class="page-end reading-guide">' + (full ? '01–03  포트폴리오 소개 <span>04부터  경력기술서</span>' : '01  소개 <span>02  대표 프로젝트</span><span>03  문제 해결 사례</span>') + '</p></section>';
 }
 function projectCard(p, full) {
-  return '<article class="project-card">' +
+  const links = [];
+  if (p.url) links.push('<a class="project-link project-link-live" href="' + escape(p.url) + '"><span class="project-link-icon" aria-hidden="true">&#8599;</span>서비스 보기</a>');
+  if (full) links.push('<a class="project-link" href="#' + escape(p.anchor) + '"><span class="project-link-icon" aria-hidden="true">&#8594;</span>상세 경력</a>');
+  return '<article class="project-card"><div class="project-info">' +
     '<div class="project-heading"><h3><span class="project-number">' + escape(p.number) + '</span>' + escape(p.name) + '</h3><small>' + escape(p.role + ' · ' + p.period) + '</small></div>' +
-    '<p class="project-label">' + escape(p.stack + ' · ' + p.access) + '</p>' + imageSlot(p) +
+    '<p class="project-label">' + escape(p.stack + ' · ' + p.access) + '</p>' +
     '<p class="caption">' + escape(p.caption) + '</p><p class="project-description">' + escape(p.description) + '</p>' +
     '<p class="project-scope"><strong>담당</strong> ' + escape(p.scope) + '</p>' +
-    (full ? '<div class="project-actions"><a class="project-link" href="#' + escape(p.anchor) + '"><span class="project-link-icon" aria-hidden="true">&#8594;</span>상세 경력</a></div>' : '') + '</article>';
+    (links.length ? '<div class="project-actions">' + links.join('') + '</div>' : '') +
+    '</div><div class="project-media">' + imageSlot(p) + '</div></article>';
 }
 function projectsPage(full) {
   return '<section class="front-page" id="projects">' + masthead('02', '대표 프로젝트') + '<h2 class="page-title">직접 구축하고 개선한 세 가지 서비스<span class="title-dot">.</span></h2>' +
@@ -75,9 +84,14 @@ function appendix() {
   if (index < 0) throw new Error('Cannot find the detailed career section in TMI source');
   let html = marked.parse(md.slice(index), { gfm: true, breaks: false });
   const ids = { I: 'detail-case', II: 'detail-homepage', III: 'detail-crm', IV: 'detail-legacy', V: 'detail-infra' };
+  // Each project/topic is its own block: its heading forces a fresh page, except the first
+  // topic under each employer (I, VI), which already starts right after its h1, and V, a short
+  // cross-system principles recap rather than a separate project, which flows right after IV.
   html = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (match, title) => {
     const numeral = title.match(/^([IVX]+)\./)?.[1];
-    return ids[numeral] ? '<h2 id="' + ids[numeral] + '">' + title + '</h2>' : match;
+    const idAttr = ids[numeral] ? ' id="' + ids[numeral] + '"' : '';
+    const classAttr = numeral && !['I', 'V', 'VI'].includes(numeral) ? ' class="topic-heading"' : '';
+    return idAttr || classAttr ? '<h2' + idAttr + classAttr + '>' + title + '</h2>' : match;
   });
   html = html.replace('<h1>리얼타임테크 (공간정보융합팀)</h1>', '<h1 id="detail-previous">리얼타임테크 (공간정보융합팀)</h1>');
   html = html.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
@@ -140,7 +154,8 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
     if (label === 'summary' && report.length !== 3) throw new Error('Summary must be exactly 3 pages, got ' + report.length);
     for (const p of report) {
       assertPublicDocument(p.text + '\n' + p.externalUrls.join('\n'), label + ' page ' + p.page);
-      if (p.externalLinks) throw new Error(label + ': unexpected external PDF link on page ' + p.page);
+      const unexpectedUrls = p.externalUrls.filter(u => !allowedExternalUrls.has(normalizeUrl(u)));
+      if (unexpectedUrls.length) throw new Error(label + ': unexpected external PDF link on page ' + p.page + ' -> ' + unexpectedUrls.join(', '));
       if (/2025\s*[.\-/]\s*0?4\b/.test(p.text)) throw new Error(label + ': removed start date remains');
     }
     if (report[0].internalLinks || report[0].externalLinks) throw new Error('Page 1 must contain no links');

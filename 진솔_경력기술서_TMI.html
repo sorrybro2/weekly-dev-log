@@ -104,6 +104,7 @@ body {
   overflow-wrap: anywhere; word-break: normal;
 }
 h1, h2, h3, h4, p.label { break-after: avoid; page-break-after: avoid; }
+h2.topic-heading { break-before: page; page-break-before: always; }
 h1 { margin: 22px 0 12px; padding-bottom: 10px; border-bottom: 2px solid #15171b; color: #08090b; font-size: 21pt; font-weight: 800; line-height: 1.3; letter-spacing: -0.7px; }
 h1:first-child { margin-top: 0; }
 h1:not(:first-child) { font-size: 17pt; }
@@ -285,7 +286,7 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>조사 범위를 전 기간으로 확장해 DB 미수금 중복 데이터을 발견 — 전 과정 SELECT-only(운영 데이터 변경 0건)로 수행.</li>
 </ul>
 <hr>
-<h2>II. 법무법인 홈페이지 V2 리뉴얼 — 1인 풀스택</h2>
+<h2 class="topic-heading">II. 법무법인 홈페이지 V2 리뉴얼 — 1인 풀스택</h2>
 <ul>
 <li><strong>기간</strong>: 2026-05 착수 – 진행 중</li>
 <li><strong>기술스택</strong>: Next.js(App Router) + NestJS, TypeScript, Prisma, PostgreSQL(Cloud SQL, 레거시는 SQL Server), Turborepo, Tailwind, NextAuth/Google OAuth, GCP Cloud Run · Cloud Build · GCS</li>
@@ -356,7 +357,7 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>레거시 GSC 미색인 17.8만 건 원인 분석 — 필터 조합 URL이 크롤 예산을 소진하는 구조적 문제를 확인해 <code>robots.ts</code>로 차단.</li>
 </ul>
 <hr>
-<h2>III. 사내 CRM — 1인 풀스택</h2>
+<h2 class="topic-heading">III. 사내 CRM — 1인 풀스택</h2>
 <ul>
 <li><strong>기간</strong>: 2026-01 착수 – 진행 중 (정식 오픈 2026-05)</li>
 <li><strong>기술스택</strong>: Node.js(Express) 백엔드 + Flutter(Dart) 클라이언트(PWA + Android) / Google Sheets(Apps Script) → MySQL → PostgreSQL(Cloud SQL) / Google Workspace API 연동</li>
@@ -429,11 +430,11 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <p><strong>회고</strong> — Sheet 기반 레거시를 RDBMS로 전환하며 성능 · 동시성 · 보안을 1인이 전담했습니다. 4개월간 643개 커밋 중 SMS · 타임존 관련 수정이 가장 많았는데, UTC↔KST 변환과 외부 발송 API의 엣지 케이스를 다루며 &quot;기능 구현보다 운영 환경의 디테일이 더 어렵다&quot;는 점을 체득했습니다.</p>
 </blockquote>
 <hr>
-<h2>IV. 법무법인 법승 공식 홈페이지(레거시) 유지보수</h2>
+<h2 class="topic-heading">IV. 법무법인 법승 공식 홈페이지(레거시) 유지보수</h2>
 <ul>
 <li><strong>기간</strong>: 2026-01 – 진행 중</li>
 <li><strong>기술스택</strong>: ASP.NET Core 6.0 · CSHTML · Vanilla JavaScript/CSS · SQL Server · Windows Server/IIS · FileZilla</li>
-<li><strong>담당 범위</strong>: 기존 대고객 홈페이지의 화면 개선, 검색엔진 대응, 백엔드 API 개발, 소스 이관 및 배포 환경 분석. 외주 소스를 사내 저장소로 이관하고 운영 절차를 문서화해 직접 유지보수할 수 있는 기반을 마련.</li>
+<li><strong>담당 범위</strong>: 기존 대고객 홈페이지(<a href="https://lawwin.co.kr">lawwin.co.kr</a>)의 화면 개선, 검색엔진 대응, 백엔드 API 개발, 소스 이관 및 배포 환경 분석. 외주 소스를 사내 저장소로 이관하고 운영 절차를 문서화해 직접 유지보수할 수 있는 기반을 마련.</li>
 </ul>
 <h3>담당 업무 및 핵심 문제 해결 사례</h3>
 <h4>1) 변호사 상세 페이지 진입 지연과 모바일 레이아웃 개선 — 2026-01</h4>
@@ -500,7 +501,7 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>Ubuntu 환경에서 FFmpeg를 리눅스 스크립트 형태로 실행 · 배포하여 운영 환경 대응.</li>
 </ul>
 <hr>
-<h2>VII. 에너지 공기업 — 신규 개발 착수를 위한 기존 시스템 코드 분석</h2>
+<h2 class="topic-heading">VII. 에너지 공기업 — 신규 개발 착수를 위한 기존 시스템 코드 분석</h2>
 <ul>
 <li><strong>기간</strong>: 2025-03 – 2025-06 (사원)</li>
 <li><strong>직무 성격</strong>: 가스 누수 의심 등 고객 이벤트 요청 → 직원 점검 → 운영자 현황 확인으로 이어지는 앱의 <strong>신규 개발에 앞서, 기존에 운영 중이던 시스템의 코드 흐름 전체를 분석</strong>하는 역할.</li>
@@ -522,7 +523,7 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li><strong>문서화</strong>: 디렉터리 구조와 컴포넌트 단위 코드 흐름을 분석해 유지보수성과 전체 코드 구조에 대한 이해를 신규 개발팀에 전달할 수 있도록 정리.</li>
 </ul>
 <hr>
-<h2>VIII. 제조업 고객사 — 공장 센서데이터 웹 유지보수 · UI 개선</h2>
+<h2 class="topic-heading">VIII. 제조업 고객사 — 공장 센서데이터 웹 유지보수 · UI 개선</h2>
 <ul>
 <li><strong>기간</strong>: 2024-10 – 2025-02 (인턴)</li>
 <li><strong>기술스택</strong>: Spring Framework, PostgreSQL, JavaScript, CSS</li>

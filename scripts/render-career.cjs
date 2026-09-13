@@ -21,6 +21,13 @@ const css = fontCss + fs.readFileSync(path.join(__dirname, 'career-print.css'), 
 const md = fs.readFileSync(source, 'utf8');
 if (/^```mermaid/m.test(md)) throw new Error('Convert Mermaid blocks to local SVG before export.');
 let body = marked.parse(md, { gfm: true, breaks: false });
+// Each project/topic is its own block: its heading forces a fresh page, except the first
+// topic under each employer (I, VI), which already starts right after its h1, and V, a short
+// cross-system principles recap rather than a separate project, which flows right after IV.
+body = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (match, title) => {
+  const numeral = title.match(/^([IVX]+)\./)?.[1];
+  return numeral && !['I', 'V', 'VI'].includes(numeral) ? '<h2 class="topic-heading">' + title + '</h2>' : match;
+});
 body = body.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
 body = body.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) => {
   const file = path.resolve(root, decodeURIComponent(src));

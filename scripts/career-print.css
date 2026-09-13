@@ -9,6 +9,7 @@ body {
   overflow-wrap: anywhere; word-break: normal;
 }
 h1, h2, h3, h4, p.label { break-after: avoid; page-break-after: avoid; }
+h2.topic-heading { break-before: page; page-break-before: always; }
 h1 { margin: 22px 0 12px; padding-bottom: 10px; border-bottom: 2px solid #15171b; color: #08090b; font-size: 21pt; font-weight: 800; line-height: 1.3; letter-spacing: -0.7px; }
 h1:first-child { margin-top: 0; }
 h1:not(:first-child) { font-size: 17pt; }

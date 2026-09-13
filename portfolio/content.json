@@ -87,10 +87,10 @@
       "image": "homepage",
       "screen": "사건별 업무사례 목록",
       "flow": ["CMS 편집", "콘텐츠 발행", "상담 접수"],
-      "scope": "공개 UI · CMS · API · 데이터 이관 · GCP 인프라",
-      "description": "기획부터 GCP 인프라·배포까지 1인 풀스택으로 구축했습니다. SQL Server 데이터 약 730만 건을 PostgreSQL로 이관하고, Google Workspace 인증 기반 CMS를 직접 구현했습니다.",
+      "scope": "공개 UI · CMS · API · GCP 인프라",
+      "description": "기획부터 GCP 인프라·배포까지 1인 풀스택으로 구축했습니다. SQL Server 데이터 730만 건 이관과 Google Workspace 인증 CMS를 직접 구현했습니다.",
       "caption": "공개 사이트에서 사건 유형·키워드로 해결 사례를 찾아보는 목록 화면입니다.",
-      "url": null,
+      "url": "https://bslawwin.co.kr",
       "access": "공개 서비스"
     },
     {
@@ -104,8 +104,8 @@
       "image": "crm",
       "screen": "당사자 목록",
       "flow": ["고객 조회", "상담 배정", "일정·문자 연동"],
-      "scope": "Flutter 업무 UI · API · 데이터 이관 · GWS 연동",
-      "description": "전국 10개 지사의 고객 조회·변호사 배정·상담 예약·문자 안내를 잇는 업무시스템을 API·DB·배포까지 1인 풀스택으로 구축했습니다. Google Sheets 데이터를 PostgreSQL로 직접 이관하고 Calendar·Admin Directory 등 Google Workspace API를 연동했습니다.",
+      "scope": "Flutter UI · API · GWS 연동",
+      "description": "전국 10개 지사 업무시스템을 API·DB·배포까지 1인 풀스택으로 구축했습니다. Google Sheets 데이터를 PostgreSQL로 이관하고 Calendar 등 Google Workspace API를 연동했습니다.",
       "caption": "유입 정보와 담당자를 연결해 상담 배정을 지원하는 당사자 목록입니다. (화면은 테스트 데이터)",
       "url": null,
       "access": "사내 전용"
