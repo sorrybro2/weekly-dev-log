@@ -9,6 +9,10 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fontCss } = require('./document-fonts.cjs');
 const { publicHtml, assertPublicDocument } = require('./public-document.cjs');
 const root = path.resolve(__dirname, '..');
+// 경력기술서 원문과 산출물은 `경력기술서/` 아래에 있다. content.json의 자산 경로는
+// 저장소 루트 기준이지만, 원문 안의 도식 경로는 원문 위치 기준이라 해석 기준이 다르다.
+const careerDir = path.join(root, '경력기술서');
+const outputDir = path.join(careerDir, '출력');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'portfolio/content.json'), 'utf8'));
 const styles = fontCss + ['career-print.css', 'portfolio-print.css'].map(file => fs.readFileSync(path.join(__dirname, file), 'utf8')).join('\n');
 const normalizeUrl = url => url.replace(/\/+$/, '');
@@ -20,21 +24,24 @@ const escape = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll(
 const missingImages = new Set();
 const assetCache = new Map();
 
-function asset(relative) {
+// `base`는 상대 경로의 기준 디렉터리다. content.json의 자산은 루트 기준이고,
+// 경력기술서 원문의 도식은 원문 위치(`경력기술서/`) 기준이라 호출부가 기준을 넘긴다.
+// 캐시는 해석된 절대 경로로 키를 잡아 기준이 다른 같은 문자열이 섞이지 않게 한다.
+function asset(relative, base = root) {
   if (!relative) return null;
-  if (assetCache.has(relative)) return assetCache.get(relative);
-  const file = path.resolve(root, relative);
+  const file = path.resolve(base, relative);
+  if (assetCache.has(file)) return assetCache.get(file);
   const within = path.relative(root, file);
   if (within.startsWith('..') || path.isAbsolute(within)) throw new Error('Asset must be inside workspace: ' + relative);
   if (!fs.existsSync(file)) {
     missingImages.add(relative);
-    assetCache.set(relative, null);
+    assetCache.set(file, null);
     return null;
   }
   const type = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' }[path.extname(file).toLowerCase()];
   if (!type) throw new Error('Unsupported image format: ' + relative);
   const value = 'data:' + type + ';base64,' + fs.readFileSync(file).toString('base64');
-  assetCache.set(relative, value);
+  assetCache.set(file, value);
   return value;
 }
 function masthead(number, label) {
@@ -79,7 +86,7 @@ function casesPage(full) {
     '<div class="page-end portfolio-end"><span>포트폴리오 끝</span>' + (full ? '<strong>다음 페이지부터 경력기술서 →</strong>' : '<strong>대표 프로젝트와 문제 해결 사례 요약</strong>') + '</div></section>';
 }
 function appendix() {
-  const md = fs.readFileSync(path.join(root, '경력기술서_TMI.md'), 'utf8');
+  const md = fs.readFileSync(path.join(careerDir, '경력기술서_TMI.md'), 'utf8');
   const index = md.indexOf('# 법무법인 법승 (');
   if (index < 0) throw new Error('Cannot find the detailed career section in TMI source');
   let html = marked.parse(md.slice(index), { gfm: true, breaks: false });
@@ -96,7 +103,7 @@ function appendix() {
   html = html.replace('<h1>리얼타임테크 (공간정보융합팀)</h1>', '<h1 id="detail-previous">리얼타임테크 (공간정보융합팀)</h1>');
   html = html.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
   html = html.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) => {
-    const image = asset(decodeURIComponent(src));
+    const image = asset(decodeURIComponent(src), careerDir);
     if (!image) throw new Error('Missing architecture image: ' + src);
     return '<figure><img src="' + image + '" alt="' + alt + '"></figure>';
   });
@@ -175,8 +182,9 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
       ['summary', false, '진솔_포트폴리오_요약'],
       ['full', true, '진솔_포트폴리오_경력기술서']
     ]) {
-      const htmlFile = path.join(root, basename + '.html');
+      const htmlFile = path.join(outputDir, basename + '.html');
       const stagedPdf = path.join(qaDir, basename + '.pdf');
+      fs.mkdirSync(outputDir, { recursive: true });
       fs.writeFileSync(htmlFile, documentHtml(full));
       const page = await browser.newPage({ viewport: { width: 680, height: 1005 }, deviceScaleFactor: 1 });
       try {
@@ -216,7 +224,7 @@ async function inspectPdf(browser, htmlFile, pdfFile, label, qaDir) {
         await page.pdf({ path: stagedPdf, format: 'A4', preferCSSPageSize: true, printBackground: true, displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font-family:Arial,sans-serif;font-size:8px;color:#64748b;width:100%;text-align:center;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>' });
       } finally { await page.close(); }
       const report = await inspectPdf(browser, htmlFile, stagedPdf, label, qaDir);
-      const pdfFile = path.join(root, basename + '.pdf');
+      const pdfFile = path.join(outputDir, basename + '.pdf');
       fs.copyFileSync(stagedPdf, pdfFile);
       console.log(JSON.stringify({ label, html: htmlFile, pdf: pdfFile, pages: report?.length, contentByPage: report?.map(p => ({ page:p.page, characters:p.characters, internalLinks:p.internalLinks })) }));
     }

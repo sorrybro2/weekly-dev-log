@@ -12,11 +12,15 @@ const { fontCss } = require('./document-fonts.cjs');
 const { publicText, publicHtml, assertPublicDocument } = require('./public-document.cjs');
 
 const root = path.resolve(__dirname, '..');
+// 원문과 산출물은 `경력기술서/` 아래에 모아 둔다. 원문 안의 이미지·근거 링크는
+// 원문 위치(`careerDir`) 기준의 상대 경로이므로 해석도 그 기준을 따른다.
+const careerDir = path.join(root, '경력기술서');
+const outputDir = path.join(careerDir, '출력');
 const brief = process.argv.includes('--brief');
-const source = path.join(root, brief ? '경력기술서.md' : '경력기술서_TMI.md');
+const source = path.join(careerDir, brief ? '경력기술서.md' : '경력기술서_TMI.md');
 const basename = brief ? '진솔_경력기술서' : '진솔_경력기술서_TMI';
-const htmlPath = path.join(root, basename + '.html');
-const pdfPath = path.join(root, basename + '.pdf');
+const htmlPath = path.join(outputDir, basename + '.html');
+const pdfPath = path.join(outputDir, basename + '.pdf');
 const css = fontCss + fs.readFileSync(path.join(__dirname, 'career-print.css'), 'utf8');
 const md = fs.readFileSync(source, 'utf8');
 if (/^```mermaid/m.test(md)) throw new Error('Convert Mermaid blocks to local SVG before export.');
@@ -30,7 +34,7 @@ body = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (match, title) => {
 });
 body = body.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
 body = body.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) => {
-  const file = path.resolve(root, decodeURIComponent(src));
+  const file = path.resolve(careerDir, decodeURIComponent(src));
   const relative = path.relative(root, file);
   if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error('Image outside workspace');
   const bytes = Buffer.from(publicText(fs.readFileSync(file, 'utf8')));
@@ -46,6 +50,7 @@ const html = '<!doctype html><html lang="ko"><head><meta charset="utf-8">' +
   '<title>진솔 — ' + (brief ? '경력기술서' : '상세 경력기술서 (TMI)') + '</title><style>' + css + '</style></head><body><main>' +
   body + '</main></body></html>';
 assertPublicDocument(html, basename);
+fs.mkdirSync(outputDir, { recursive: true });
 fs.writeFileSync(htmlPath, html);
 
 (async () => {
