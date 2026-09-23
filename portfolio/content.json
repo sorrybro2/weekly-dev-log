@@ -1,8 +1,8 @@
 {
   "name": "진솔",
-  "role": "프론트엔드 · 풀스택 개발자",
-  "headline": "React·Next.js로 업무 흐름을 화면과 서비스로 구현합니다.",
-  "intro": "사용자가 업무를 끝내는 데 필요한 화면과 데이터 흐름을 만듭니다. React 업무 UI와 상태관리를 설계하고, 홈페이지와 CRM을 API·DB·배포까지 1인 풀스택으로 구축했습니다.",
+  "role": "풀스택 개발자 · GCP 인프라 · 데이터",
+  "headline": "GCP 위에 사내 시스템 5종을 직접 세우고 운영합니다.",
+  "intro": "법무법인의 사내 개발을 맡아 인프라 설계부터 데이터 이관, 프런트·백엔드 구현, 장애 대응까지 한 사이클을 담당합니다. 구글시트로 돌아가던 전국 10개 지사 업무는 CRM으로, ASP.NET 레거시 홈페이지는 Next.js로 대체했고, 현재 RAG 기반 상담봇을 만들고 있습니다. 5종 중 4종이 단독 구축입니다.",
   "images": {
     "portrait": "assets/portfolio/profile.jpg",
     "homepage": "assets/portfolio/homepage.png",
@@ -11,51 +11,51 @@
   },
   "metrics": [
     {
-      "value": "8초 → 0.05초",
-      "label": "상담료 처리 대기 조회",
-      "note": "FDW 조인 구조 개선 · 약 160배"
+      "value": "5개 제품",
+      "label": "구축·운영 중인 사내 시스템",
+      "note": "4개 단독 · 사건관리 앱은 2인 팀"
     },
     {
-      "value": "약 730만 건",
-      "label": "홈페이지 데이터 이관",
-      "note": "SQL Server → PostgreSQL"
+      "value": "API 385개",
+      "label": "직접 설계한 엔드포인트",
+      "note": "DB 80테이블 · 코드 21만 라인 · 커밋 1,735건"
     },
     {
-      "value": "4종 공통화",
-      "label": "업무 목록 UI",
-      "note": "표·모바일 카드의 정렬 상태 공유"
+      "value": "GCP 전담",
+      "label": "인프라·DB·배포 단독 운영",
+      "note": "Cloud Run · Cloud SQL · GCS · Cloud Build · Vertex AI"
     }
   ],
   "focus": [
     {
-      "title": "업무 흐름을 이해하는 화면",
-      "detail": "조회·등록·결재를 연결하고, 공통 테이블과 모바일 카드에서 같은 상태를 유지합니다."
+      "title": "인프라를 직접 세우고 운영합니다",
+      "detail": "Cloud Run·Cloud Build·Cloud SQL·GCS·Secret Manager로 배포 경로를 구성하고, 도메인 전환과 장애 대응·사후 분석까지 맡습니다."
     },
     {
-      "title": "화면부터 데이터까지 이어지는 구현",
-      "detail": "React·Next.js 화면을 API와 DB에 연결하고, 실시간 갱신·외부 연동·데이터 이관을 구현합니다."
+      "title": "데이터 구조와 이관을 책임집니다",
+      "detail": "레거시 SQL Server 730만 건과 구글시트 9.8만 건을 PostgreSQL로 옮기고, 80개 테이블의 스키마 설계와 쿼리 튜닝을 직접 합니다."
     },
     {
-      "title": "원인을 확인하고 개선하는 운영",
-      "detail": "느린 조회와 첫 화면 지연을 분석하고, 배포 후 실제 응답을 확인하는 절차를 정립했습니다."
+      "title": "제품을 화면부터 API까지 만듭니다",
+      "detail": "React·Next.js·Flutter 화면을 FastAPI·NestJS·Express에 연결하고, 실시간 갱신·구글 워크스페이스 연동·RAG 검색을 구현합니다."
     }
   ],
   "stack": [
     {
-      "label": "Frontend",
-      "value": "React · TypeScript · Next.js / Flutter"
+      "label": "Infra",
+      "value": "GCP Cloud Run · Cloud Build · Cloud SQL · GCS · Secret Manager"
     },
     {
-      "label": "State & UI",
-      "value": "Context · TanStack Query/Table / Tailwind CSS"
+      "label": "Data",
+      "value": "PostgreSQL · Prisma · SQLAlchemy · postgres_fdw · 대규모 이관"
     },
     {
       "label": "Backend",
-      "value": "FastAPI · SQLAlchemy / Express · NestJS"
+      "value": "FastAPI(Python) · NestJS · Express(Node.js) · Vertex AI(RAG)"
     },
     {
-      "label": "Data & Infra",
-      "value": "PostgreSQL · Cloud SQL / Cloud Run · Cloud Build"
+      "label": "Frontend",
+      "value": "React · TypeScript · Next.js · Flutter · TanStack Query/Table"
     }
   ],
   "projects": [
@@ -69,9 +69,13 @@
       "anchor": "detail-case",
       "image": "caseManagement",
       "screen": "사건 관리 · 전체 사건 목록",
-      "flow": ["상담 확인", "정보 자동 반영", "등록·결재"],
-      "scope": "공통 UI · 결재 UX · 상태관리 · API",
-      "description": "공통 테이블·모바일 카드, 결재함·대시보드를 설계하고 실시간 데이터 갱신을 구현했습니다. 상담료 조회는 8초에서 0.05초로 개선했습니다.",
+      "flow": [
+        "상담 확인",
+        "정보 자동 반영",
+        "등록·결재"
+      ],
+      "scope": "상담·문서·전자결재·정산 · 배포",
+      "description": "API 181개·36테이블 규모의 사내 업무 도구를 2인 팀으로 개발하며 상담·문서·전자결재·정산 도메인과 배포를 맡았습니다.",
       "caption": "사무소·변호사·사건유형별로 필터링한 사건 목록에서 기일과 담당자를 한 화면에서 확인합니다.",
       "url": null,
       "access": "3개 지사 베타"
@@ -86,9 +90,13 @@
       "anchor": "detail-homepage",
       "image": "homepage",
       "screen": "사건별 업무사례 목록",
-      "flow": ["CMS 편집", "콘텐츠 발행", "상담 접수"],
-      "scope": "공개 UI · CMS · API · GCP 인프라",
-      "description": "기획부터 GCP 인프라·배포까지 1인 풀스택으로 구축했습니다. SQL Server 데이터 730만 건 이관과 Google Workspace 인증 CMS를 직접 구현했습니다.",
+      "flow": [
+        "CMS 편집",
+        "콘텐츠 발행",
+        "상담 접수"
+      ],
+      "scope": "공개 UI · 어드민 CMS · API · 인프라",
+      "description": "레거시 ASP.NET 홈페이지를 Next.js로 리뉴얼해 공개 38면·어드민 CMS 35면·API 130개를 1인으로 구축했습니다.",
       "caption": "공개 사이트에서 사건 유형·키워드로 해결 사례를 찾아보는 목록 화면입니다.",
       "url": "https://bslawwin.co.kr",
       "access": "공개 서비스"
@@ -103,9 +111,13 @@
       "anchor": "detail-crm",
       "image": "crm",
       "screen": "당사자 목록",
-      "flow": ["고객 조회", "상담 배정", "일정·문자 연동"],
-      "scope": "Flutter UI · API · GWS 연동",
-      "description": "전국 10개 지사 업무시스템을 API·DB·배포까지 1인 풀스택으로 구축했습니다. Google Sheets 데이터를 PostgreSQL로 이관하고 Calendar 등 Google Workspace API를 연동했습니다.",
+      "flow": [
+        "고객 조회",
+        "상담 배정",
+        "일정·문자 연동"
+      ],
+      "scope": "Flutter UI · API · DB 설계 · GWS 연동",
+      "description": "전국 10개 지사 업무를 1인으로 구축했습니다. Flutter 54면·API 65개·17테이블, 구글시트 9.8만 건 이관.",
       "caption": "유입 정보와 담당자를 연결해 상담 배정을 지원하는 당사자 목록입니다. (화면은 테스트 데이터)",
       "url": null,
       "access": "사내 전용"

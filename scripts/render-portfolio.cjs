@@ -75,8 +75,8 @@ function projectCard(p, full) {
     '</div><div class="project-media">' + imageSlot(p) + '</div></article>';
 }
 function projectsPage(full) {
-  return '<section class="front-page" id="projects">' + masthead('02', '대표 프로젝트') + '<h2 class="page-title">직접 구축하고 개선한 세 가지 서비스<span class="title-dot">.</span></h2>' +
-    '<p class="page-lead">공개 홈페이지와 사내 업무 도구를 화면·API·데이터까지 연결했습니다.</p>' +
+  return '<section class="front-page" id="projects">' + masthead('02', '대표 프로젝트') + '<h2 class="page-title">사내 시스템 5종 중 대표 세 가지<span class="title-dot">.</span></h2>' +
+    '<p class="page-lead">나머지 둘은 사내 포털과 AI 상담봇이며 상세 경력에 정리했습니다.</p>' +
     '<div class="project-grid">' + data.projects.map(p => projectCard(p, full)).join('') + '</div>' +
     '<div class="page-end"><p class="document-note">화면은 실제 서비스 캡처이며, 의뢰인 정보는 테스트 데이터로 대체하거나 가렸습니다.</p></div></section>';
 }
