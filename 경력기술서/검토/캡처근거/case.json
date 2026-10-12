@@ -1,0 +1,100 @@
+{
+    "repo":  "BS_CASE_MANAGEMENT",
+    "head":  "ba7d38067e68e28f3fa92e881a5b0a5fe8581722",
+    "url":  "http://127.0.0.1:3214/document-logs/approvals",
+    "sourceComponents":  [
+                             "frontend/src/features/document-logs/components/ApprovalInboxPage.tsx",
+                             "frontend/src/features/document-logs/components/ApprovalPreviewModal.tsx"
+                         ],
+    "previewReplacements":  [
+                                "미리보기 진입점·합성 인증 사용자",
+                                "모든 API 응답을 브라우저에서 합성 fixture로 대체",
+                                "외부 호스트 요청 차단"
+                            ],
+    "backendStarted":  false,
+    "productionWrites":  false,
+    "data":  "전체 합성 고객·직원·사건·첨부 문서",
+    "captures":  [
+                     "case-approval-inbox.png",
+                     "case-approval-preview.png"
+                 ],
+    "viewport":  {
+                     "width":  1440,
+                     "height":  950,
+                     "deviceScaleFactor":  1.5
+                 },
+    "consoleErrors":  [
+
+                      ],
+    "requests":  [
+                     {
+                         "method":  "GET",
+                         "path":  "/api/document-logs"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/document-logs"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/document-logs"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/system-settings"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/consultation-fees/search/offices"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/consultation-fees/search/offices"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/document-logs"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/admin/contract-settings/notification-mode"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/document-logs/1"
+                     },
+                     {
+                         "method":  "GET",
+                         "path":  "/api/cases/101/drive-files/preview-document-001/content"
+                     }
+                 ],
+    "limits":  "프런트 UI 실행 캡처. DB·Drive·실제 결재 처리 성공을 입증하지 않음. 2인 팀 내 담당 문서·전자결재 영역.",
+    "sourceRepository":  "C:/Users/BS_SE/JS_Project/BS/BS_CASE_MANAGEMENT",
+    "worktree":  "C:\\Users\\BS_SE\\AppData\\Local\\Temp/portfolio-capture-20261012/case-management",
+    "captureScript":  "C:\\Users\\BS_SE\\AppData\\Local\\Temp/portfolio-capture-20261012/capture-case.cjs",
+    "originalEnvironmentCopied":  false,
+    "serverRunning":  false,
+    "stoppedAfterCapture":  {
+                                "launcherPid":  122580,
+                                "stoppedAt":  "2026-10-12T09:02:20.0482400Z",
+                                "verifiedCommand":  "node_modules/vite/bin/vite.js --host 127.0.0.1 --port 3214 --strictPort",
+                                "ownedDescendantsStopped":  2
+                            },
+    "captureRecords":  [
+                           {
+                               "file":  "case-approval-inbox.png",
+                               "capturedAt":  "2026-10-12T08:24:41.6691056Z",
+                               "sha256":  "9d8a2c7e9a55cb0eb1af3fb1612ec910ccfaba093bcf626e35286c3645400d5b"
+                           },
+                           {
+                               "file":  "case-approval-preview.png",
+                               "capturedAt":  "2026-10-12T08:24:41.8660054Z",
+                               "sha256":  "acae9717b720fbf1f3f6116afdf87bb7dbfec983249ea7b9ecbe01b3c2212e50"
+                           }
+                       ],
+    "regions":  {
+                    "inbox":  "Browser bounding rectangle of #capture-workflow through last tbody row plus 22 CSS px",
+                    "preview":  "Browser bounding rectangle of original modal, upper 590 CSS px",
+                    "imageSizes":  "Inbox 1920x518; preview 1344x885; DPR 1.5"
+                }
+}

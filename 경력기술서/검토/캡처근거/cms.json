@@ -1,0 +1,149 @@
+{
+  "capturedAt": "2026-10-12T08:25:38.406Z",
+  "sourceRepository": "C:/Users/BS_SE/JS_Project/BS/BS_MAIN_HOMEPAGE_V2",
+  "sourceHead": "01efa19f1118def7a731a5cf9b9016b7c9867946",
+  "worktree": "C:\\Users\\BS_SE\\AppData\\Local\\Temp\\portfolio-capture-20261012\\homepage",
+  "server": {
+    "url": "http://127.0.0.1:3212",
+    "route": "/capture/cms",
+    "command": "next dev --hostname 127.0.0.1 --port 3212",
+    "running": false,
+    "stoppedAfterCapture": {
+      "stoppedAt": "2026-10-12 08:58:33 UTC",
+      "launcherPid": 141228,
+      "listenerPid": 140364,
+      "commandLineAndParentVerified": true,
+      "port3212Released": true
+    }
+  },
+  "components": [
+    {
+      "file": "src/app/(admin)/admin/(dashboard)/bbs/bbs-form.tsx",
+      "sourceSha256": "92ca9e960d80683c22aef908829a16cee095f21326a3153e47198e59f7b968f0",
+      "worktreeSha256": "87a09844147f560c5370efc38b46ef763a8294c8576558657362a1b1dc527bc5",
+      "sourceTextSha256": "92ca9e960d80683c22aef908829a16cee095f21326a3153e47198e59f7b968f0",
+      "worktreeTextSha256": "92ca9e960d80683c22aef908829a16cee095f21326a3153e47198e59f7b968f0",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/components/admin/rich-text-editor.tsx",
+      "sourceSha256": "276975808a464ccf053f2d9b9022da74cd07cca26e8be5472ee91cd1888086e1",
+      "worktreeSha256": "29f6b55d52fff702b572f76fecb415bb53308a8793a15923f22c71a519ad02b1",
+      "sourceTextSha256": "276975808a464ccf053f2d9b9022da74cd07cca26e8be5472ee91cd1888086e1",
+      "worktreeTextSha256": "276975808a464ccf053f2d9b9022da74cd07cca26e8be5472ee91cd1888086e1",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/components/admin/image-upload-field.tsx",
+      "sourceSha256": "443d86094e2f9eaf84908075ea57c9b2e101b36f5d19382c36f83eb4bd68260a",
+      "worktreeSha256": "961e40ec117cc3adfd49e24ebd5abffe7c7df1bcb86f9ee22b4dd7341b63ba92",
+      "sourceTextSha256": "443d86094e2f9eaf84908075ea57c9b2e101b36f5d19382c36f83eb4bd68260a",
+      "worktreeTextSha256": "443d86094e2f9eaf84908075ea57c9b2e101b36f5d19382c36f83eb4bd68260a",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/components/admin/file-upload-field.tsx",
+      "sourceSha256": "1da879a8a8014cbcddadfe83df6680b7380569829a962d9a93270ec7f72eea90",
+      "worktreeSha256": "d5ed0f2c063f335e197f95127f6ad0a768073ebd3ae16ab0e413f1a0028cad13",
+      "sourceTextSha256": "1da879a8a8014cbcddadfe83df6680b7380569829a962d9a93270ec7f72eea90",
+      "worktreeTextSha256": "1da879a8a8014cbcddadfe83df6680b7380569829a962d9a93270ec7f72eea90",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/components/admin/template-modal.tsx",
+      "sourceSha256": "4e63bca70a0dbb9b4757cf9178352f25bb32420351b23fba19edb7c1eb296edf",
+      "worktreeSha256": "f7d4eed1d4fcfc6b0147d8d8be287e137b7db1f47c160bb6ad547d7e83540e0b",
+      "sourceTextSha256": "4e63bca70a0dbb9b4757cf9178352f25bb32420351b23fba19edb7c1eb296edf",
+      "worktreeTextSha256": "4e63bca70a0dbb9b4757cf9178352f25bb32420351b23fba19edb7c1eb296edf",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/app/(admin)/admin/(dashboard)/branch/branch-editor.tsx",
+      "sourceSha256": "1186dfe1134f83020dc93ec8b87a52bbc78edc09f7de71ecd81e35f56104fb7b",
+      "worktreeSha256": "b964f74c8493fbbcb62aa98d69363d5e43ca2bbc6ab703511c3a486a57d49375",
+      "sourceTextSha256": "1186dfe1134f83020dc93ec8b87a52bbc78edc09f7de71ecd81e35f56104fb7b",
+      "worktreeTextSha256": "1186dfe1134f83020dc93ec8b87a52bbc78edc09f7de71ecd81e35f56104fb7b",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    },
+    {
+      "file": "src/components/admin/admin-shell.tsx",
+      "sourceSha256": "5d746e301c4667c3ebfeffc914e4b0bbe9edc3df979f2a10ba9bfb50f0e11dab",
+      "worktreeSha256": "956c8dc2edb3d6003e9131c3781bd521ffc053fb548adf153c7b4197e256e062",
+      "sourceTextSha256": "5d746e301c4667c3ebfeffc914e4b0bbe9edc3df979f2a10ba9bfb50f0e11dab",
+      "worktreeTextSha256": "5d746e301c4667c3ebfeffc914e4b0bbe9edc3df979f2a10ba9bfb50f0e11dab",
+      "unchanged": true,
+      "comparison": "Captured HEAD git blob versus worktree; SHA256 after CRLF-to-LF normalization"
+    }
+  ],
+  "captures": [
+    {
+      "file": "assets/portfolio/local-captures/cms-publish.png",
+      "url": "http://127.0.0.1:3212/capture/cms",
+      "area": "BbsForm 기본 정보: 제목, 발행일 지정·예약 안내, 썸네일, 지역지사",
+      "deviceScaleFactor": 2
+    },
+    {
+      "file": "assets/portfolio/local-captures/cms-editor.png",
+      "url": "http://127.0.0.1:3212/capture/cms",
+      "area": "BbsForm 본문: 원본 RichTextEditor 툴바·이미지·첨부 문서",
+      "deviceScaleFactor": 2
+    },
+    {
+      "file": "assets/portfolio/local-captures/cms-template.png",
+      "url": "http://127.0.0.1:3212/capture/cms",
+      "area": "원본 TemplateModal: 공유·개인 탭과 샘플 템플릿 목록",
+      "deviceScaleFactor": 2
+    },
+    {
+      "file": "assets/portfolio/local-captures/cms-gtm.png",
+      "url": "http://127.0.0.1:3212/capture/cms?view=branch",
+      "area": "원본 BranchEditor 추적(GTM) 섹션과 스니펫 관리 범위 안내",
+      "deviceScaleFactor": 2
+    }
+  ],
+  "fixtureReplacement": {
+    "data": "합성 글·지사·계정·템플릿·이미지. 실제 고객·직원 데이터 없음.",
+    "authentication": "격리된 /capture/cms 경로의 샘플 관리자 props. 실제 인증 경로 호출 없음.",
+    "actions": "bbs/branch/template Server Actions는 fixture 반환. 글 저장은 모의 오류, 지사 저장은 메모리 없는 성공 응답.",
+    "uploads": "/api/admin/uploads는 샘플 로컬 키만 반환. GCS·DB·외부 API 호출 없음.",
+    "layout": "루트 메타데이터·Google 원격 폰트 제거. 원본 globals.css에 로컬 Pretendard만 추가.",
+    "environment": "실제 .env 복사 안 함. .env.local에 localhost 주소와 fixture 전용 값만 작성."
+  },
+  "verification": {
+    "httpStatus": 200,
+    "browserErrors": [],
+    "blockedExternalOrigins": [],
+    "postRequests": [
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:3212/capture/cms"
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:3212/capture/cms"
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:3212/api/admin/uploads"
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:3212/capture/cms"
+      }
+    ],
+    "editorImageCountAfterFixtureUpload": 2,
+    "titlePreservedAfterSimulatedSaveFailure": "상담 전 준비할 자료와 진행 순서",
+    "originalComponentsUnchanged": true
+  },
+  "limitations": [
+    "캡처는 실제 프런트엔드 컴포넌트를 합성 데이터로 로컬 실행한 결과입니다.",
+    "인증·DB 저장·GCS 업로드·광고 전환의 운영 동작을 이 환경에서 검증하지 않았습니다.",
+    "저장 오류는 입력 유지 화면을 확인하기 위해 fixture로 반환한 오류입니다."
+  ]
+}

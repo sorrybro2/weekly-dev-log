@@ -1,5 +1,13 @@
 # 포트폴리오와 경력기술서 출력
 
+2026-10-12에 만든 민간 풀스택 개선본·평가 문서는 `node scripts/render-fullstack-review.cjs`,
+실제 소스의 로컬 캡처를 넣은 문서는 `node scripts/render-capture-portfolio.cjs`로 생성합니다.
+[검토 문서 안내](../경력기술서/검토/README.md)에 편집 소스·결과물·캡처 근거가 정리돼 있습니다.
+이 두 렌더러는 PDF 페이지 확인을 위해 PDF.js도 필요합니다.
+`npm install --prefix scripts --no-save marked@12.0.2 playwright pdfjs-dist@3.11.174`로 모듈을 준비하고,
+`npx playwright install chromium`으로 브라우저를 설치합니다. 기존 모듈 경로를 지정하는 환경변수도 지원합니다.
+검토용 페이지 미리보기는 Git에서 제외하고, 실제 UI 캡처와 최종 HTML·PDF는 보관합니다.
+
 포트폴리오 3쪽 요약본과 경력기술서를 포함한 전체본은 `node scripts/render-portfolio.cjs`로 생성합니다.
 두 렌더러의 HTML·PDF 산출물은 모두 `경력기술서/출력/`에 저장됩니다.
 앞 3쪽은 소개·대표 프로젝트·문제 해결 사례입니다. 전체본 4쪽은 **경력기술서** 제목과

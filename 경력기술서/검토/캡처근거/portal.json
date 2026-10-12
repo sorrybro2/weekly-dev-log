@@ -1,0 +1,290 @@
+{
+  "project": "BS_MAINBOARD",
+  "capture_date_kst": "2026-10-12",
+  "source_repo": "C:/Users/BS_SE/JS_Project/BS/BS_MAINBOARD",
+  "executed_source_head": "75a6233dc8c4922ac0060cdec965a81389bcd646",
+  "detached_worktree": "C:/Users/BS_SE/AppData/Local/Temp/portfolio-capture-20261012/mainboard",
+  "server": "http://127.0.0.1:3211",
+  "server_launcher_pid": 147424,
+  "disclosure": "원본 저장소의 React UI 컴포넌트와 CSS를 격리 worktree에서 실행한 부분 캡처. 실제 운영 데이터가 아닌 합성 샘플이며 새 그림/HTML로 UI를 대체하지 않았음.",
+  "sample_data": {
+    "names": [
+      "김예시",
+      "서예시",
+      "한예시",
+      "박예시"
+    ],
+    "emails_domain": "example.test",
+    "employee_keys": "sample01~sample04",
+    "organizations": [
+      "샘플 운영본부",
+      "샘플 법률지원팀",
+      "샘플 업무지원팀"
+    ],
+    "extensions": [
+      "1001",
+      "1002",
+      "1003",
+      "1004"
+    ],
+    "photos": "사용하지 않음",
+    "real_people_or_accounts_used": false
+  },
+  "fixture_replacement_scope": [
+    "원본 .env를 복사하지 않고 서버 프로세스에 운영 인증/접속 환경변수를 전달하지 않음",
+    "기존 UI props의 조직도·구성원·참조 목록·예약·프로필을 합성 fixture로 대체",
+    "기존 Workspace 서버 layout을 사용하지 않는 전용 /capture-preview route에서 실제 클라이언트 UI를 재사용",
+    "작업본 root layout에서 인증 provider를 제외하고 온라인 Noto Sans 다운로드 대신 로컬 Pretendard 폰트를 사용. 기존 globals.css와 workspace.css는 재사용",
+    "작업본 proxy에서 미리보기 외 페이지와 모든 실제 API handler 진입을 차단. 필요한 GET은 fixture로 응답하며 쓰기 method는 403",
+    "Google·CRM·GCS·계정·퇴직 실행·Cloud Run Job의 실제 서버 경로를 호출하지 않음",
+    "서버 외부 fetch 및 HTTP/HTTPS 요청은 preload guard로 차단. 브라우저 외부 요청도 차단",
+    "인물 역할 변경은 브라우저 로컬 초안만 수정. 저장·예약·계정·통화 동작은 제출하지 않음"
+  ],
+  "safety_verification": {
+    "server_external_fetch_guard": "https://example.test fetch가 요청 이전에 CAPTURE 오류로 거절됨",
+    "write_api_gate": "POST /api/members = 403 Capture fixture: writes disabled",
+    "original_worktree_status": "마지막 확인 시 clean",
+    "browser_page_errors": [],
+    "external_browser_requests": []
+  },
+  "limitations": [
+    "화면과 클라이언트 인터랙션 재현 자료이며 실제 운영 인증·권한·데이터 저장·퇴사 스케줄 실행 성공을 입증하지 않음",
+    "운영 원본 조직도·직원 정보·프로필 사진·전화번호는 포함하지 않음",
+    "구성원 추가·정보 저장·퇴직 예약의 제출과 후속 외부 서비스 실행은 하지 않음",
+    "캡처용 헤더/격리 route와 오프라인 폰트 대체를 사용하므로 원래 전체 포털 레이아웃과 실행 환경의 완전 복제는 아님",
+    "원본 HEAD는 작업 도중 바뀌었으나 캡처는 시작 시 고정한 위 detached worktree HEAD에서 실행"
+  ],
+  "screenshots": [
+    {
+      "id": "portal-org-editor",
+      "file": "assets/portfolio/local-captures/portal-org-editor.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=org",
+      "route": "/capture-preview",
+      "mode": "org",
+      "state": "서예시 편집 패널, 역할을 합성 초안으로 변경, 저장하지 않음",
+      "reused_components": [
+        "src/components/org/org-chart.tsx:540",
+        "src/components/org/person-panel.tsx:40",
+        "src/lib/org/edit.ts"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 24,
+        "y": 72,
+        "width": 1232,
+        "height": 704
+      },
+      "image_size_px": {
+        "width": 2464,
+        "height": 1408
+      },
+      "caption": "원본 조직도 컴포넌트 로컬 실행. 인물 편집과 저장 전 변경 목록을 합성 데이터로 재현.",
+      "sha256": "670d5db9a2e2ed2e7ca0b6db330e160a4b377352f779f2546e87b6946bab1e27",
+      "contribution_provenance": [
+        "daily/10월/2026-10-06.md:73",
+        "768bc9a"
+      ],
+      "visually_inspected": true
+    },
+    {
+      "id": "portal-person-panel",
+      "file": "assets/portfolio/local-captures/portal-person-panel.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=org",
+      "route": "/capture-preview",
+      "mode": "org",
+      "state": "실제 인물 편집 패널 부분 캡처, 역할 초안과 배지·순서·저장 안내",
+      "reused_components": [
+        "src/components/org/person-panel.tsx:40",
+        "src/components/org/org-chart.tsx:418"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 915,
+        "y": 178,
+        "width": 340,
+        "height": 455
+      },
+      "image_size_px": {
+        "width": 680,
+        "height": 910
+      },
+      "caption": "실제 인물 편집 패널 부분 캡처. 역할·배지·순서와 별도 저장 안내를 보여줌.",
+      "sha256": "79e175339f3a14971bb25b93f0ddd8cfdfd82c33877e9d3e5abf298e7b019ab4",
+      "contribution_provenance": [
+        "daily/10월/2026-10-06.md:73",
+        "768bc9a"
+      ],
+      "visually_inspected": true
+    },
+    {
+      "id": "portal-member-management",
+      "file": "assets/portfolio/local-captures/portal-member-management.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=manage",
+      "route": "/capture-preview",
+      "mode": "manage",
+      "state": "합성 구성원 목록과 재직/휴직/퇴직 필터",
+      "reused_components": [
+        "src/components/member-admin/member-admin.tsx:64",
+        "src/components/member-admin/ui.tsx"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 24,
+        "y": 72,
+        "width": 1232,
+        "height": 360
+      },
+      "image_size_px": {
+        "width": 2464,
+        "height": 720
+      },
+      "caption": "실제 구성원 관리 화면. 합성 계정 목록과 고용상태 필터·퇴사 예약 입구.",
+      "sha256": "0da68e94000ca75751ace560243a4356ba3e1702ae94a16798e4a16cc4d0b95c",
+      "contribution_provenance": [
+        "daily/10월/2026-10-02.md:31",
+        "2eebab4"
+      ],
+      "visually_inspected": true
+    },
+    {
+      "id": "portal-member-retire",
+      "file": "assets/portfolio/local-captures/portal-member-retire.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=manage",
+      "route": "/capture-preview",
+      "mode": "manage",
+      "state": "합성 한예시 퇴사일과 계정 정지 시각 입력, 예약 제출하지 않음",
+      "reused_components": [
+        "src/components/member-admin/retire-dialog.tsx:24",
+        "src/components/member-admin/member-admin.tsx:64",
+        "src/components/member-admin/ui.tsx:8"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 340,
+        "y": 150,
+        "width": 600,
+        "height": 500
+      },
+      "image_size_px": {
+        "width": 1200,
+        "height": 1000
+      },
+      "caption": "실제 퇴사 예약 입력창. 고용상태 변경과 계정 정지 시점을 분리하는 UI, 예약은 제출하지 않음.",
+      "sha256": "00e8780556b2788dddb9043ee5fc19218827ea74e295b87ae9bf2494d0f4d6e1",
+      "contribution_provenance": [
+        "daily/10월/2026-10-02.md:31",
+        "2eebab4"
+      ],
+      "visually_inspected": true
+    },
+    {
+      "id": "portal-contact-card",
+      "file": "assets/portfolio/local-captures/portal-contact-card.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=staff",
+      "route": "/capture-preview",
+      "mode": "staff",
+      "state": "일반 직원 모드 연락처 카드, 전화/챗/메일 미실행",
+      "reused_components": [
+        "src/components/org/person-card.tsx:52",
+        "src/components/org/org-chart.tsx:540"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 200,
+        "y": 125,
+        "width": 950,
+        "height": 470
+      },
+      "image_size_px": {
+        "width": 1900,
+        "height": 940
+      },
+      "caption": "일반 직원용 실제 연락처 카드. 합성 이메일·내선이며 통화·챗·메일은 실행하지 않음.",
+      "sha256": "b3ec76a535f4f43a39478c53b4d8d1f8e1be1c01925238865256ec835434d7ce",
+      "contribution_provenance": [
+        "daily/10월/2026-10-07.md:59",
+        "fef9959"
+      ],
+      "visually_inspected": true
+    },
+    {
+      "id": "portal-person-controls",
+      "file": "assets/portfolio/local-captures/portal-person-controls.png",
+      "url": "http://127.0.0.1:3211/capture-preview?mode=org",
+      "route": "/capture-preview",
+      "mode": "org",
+      "state": "실제 서예시 편집 패널의 이름·탭·역할·배지 영역, 합성 역할 초안, 저장하지 않음",
+      "reused_components": [
+        "src/components/org/person-panel.tsx:40",
+        "src/components/org/org-chart.tsx:418"
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "device_scale_factor": 2,
+      "capture_region_css_px": {
+        "x": 915,
+        "y": 178,
+        "width": 340,
+        "height": 287
+      },
+      "image_size_px": {
+        "width": 680,
+        "height": 574
+      },
+      "caption": "실제 인물 편집 패널 상단 부분 캡처. 합성 이름·편집 탭·역할·배지 영역이며 순서 및 저장 제어는 캡처 영역에 포함하지 않음.",
+      "sha256": "39c250a44a9feac7f782b00af2715e5c02dc096b06cc982fc14a0d279cdc9f90",
+      "contribution_provenance": [
+        "daily/10월/2026-10-06.md:73",
+        "768bc9a"
+      ],
+      "visually_inspected": true,
+      "image_processing": "원본 UI의 브라우저 clip 재캡처. 기존 PNG 편집 없음.",
+      "previous_person_panel_png_unchanged": true,
+      "browser_page_errors": []
+    }
+  ],
+  "stoppedAfterCapture": true,
+  "captureServerShutdown": {
+    "port": 3211,
+    "verifiedPortOwnerPid": 147600,
+    "verifiedProcessChain": [
+      147600,
+      136664,
+      147424
+    ],
+    "verifiedBeforeStop": [
+      "포트 3211 리스너 PID 확인",
+      "Next.js 서버 → 격리 worktree의 next dev CLI → capture-start.cjs 실행기 부모 관계 확인",
+      "각 프로세스 CommandLine에서 실행 경로와 --port 3211 확인"
+    ],
+    "stoppedPids": [
+      147424,
+      136664,
+      147600
+    ],
+    "listenerAbsentAfterStop": true,
+    "scope": "본인 캡처 서버 3211의 확인된 프로세스 체인만 종료. 다른 서버·문서 파일은 변경하지 않음."
+  }
+}

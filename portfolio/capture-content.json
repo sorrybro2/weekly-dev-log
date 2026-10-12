@@ -1,0 +1,105 @@
+{
+  "intro": {
+    "name": "진솔",
+    "role": "풀스택 개발자",
+    "headline": "직원이 처리하는 업무를 화면과 서비스 연동으로 구현합니다.",
+    "description": "법무법인 법승에서 CRM·홈페이지·사내 포털을 개발하고 GCP 배포와 운영을 담당합니다. 상담 일정·문자 발송, 콘텐츠 편집·발행, 구성원 계정·조직도 관리처럼 직원이 처리하는 업무를 화면과 API로 연결합니다. 사건관리 앱은 2인 팀에서 상담·문서·전자결재·정산 도메인과 배포를 맡았습니다.",
+    "experience": [
+      {"company": "법무법인 법승", "period": "2026.01.19 – 현재", "role": "풀스택 개발·GCP 운영", "detail": "CRM·홈페이지 V2·사내 포털·연동 서비스 단독 구축. 사건관리는 2인 팀에서 담당 도메인의 화면·API·업무 로직과 배포 담당."},
+      {"company": "리얼타임테크", "period": "2024.08 – 2025.06", "role": "인턴 후 사원", "detail": "인턴 2024.08–2025.02, 사원 2025.03–2025.06. CCTV 서비스 유지보수, 기존 시스템 분석, 센서 데이터 화면 개선."}
+    ],
+    "stack": [
+      {"label": "Frontend", "value": "React · TypeScript · Next.js · Flutter · TanStack Query/Table"},
+      {"label": "Backend & Data", "value": "NestJS · Express · FastAPI · PostgreSQL · Prisma · SQLAlchemy"},
+      {"label": "Delivery & Integration", "value": "GCP Cloud Run · Cloud Build · Cloud SQL · GCS · Google Workspace API"}
+    ]
+  },
+  "projects": [
+    {"title": "사내 CRM", "role": "1인 풀스택", "scope": "상담·일정·문자 화면, API·데이터 이관·외부 연동·배포"},
+    {"title": "홈페이지 V2·CMS", "role": "1인 풀스택", "scope": "공개 사이트·CMS·API·레거시 연동·GCP 운영"},
+    {"title": "사내 포털", "role": "1인 풀스택", "scope": "구성원·조직도 화면, 계정·CRM·GCS 연동, 권한·배포"},
+    {"title": "사건관리 앱", "role": "2인 팀", "scope": "상담·문서·전자결재·정산 도메인, 공통 UI·배포"}
+  ],
+  "scenes": [
+    {
+      "id": "portal-organization",
+      "title": "조직도에서 구성원 배치를 편집",
+      "lead": "관리자는 사람을 선택해 역할·배지·순서를 바꾸고, 변경 내용을 초안으로 모아 저장합니다. 일반 직원에게는 같은 사람 칸이 연락처 카드로 열립니다.",
+      "scope": "사내 포털 · Next.js · React Flow · GCS · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/portal-org-editor.png", "title": "조직도 편집과 저장 전 변경 목록", "caption": "실제 조직도·인물 편집 컴포넌트를 합성 구성원 데이터로 실행했습니다. 역할을 바꾼 뒤 저장 전 변경 목록에 표시되는 상태입니다.", "annotations": [{"label": "배치와 구성원 정보", "detail": "조직도 배치와 Google 계정 정보의 저장 대상·시점을 구분해 안내합니다."}, {"label": "초안 저장", "detail": "배치 변경을 모아 확인 후 저장하고, 다른 관리자의 저장과 충돌하면 덮어쓰지 않도록 처리합니다."}]}
+      ],
+      "workflow": ["구성원 선택", "배치와 정보 편집", "변경 확인", "원본별 반영"],
+      "decisions": ["구성원 정보는 CRM·Google Admin 연동을 활용하고, 배치·순서·배지는 GCS 파일로 관리합니다.", "권한은 쓰기 요청에서 판정하고, 조직도 저장에는 GCS 세대 번호 조건을 사용합니다."]
+    },
+    {
+      "id": "portal-members",
+      "title": "계정 관리와 퇴직 예약을 포털로 통합",
+      "lead": "별도 도구에 나뉘어 있던 계정 추가·수정·정지와 퇴사 예약을 관리 화면에 모았습니다. 고용상태의 퇴직 전환과 계정 정지를 구분합니다.",
+      "scope": "사내 포털 · Next.js · Google Admin · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/portal-member-retire.png", "title": "퇴직 예약", "caption": "원래 퇴직 예약 UI를 합성 직원 데이터로 실행했습니다. 실제 직원이나 계정은 변경하지 않았습니다.", "annotations": [{"label": "서로 다른 상태", "detail": "퇴직 상태 반영과 계정 정지의 시점을 따로 설정합니다."}, {"label": "예약과 실행", "detail": "기한이 지난 예약은 포털 요청 시 처리하는 구조이며, 이 캡처에서 실제 예약 실행을 검증한 것은 아닙니다."}]}
+      ],
+      "workflow": ["대상 구성원 선택", "퇴직·정지 일정 설정", "변경 확인", "기한이 지난 작업 처리"],
+      "decisions": ["정보실 재직자만 관리 작업을 수행하도록 서버에서 판정합니다.", "다른 앱에 영향을 주는 조직·달력·사건 폴더 변경은 확인창에 영향 범위를 표시합니다."]
+    },
+    {
+      "id": "cms-editor",
+      "title": "작성·이미지·첨부 문서를 하나의 편집 흐름으로",
+      "lead": "콘텐츠 유형별 폼과 공용·개인 템플릿을 제공하고 이미지·PDF 첨부를 본문 편집과 연결했습니다. 저장 요청이 실패하면 작성 내용을 유지하고 사유를 안내합니다.",
+      "scope": "홈페이지 V2 · Next.js · NestJS · GCS · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/cms-editor.png", "title": "본문 편집과 미디어 첨부", "caption": "원본 BbsForm·RichTextEditor·첨부 컴포넌트를 샘플 글·이미지·PDF로 로컬 실행한 화면입니다.", "annotations": [{"label": "작성 도구", "detail": "서식·링크·이미지·표와 템플릿을 본문 편집에서 사용합니다."}, {"label": "첨부와 저장", "detail": "이미지 업로드와 PDF 첨부를 폼에 연결했습니다. 로컬 모의 저장 실패 뒤 제목 유지도 확인했습니다."}]}
+      ],
+      "workflow": ["템플릿·본문 작성", "이미지·PDF 첨부", "발행 설정", "저장 또는 오류 안내"],
+      "decisions": ["편집기와 공개 화면의 이미지 정렬·링크 표현을 맞췄습니다.", "이 환경에서는 서버 액션과 업로드 응답을 로컬 fixture로 대체했습니다. 운영 DB·GCS 저장 성공을 입증하는 캡처는 아닙니다."]
+    },
+    {
+      "id": "cms-operation",
+      "title": "발행 상태와 지사별 운영 설정을 관리자가 편집",
+      "lead": "과거 소급 등록과 미래 예약 발행을 구분하고, 지사·센터별 GTM 값은 코드가 아닌 식별값으로 관리하도록 구성했습니다.",
+      "scope": "홈페이지 V2 · Next.js · NestJS · GTM · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/cms-publish.png", "title": "발행일 지정과 지역 설정", "caption": "실제 게시물 폼에 샘플 제목·이미지·예약 날짜를 넣어 실행한 화면입니다.", "annotations": [{"label": "발행일", "detail": "미래 날짜는 예약, 과거 날짜는 소급 등록으로 처리하고 기존 글의 날짜를 유지합니다."}, {"label": "노출 범위", "detail": "지역 지사와 게시물 상태를 공개 사이트의 노출 조건에 연결합니다."}]},
+        {"file": "assets/portfolio/local-captures/cms-gtm.png", "title": "GTM 컨테이너 관리", "caption": "원본 지사 편집 컴포넌트의 GTM 영역입니다. 입력값은 샘플 컨테이너 ID입니다.", "annotations": [{"label": "허용한 설정", "detail": "GTM ID만 저장·검증하고 스니펫은 사이트 코드가 생성합니다."}, {"label": "운영자와 코드의 경계", "detail": "개별 태그의 설정·게시와 실제 광고 전환 집계는 외부 콘솔의 운영 작업으로 구분합니다."}]}
+      ],
+      "workflow": ["콘텐츠·지역 설정", "발행 상태 결정", "GTM 식별값 관리", "공개 화면·신호 코드에 반영"],
+      "decisions": ["레거시와 V2를 병행하며 기존 게시물의 공개 상태·작성일도 다시 동기화합니다.", "DOM 선택자에 의존하던 추적 신호를 dataLayer 이벤트로 정리한 구현 이력은 실제 광고 집계의 완료와 구분합니다."]
+    },
+    {
+      "id": "crm-consultation",
+      "title": "상담 입력을 일정과 담당자 정보에 연결",
+      "lead": "상담사·변호사·방문 날짜·종료시간을 폼에서 입력하고, 상담 저장과 캘린더·기존 상담 시트 연동을 구성했습니다.",
+      "scope": "CRM · Flutter · Express · Google Calendar · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/crm-consultation.png", "title": "방문 상담과 다중 상담사", "caption": "기존 Flutter 상담 폼을 웹으로 빌드하고 합성 고객·직원·일정 데이터로 실행했습니다.", "annotations": [{"label": "담당자 선택", "detail": "다중 상담사와 담당 변호사를 선택하고 업무 상태를 입력합니다."}, {"label": "일정 입력", "detail": "방문 날짜와 종료시간을 캘린더·상담 시트에 반영하는 경로를 구현했습니다. 외부 연동은 캡처 환경에서 호출하지 않았습니다."}]}
+      ],
+      "workflow": ["고객·상담 입력", "담당자·방문 시각 지정", "상담 저장", "일정·시트에 반영"],
+      "decisions": ["직원 연결 기준을 고유키로 통일하고 지사별 캘린더를 매핑했습니다.", "캘린더의 양방향 구현 이력과 현재 활성 경로는 구분해 설명합니다."]
+    },
+    {
+      "id": "crm-message",
+      "title": "예약 문자와 입력 중단 후 복구",
+      "lead": "발신번호별 양식·예약 시각·이미지 첨부를 문자 폼에 연결하고, 사용자별 입력 초안을 보관해 작업을 이어갈 수 있도록 했습니다.",
+      "scope": "CRM · Flutter · Express · NCP SENS · 1인 개발",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/crm-sms.png", "title": "예약 문자·양식·이미지 첨부", "caption": "원래 Flutter 문자 폼에 합성 발신번호·예약 시각·이미지를 넣어 로컬 실행했습니다. 실제 문자는 발송하지 않았습니다.", "annotations": [{"label": "예약과 양식", "detail": "발신번호별 양식을 선택하고 예약 날짜·시간을 지정합니다."}, {"label": "MMS 첨부", "detail": "샘플 이미지를 초기값으로 넣어 첨부 상태와 MMS 미리보기를 표시했습니다. 이미지 업로드와 문자 발송은 실행하지 않았습니다."}]},
+        {"file": "assets/portfolio/local-captures/crm-draft-restore.png", "title": "입력 초안 복원", "caption": "기존 FormDraft 복원 대화상자입니다. 실제 복원 버튼을 눌러 샘플 초안의 사건명·문의내용이 표시되는 화면도 확인했습니다.", "annotations": [{"label": "사용자별 초안", "detail": "입력이 중단된 폼을 다시 열 때 불러오기·버리기를 선택합니다."}, {"label": "저장 후 처리", "detail": "서버 저장 성공 뒤 초안을 제거하고 로그인 후 원래 작업 화면으로 돌아오도록 구성했습니다."}]}
+      ],
+      "workflow": ["양식·예약 입력", "이미지 첨부", "초안 저장·복구", "저장·발송 상태 확인"],
+      "decisions": ["문자 유형은 실제 바이트 기준으로 판정하고 외부 API 형식에 맞춰 이미지를 변환합니다.", "로컬 UI 확인과 NCP 발송 성공, 서버의 예약 작업 실행은 서로 다른 확인 범위입니다."]
+    },
+    {
+      "id": "case-approval",
+      "title": "결재할 문서를 찾고 내용을 보며 승인·반려",
+      "lead": "문서 등록·결재 요청·앱 내 처리를 구분하고 대기·기안·참조·완료 목록을 연결했습니다. 문서 미리보기에서 사유를 남겨 처리할 수 있습니다.",
+      "scope": "사건관리 · React · FastAPI · Google Drive · 2인 팀 내 문서·전자결재 담당",
+      "screens": [
+        {"file": "assets/portfolio/local-captures/case-approval-inbox.png", "title": "결재 대기 목록", "caption": "실제 ApprovalInboxPage를 합성 문서·직원 데이터로 실행해 탭과 처리 영역을 부분 캡처했습니다.", "annotations": [{"label": "처리할 문서", "detail": "대기·기안·참조·완료 목록과 건수를 구분해 처리 상태를 확인합니다."}, {"label": "승인과 반려", "detail": "목록에서 승인하고 사유가 필요한 반려는 문서 미리보기에서 처리하도록 동선을 나눴습니다."}]},
+        {"file": "assets/portfolio/local-captures/case-approval-preview.png", "title": "문서 미리보기와 승인·반려", "caption": "실제 ApprovalPreviewModal에 샘플 첨부 문서를 표시했습니다. 승인·반려 API는 실행하지 않았습니다.", "annotations": [{"label": "내용과 메타데이터", "detail": "첨부 문서를 보면서 수발신 정보·기안자·결재자를 확인합니다."}, {"label": "변경 처리", "detail": "승인·반려는 앱 API의 업무 변경이며, 감사로그·화면 갱신과 연결한 구현 범위를 설명합니다."}]}
+      ],
+      "workflow": ["결재 대기 확인", "문서 미리보기", "승인·반려 사유 입력", "업무 상태·관련 화면 갱신"],
+      "decisions": ["결재자의 처리와 참조자의 열람을 구분합니다.", "ORM 변경과 감사로그는 같은 트랜잭션에 기록하고 SSE 신호로 관련 데이터를 다시 조회합니다. 캡처 자체로 이 서버 동작을 검증한 것은 아닙니다."]
+    }
+  ]
+}

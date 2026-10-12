@@ -1,1 +1,5 @@
 scripts/node_modules/
+
+# Document rendering previews; source captures and final HTML/PDF stay tracked.
+/경력기술서/검토/미리보기/
+/경력기술서/검토/캡처미리보기/

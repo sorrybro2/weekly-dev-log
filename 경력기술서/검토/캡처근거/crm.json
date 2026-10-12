@@ -1,0 +1,139 @@
+{
+  "project": "CRM",
+  "capturedAt": "2026-10-12T08:29:14.366Z",
+  "clientDate": "2026-10-12",
+  "head": "b54d2b9edce99b6512605f298e9ba9ab0d708f72",
+  "repository": "C:/Users/BS_SE/JS_Project/BS/BS_CRM",
+  "isolatedWorktree": "C:\\Users\\BS_SE\\AppData\\Local\\Temp\\portfolio-capture-20261012\\crm",
+  "frontendUrl": "http://localhost:3213",
+  "fixtureBackendUrl": "http://localhost:3313",
+  "runtime": "Flutter 3.29.1 / Dart 3.7.0, release CanvasKit build",
+  "viewport": {
+    "width": 1600,
+    "height": 1050,
+    "deviceScaleFactor": 1,
+    "timezoneId": "Asia/Seoul"
+  },
+  "mode": "원본 Dart 화면을 격리 미리보기 라우터에서 실행; 새로운 HTML로 화면을 그리지 않음",
+  "modifiedSource": [
+    "frontend/lib/main.dart: 미리보기 라우터 + 가상 SharedPreferences 인증",
+    "frontend/lib/preview_routes.dart: 원래 Form 위젯을 직접 호스팅"
+  ],
+  "sourceComponentsUnmodified": [
+    "frontend/lib/pages/consultation/consultation_form_screen.dart",
+    "frontend/lib/pages/sms/sms_form_screen.dart",
+    "frontend/lib/common/services/form_draft.dart"
+  ],
+  "sampleData": {
+    "customers": "샘플 고객",
+    "staff": [
+      "샘플 상담사 A",
+      "샘플 상담사 B",
+      "샘플 운영자"
+    ],
+    "emailDomain": "example.invalid",
+    "phone": "010-0000-0000",
+    "content": "가상 계약서 상담과 가상 안내 문자, 합성 첨부 이미지"
+  },
+  "network": {
+    "productionBackendStarted": false,
+    "productionWrites": false,
+    "localApiMethods": "GET/OPTIONS만 응답; 저장·발송 메서드는 405",
+    "externalOriginsBlocked": [
+      "https://cdnjs.cloudflare.com",
+      "https://apis.google.com",
+      "https://accounts.google.com"
+    ],
+    "fontFallback": "fonts.gstatic.com 요청은 네트워크 전송 없이 로컬 Pretendard-Regular.ttf로 응답"
+  },
+  "captures": [
+    {
+      "file": "assets/portfolio/local-captures/crm-consultation.png",
+      "url": "http://localhost:3213/#/consultation",
+      "component": "frontend/lib/pages/consultation/consultation_form_screen.dart",
+      "crop": {
+        "x": 250,
+        "y": 94,
+        "width": 1100,
+        "height": 656
+      },
+      "state": "신규 상담의 초기값으로 가상 고객·방문 일정·다중 상담사 선택 표시",
+      "label": "실제 상담 폼 · 샘플 데이터",
+      "fixture": "initialConsultationData와 partyData, 로컬 직원·지사 옵션 API"
+    },
+    {
+      "file": "assets/portfolio/local-captures/crm-sms.png",
+      "url": "http://localhost:3213/#/sms",
+      "component": "frontend/lib/pages/sms/sms_form_screen.dart",
+      "crop": {
+        "x": 270,
+        "y": 134,
+        "width": 1306,
+        "height": 876
+      },
+      "state": "예약문자·발송번호별 양식·가상 이미지 첨부·MMS 미리보기",
+      "label": "실제 문자 폼 · 샘플 데이터",
+      "fixture": "initialSmsData와 partyData, 로컬 발송번호·양식 API, 합성 첨부 이미지"
+    },
+    {
+      "file": "assets/portfolio/local-captures/crm-draft-restore.png",
+      "url": "http://localhost:3213/#/draft",
+      "component": "frontend/lib/common/services/form_draft.dart + frontend/lib/pages/consultation/consultation_form_screen.dart",
+      "crop": {
+        "x": 550,
+        "y": 390,
+        "width": 500,
+        "height": 270
+      },
+      "state": "실제 FormDraftMixin의 복원 확인 대화상자; 불러오기 후 사건명 입력값 복원 확인",
+      "label": "실제 임시저장 복원 UI · 샘플 초안",
+      "fixture": "SharedPreferences 형식으로 가상 초안만 localStorage에 주입"
+    }
+  ],
+  "checks": {
+    "originalRepositoryWorkingTreeClean": true,
+    "originalUiComponentSourcesUnmodified": true,
+    "draftRestoreDialogShown": true,
+    "draftRestoreAppliedSampleCaseNameAndInquiry": true,
+    "draftRestoreVerification": "복원 버튼을 클릭한 뒤 실제 CanvasKit 화면의 사건명·문의내용을 별도 캡처에서 시각적으로 대조",
+    "draftRestoreVerificationImage": "C:/Users/BS_SE/AppData/Local/Temp/portfolio-capture-20261012/crm/restored-inspection.png",
+    "automatedDomFieldRead": "Flutter 비활성 텍스트 편집의 DOM 값은 비어 있어 자동 판독 결과로 사용하지 않음",
+    "pageErrors": []
+  },
+  "limitations": [
+    "운영 데이터·로그인·Google Calendar 저장·NCP 문자 발송·GCS 업로드를 검증한 캡처가 아님",
+    "신규 폼 초기값과 API 응답, 인증 및 초안 데이터는 가상값으로 대체",
+    "상담 폼은 원래 side-panel 모드로 독립 호스팅; 실제 전체 라우팅 진입은 재현하지 않음",
+    "문자 폼과 원래 MainLayout은 그대로 사용",
+    "Playwright에서 렌더링 폰트 fallback 요청을 로컬 폰트로 처리",
+    "미리보기 HTML의 외부 PDF/Google 스크립트 요청은 차단; 파일 picker·PDF 변환은 실행하지 않음",
+    "저장·전송 버튼은 클릭하지 않음; 실제 업무 완료나 API 안정성을 입증하지 않음"
+  ],
+  "repositoryInstructions": "상위 경로와 저장소 하위(hidden 포함)에서 AGENTS.md 미발견",
+  "previewCommands": {
+    "dependencies": "& 'C:/Program Files/flutter/bin/flutter.bat' pub get --offline",
+    "build": "& 'C:/Program Files/flutter/bin/flutter.bat' build web --target lib/main.dart --dart-define=API_URL=http://localhost:3313 --no-web-resources-cdn",
+    "buildWorkingDirectory": "C:\\Users\\BS_SE\\AppData\\Local\\Temp\\portfolio-capture-20261012\\crm/frontend",
+    "server": "Start-Process -FilePath 'node' -ArgumentList @('fixture-server.cjs') -WorkingDirectory 'C:/Users/BS_SE/AppData/Local/Temp/portfolio-capture-20261012/crm' -WindowStyle Hidden -RedirectStandardOutput 'fixture.stdout.log' -RedirectStandardError 'fixture.stderr.log'",
+    "capture": "node capture.cjs",
+    "captureWorkingDirectory": "C:\\Users\\BS_SE\\AppData\\Local\\Temp\\portfolio-capture-20261012\\crm",
+    "currentServerPid": 146512,
+    "serverProcess": "Node fixture-server.cjs가 3213 정적 프런트와 3313 샘플 API를 함께 서빙; Flutter 빌드 프로세스는 종료됨",
+    "draftDialogReproduction": "capture.cjs가 가상 SharedPreferences 초안을 준비하고 #/draft를 재진입; 새 브라우저에서 #/draft만 열면 초안 없는 원래 폼이 표시됨",
+    "serverRunning": false
+  },
+  "stoppedAfterCapture": {
+    "stopped": true,
+    "atUtc": "2026-10-12 08:59:05 UTC",
+    "processId": 146512,
+    "verifiedCommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" fixture-server.cjs",
+    "verifiedListenerOwnershipBeforeStop": {
+      "3213": 146512,
+      "3313": 146512
+    },
+    "action": "Stop-Process -Id 146512",
+    "remainingListenerCount": 0,
+    "remainingProcess": false,
+    "scope": "CRM 캡처용 fixture-server.cjs만 종료; 다른 서버·문서·렌더 결과는 변경하지 않음"
+  }
+}
