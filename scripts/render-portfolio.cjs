@@ -90,17 +90,18 @@ function appendix() {
   const index = md.indexOf('# 법무법인 법승 (');
   if (index < 0) throw new Error('Cannot find the detailed career section in TMI source');
   let html = marked.parse(md.slice(index), { gfm: true, breaks: false });
-  const ids = { I: 'detail-case', II: 'detail-homepage', III: 'detail-crm', IV: 'detail-legacy', V: 'detail-infra' };
+  const ids = { I: 'detail-case', II: 'detail-homepage', III: 'detail-crm', IV: 'detail-portal', V: 'detail-legacy', VI: 'detail-infra' };
   // Each project/topic is its own block: its heading forces a fresh page, except the first
-  // topic under each employer (I, VI), which already starts right after its h1, and V, a short
-  // cross-system principles recap rather than a separate project, which flows right after IV.
+  // topic under each employer (I, VII), which already starts right after its h1, and VI, a short
+  // cross-system principles recap rather than a separate project, which flows right after V.
   html = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (match, title) => {
     const numeral = title.match(/^([IVX]+)\./)?.[1];
     const idAttr = ids[numeral] ? ' id="' + ids[numeral] + '"' : '';
-    const classAttr = numeral && !['I', 'V', 'VI'].includes(numeral) ? ' class="topic-heading"' : '';
+    const classAttr = numeral && !['I', 'VI', 'VII'].includes(numeral) ? ' class="topic-heading"' : '';
     return idAttr || classAttr ? '<h2' + idAttr + classAttr + '>' + title + '</h2>' : match;
   });
-  html = html.replace('<h1>리얼타임테크 (공간정보융합팀)</h1>', '<h1 id="detail-previous">리얼타임테크 (공간정보융합팀)</h1>');
+  // The previous employer starts on a fresh page so its short first topic is never split across pages.
+  html = html.replace('<h1>리얼타임테크 (공간정보융합팀)</h1>', '<h1 id="detail-previous" style="break-before:page;page-break-before:always">리얼타임테크 (공간정보융합팀)</h1>');
   html = html.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
   html = html.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) => {
     const image = asset(decodeURIComponent(src), careerDir);

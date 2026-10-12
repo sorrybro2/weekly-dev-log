@@ -2,7 +2,7 @@
   "name": "진솔",
   "role": "풀스택 개발자 · GCP 인프라 · 데이터",
   "headline": "GCP 위에 사내 시스템 5종을 직접 세우고 운영합니다.",
-  "intro": "법무법인의 사내 개발을 맡아 인프라 설계부터 데이터 이관, 프런트·백엔드 구현, 장애 대응까지 한 사이클을 담당합니다. 구글시트로 돌아가던 전국 10개 지사 업무는 CRM으로, ASP.NET 레거시 홈페이지는 Next.js로 대체했고, 현재 RAG 기반 상담봇을 만들고 있습니다. 5종 중 4종이 단독 구축입니다.",
+  "intro": "법무법인의 사내 개발을 맡아 인프라 설계부터 데이터 이관, 프런트·백엔드 구현, 장애 대응까지 한 사이클을 담당합니다. 구글시트로 돌아가던 전국 10개 지사 업무는 CRM으로, ASP.NET 레거시 홈페이지는 Next.js로 대체했고, Vertex AI 기반 RAG 상담봇을 직원 대상으로 시범 운영하고 있습니다. 5종 중 4종이 단독 구축입니다.",
   "images": {
     "portrait": "assets/portfolio/profile.jpg",
     "homepage": "assets/portfolio/homepage.png",
@@ -16,9 +16,9 @@
       "note": "4개 단독 · 사건관리 앱은 2인 팀"
     },
     {
-      "value": "API 385개",
+      "value": "API 423개",
       "label": "직접 설계한 엔드포인트",
-      "note": "DB 80테이블 · 코드 21만 라인 · 커밋 1,735건"
+      "note": "DB 85테이블 · 코드 23만 라인 · 커밋 1,873건"
     },
     {
       "value": "GCP 전담",
@@ -33,7 +33,7 @@
     },
     {
       "title": "데이터 구조와 이관을 책임집니다",
-      "detail": "레거시 SQL Server 730만 건과 구글시트 9.8만 건을 PostgreSQL로 옮기고, 80개 테이블의 스키마 설계와 쿼리 튜닝을 직접 합니다."
+      "detail": "레거시 SQL Server 730만 건과 구글시트 9.8만 건을 PostgreSQL로 옮기고, 85개 테이블의 스키마 설계와 쿼리 튜닝을 직접 합니다."
     },
     {
       "title": "제품을 화면부터 API까지 만듭니다",
@@ -75,7 +75,7 @@
         "등록·결재"
       ],
       "scope": "상담·문서·전자결재·정산 · 배포",
-      "description": "API 181개·36테이블 규모의 사내 업무 도구를 2인 팀으로 개발하며 상담·문서·전자결재·정산 도메인과 배포를 맡았습니다.",
+      "description": "API 189개·38테이블 규모의 사내 업무 도구를 2인 팀으로 개발하며 상담·문서·전자결재·정산 도메인과 배포를 맡았습니다.",
       "caption": "사무소·변호사·사건유형별로 필터링한 사건 목록에서 기일과 담당자를 한 화면에서 확인합니다.",
       "url": null,
       "access": "3개 지사 베타"
@@ -96,7 +96,7 @@
         "상담 접수"
       ],
       "scope": "공개 UI · 어드민 CMS · API · 인프라",
-      "description": "레거시 ASP.NET 홈페이지를 Next.js로 리뉴얼해 공개 38면·어드민 CMS 35면·API 130개를 1인으로 구축했습니다.",
+      "description": "레거시 ASP.NET 홈페이지를 Next.js로 리뉴얼해 공개 38면·어드민 CMS 37면·API 146개를 1인으로 구축했습니다.",
       "caption": "공개 사이트에서 사건 유형·키워드로 해결 사례를 찾아보는 목록 화면입니다.",
       "url": "https://bslawwin.co.kr",
       "access": "공개 서비스"
@@ -117,7 +117,7 @@
         "일정·문자 연동"
       ],
       "scope": "Flutter UI · API · DB 설계 · GWS 연동",
-      "description": "전국 10개 지사 업무를 1인으로 구축했습니다. Flutter 54면·API 65개·17테이블, 구글시트 9.8만 건 이관.",
+      "description": "전국 10개 지사 업무를 1인으로 구축했습니다. Flutter 54면·API 66개·17테이블, 구글시트 9.8만 건 이관.",
       "caption": "유입 정보와 담당자를 연결해 상담 배정을 지원하는 당사자 목록입니다. (화면은 테스트 데이터)",
       "url": null,
       "access": "사내 전용"
@@ -175,15 +175,19 @@
       "anchor": "detail-crm"
     },
     {
-      "label": "IV. 레거시",
+      "label": "IV. 사내 포털",
+      "anchor": "detail-portal"
+    },
+    {
+      "label": "V. 레거시",
       "anchor": "detail-legacy"
     },
     {
-      "label": "V. 인프라",
+      "label": "VI. 인프라",
       "anchor": "detail-infra"
     },
     {
-      "label": "VI–VIII. 이전 경력",
+      "label": "VII–IX. 이전 경력",
       "anchor": "detail-previous"
     }
   ]

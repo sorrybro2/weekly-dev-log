@@ -154,11 +154,12 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>Frontend: React·TypeScript(Vite, TanStack Query/Table), Next.js, Flutter(Dart)</li>
 <li>Backend: Node.js(Express), Python(FastAPI, SQLAlchemy), TypeScript(NestJS)</li>
 <li>Database: PostgreSQL(Cloud SQL), MySQL, <code>postgres_fdw</code></li>
-<li>Infra: GCP Cloud Run/Cloud Build/Cloud SQL/Secret Manager</li>
+<li>Infra: GCP Cloud Run/Cloud Build/Cloud SQL/Secret Manager/Cloud Scheduler, Firebase Hosting, 가비아 호스팅(Windows Server/IIS)</li>
+<li>AI: Vertex AI(Gemini), pgvector 기반 RAG</li>
 <li>연동: Google Workspace API, NCP SENS</li>
 <li>(이전 경력) Go, Spring Framework, FFmpeg, Linux</li>
 </ul>
-<p>React 기반 업무 화면과 Next.js 홈페이지·운영 CMS를 개발하며, 공통 컴포넌트·상태관리·UI/UX 설계부터 API·DB·배포까지 담당합니다.</p>
+<p>React 기반 업무 화면과 Next.js 홈페이지·운영 CMS·사내 포털을 개발하며, 공통 컴포넌트·상태관리·UI/UX 설계부터 API·DB·배포·운영까지 담당합니다. 홈페이지 안에 Vertex AI 기반 RAG 상담봇을 설계·평가해 직원 대상으로 시범 운영하고 있습니다.</p>
 <hr>
 <h1>법무법인 법승 (2026-01-19 – 현재)</h1>
 <h2>사내 사건관리 앱 — 2인 팀 개발</h2>
@@ -180,7 +181,7 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <hr>
 <h2>법무법인 홈페이지 V2 리뉴얼 — 1인 풀스택</h2>
 <p><strong>기간</strong> 2026.05 – 진행 중
-<strong>기술스택</strong> Next.js(App Router), NestJS, Prisma, PostgreSQL, Turborepo, GCP Cloud Run/Cloud Build/GCS</p>
+<strong>기술스택</strong> Next.js(App Router), NestJS, Prisma, PostgreSQL(pgvector), Turborepo, GCP Cloud Run/Cloud Build/GCS/Cloud Scheduler, Vertex AI</p>
 <p>레거시 ASP.NET/SQL Server 홈페이지를 Next.js로 전면 리뉴얼. 공개 사이트 + 어드민 CMS를 스크래치부터 1인 풀스택으로 구축.</p>
 <p class="label"><strong>핵심 업무</strong></p>
 <ul>
@@ -193,6 +194,10 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>보안: 상담 PII 마스킹, 전역 보안 헤더, reCAPTCHA v3 fail-closed 전환, 어드민 Google 로그인 일원화</li>
 <li>CMS: 예약 발행, 이미지 드래그 업로드, 자동 TOC, PDF 첨부, CSV 다운로드(마스킹)</li>
 <li>Cloud Build 업로드 용량 <strong>7.6GB → 115MB</strong>, Kaniko→BuildKit 빌드 단축, ALB+Certificate Manager로 무중단 도메인 컷오버</li>
+<li><strong>AI 상담봇(RAG)</strong>: 사이트 글 4,398건을 7,786조각으로 색인하고 실제 상담 기반 골든셋 50문항으로 <strong>Recall@5 95.8%</strong> 측정. 의미+글자 검색 순위 합산(RRF), 법률 문서에서 거꾸로 작동한 단어 빈도 필터를 질문 단위 게이트로 교체. 실측에서 드러난 허위 연락처·지사 생성을 출력 검사 2단계(전송 전 누적문 / 완료 후 연락처)와 코드 주입으로 차단. 개인정보 동의·보유기간·파기를 갖춘 뒤 직원 대상 시범 운영(외부 공개는 광고 규칙 판단 대기)</li>
+<li><strong>사례 3,038건 AI 요약·FAQ</strong>: 생성 → 원문 대조 자동 검사(지어낸 숫자·비율·보장 표현 차단) → 자동 공개 파이프라인 구축. 변호사 광고 규정 해석에 맞춰 &quot;AI 표기 없이 실제로 검토한 변호사만 표시&quot;로 설계 변경</li>
+<li>바뀐 글을 IndexNow(빙·네이버)와 사이트맵 수정일(구글)로 통지하는 변경 감지 모듈, 첫 통지 7,227건</li>
+<li>&quot;조용한 실패&quot; 3건 해결: 종료코드 0으로 2주간 성공 보고되던 동기화(26시간 침묵 감시 추가), 번호 충돌로 사라질 뻔한 상담 305건 복구, 운영에서 한 번도 동작하지 않던 구글 권한 연동(직원 109명) 수정</li>
 </ul>
 <hr>
 <h2>사내 CRM — 1인 풀스택</h2>
@@ -208,12 +213,36 @@ a { color: #2455e8; text-decoration: underline; text-decoration-thickness: 1px; 
 <li>Google Calendar/Admin Directory/People API 연동 자동화, NCP SENS 바이트 기준 SMS/LMS/MMS 자동 판정 + 예약·템플릿 시스템</li>
 </ul>
 <hr>
+<h2>사내 업무 포털 — 1인 풀스택</h2>
+<p><strong>기간</strong> 2026.08 – 운영 중
+<strong>기술스택</strong> Next.js 16(App Router, Route Handler), Auth.js v5, React Flow, GCS, Google Workspace API(Calendar·People·Admin Directory·Chat), Cloud Run + Firebase Hosting</p>
+<p>Google Sites 사내 포털을 대체해 일정·구성원 명부·조직도·내선 통화·구성원 계정 관리를 한 화면으로 통합. 별도 백엔드·DB 없이 Next.js 서버 하나로 구성 (<strong>API 22개, 약 1.5만 LOC, 커밋 90건 단독</strong>).</p>
+<p class="label"><strong>핵심 업무</strong></p>
+<ul>
+<li>조직도를 DB 대신 버전이 쌓이는 JSON 스냅샷으로 관리, 원본 PDF에서 좌표째 추출해 88명 이관(전사 오탈자 8건 발견), 이름·내선·직위는 CRM에서 끌어와 사원키로 연결(매칭 실패 0)</li>
+<li>Firebase Hosting이 <code>__session</code> 외 쿠키를 지우는 동작을 재현으로 확정하고 GCS 스냅샷 브리지로 로그인 해결, Vercel → Cloud Run 이관으로 호스팅비 <strong>월 $20 → $0</strong></li>
+<li>비어 있던 편집자 명단 탓에 전 직원에게 열려 있던 조직도 저장 권한을 요청마다 판정하는 <strong>fail-closed</strong> 구조로 차단, GCS 세대 번호 조건부 쓰기로 동시 저장 거절</li>
+<li>크롬 익스텐션의 구성원 관리를 포털로 이관: 구글 어드민 계정 추가·수정·정지·퇴사 예약, 모든 변경에 확인 창, 관리자 계정 비밀번호 재설정 차단, 수정 즉시 수신 번호표 Job 재실행</li>
+<li>Next <code>fetch</code> 캐시 열쇠에 인증 헤더가 섞여 한 번도 적중하지 않던 원인을 찾아 로그인 직후 첫 화면 <strong>7.3초 → 1.5초</strong>, 내선 통화 확인창 2.2초 → 1.36초</li>
+<li>지사별 내선 발신(누른 지사의 내선으로 연결), 운영 발신 403(내부 주소 Origin 비교) 해결, 워크스페이스 도메인(<code>hd</code>) 검사로 로그인 강화</li>
+</ul>
+<hr>
 <h2>법무법인 법승 공식 홈페이지(레거시) 유지보수</h2>
 <p><strong>기간</strong> 2026.01 – 진행 중
 <strong>기술스택</strong> ASP.NET(CSHTML), Vanilla JS/CSS, Windows Server</p>
 <p>기존 대고객 홈페이지(<a href="https://lawwin.co.kr">lawwin.co.kr</a>)의 외주 유지보수 체계를 사내로 전환해 레거시 프론트엔드 반응형 버그 수정과 .NET 백엔드 로직을 풀스택으로 전담, FileZilla로 직접 빌드·배포. 외주 비용 절감 및 대응 리드타임 단축.</p>
+<p><strong>운영 환경</strong> 가비아 호스팅 Windows Server(IIS) 직접 배포·운영, 도메인·DNS 존 관리</p>
+<p class="label"><strong>핵심 업무</strong></p>
+<ul>
+<li>서버 장애 원인 분리: HTTP 500.30·500.31은 디스크 부족에 따른 호스팅 번들 누락, 일반 500은 DB 주소 설정 오류로 계층별 원인 규명, FileZilla 업로드·IIS 오류 대응 절차 문서화</li>
+<li>가비아 DNS로 실서버 컷오버(A 레코드 교체)·롤백 수행: TTL 600초 기준 롤백 절차와 삭제 금지 레코드 정리, 롤백 전 레거시 서버 실측(HTTPS·응답·인증서) 후 전환</li>
+<li>롤백 후 신규 사이트에만 남은 상담 42건을 레거시 SQL Server로 이관 — 시간대 9시간 보정, 번호 충돌 회피, IPv6 길이 초과 처리, 중복 0건</li>
+<li>레거시→신규 홈페이지 동기화: &quot;포트 차단&quot; 오진을 재측정으로 바로잡고 HTTPS 밀어 넣기 구조로 전환해 방화벽 의존 제거, 게시물 61건·상담 305건·예약 글 38건 복구</li>
+<li>레거시 업로드 원본 의존 정리: 이미지 서빙을 가비아 프록시에서 GCS로 전환, 누락 파일은 원본 서버 폴백 + 본문 사진 97장 복구</li>
+<li>외주 ASP.NET 소스 사내 저장소 이관·3계층 구조 문서화, 외부 SEO 업로드 API(<code>X-API-KEY</code>) 구현, 지점 10곳 사이트맵 갱신 자동화</li>
+</ul>
 <hr>
-<h1>IT 솔루션 기업 (개발팀)</h1>
+<h1 style="break-before:page;page-break-before:always">IT 솔루션 기업 (개발팀)</h1>
 <h2>공공 연구기관 — CCTV 실시간 모니터링 웹서비스 유지보수</h2>
 <p><strong>기간</strong> 2025.03 – 2025.06 (사원) · <strong>기술</strong> Node.js, FFmpeg, Linux(Ubuntu)</p>
 <p>공사 현장 CCTV 스트림 웹 모니터링 시스템 유지보수. FFmpeg 스트림 처리를 Windows/Ubuntu 환경별로 분기 적용, Ubuntu 환경에서 리눅스 스크립트로 실행·배포.</p>

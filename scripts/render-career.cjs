@@ -26,11 +26,13 @@ const md = fs.readFileSync(source, 'utf8');
 if (/^```mermaid/m.test(md)) throw new Error('Convert Mermaid blocks to local SVG before export.');
 let body = marked.parse(md, { gfm: true, breaks: false });
 // Each project/topic is its own block: its heading forces a fresh page, except the first
-// topic under each employer (I, VI), which already starts right after its h1, and V, a short
-// cross-system principles recap rather than a separate project, which flows right after IV.
+// topic under each employer (I, VII), which already starts right after its h1, and VI, a short
+// cross-system principles recap rather than a separate project, which flows right after V.
+// The previous employer starts on a fresh page so its short first topic is never split across pages.
+body = body.replace('<h1>리얼타임테크 (공간정보융합팀)</h1>', '<h1 style="break-before:page;page-break-before:always">리얼타임테크 (공간정보융합팀)</h1>');
 body = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (match, title) => {
   const numeral = title.match(/^([IVX]+)\./)?.[1];
-  return numeral && !['I', 'V', 'VI'].includes(numeral) ? '<h2 class="topic-heading">' + title + '</h2>' : match;
+  return numeral && !['I', 'VI', 'VII'].includes(numeral) ? '<h2 class="topic-heading">' + title + '</h2>' : match;
 });
 body = body.replace(/<p><strong>(\d+\)[\s\S]*?)<\/strong><\/p>/g, '<h4>$1</h4>');
 body = body.replace(/<p><img src="([^"]+)" alt="([^"]*)"><\/p>/g, (_, src, alt) => {
