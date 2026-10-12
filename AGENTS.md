@@ -16,6 +16,7 @@
   - `~/JS_Project/BS/BS_CASE_MANAGEMENT` — 사건관리 앱
   - `~/JS_Project/BS/BS_CRM` — CRM (고객관계관리 시스템)
   - `~/JS_Project/BS/BS_CLOUD_RUN` — 배포/인프라
+  - `~/JS_Project/BS/BS_MAINBOARD` — 사내 포털 (2026-10-12 추가. 8/31부터 주요 작업처인데 목록에 없어 9/29·10/1·10/2 보고에서 누락됐다)
 - **보고 기준 = 그날 git 로그 전체.** 특정 세션에서 한 작업만이 아니라, 그 날짜에 위 신원으로 찍힌 **모든 repo의 커밋**을 모은다.
 - 커밋이 하나도 없는 날은 보고를 만들지 않는다.
 
@@ -35,7 +36,7 @@ weekly/…                      # 주간 회고
 몇 분씩 길어진다. 수집 자체는 4개 repo 다 합쳐 1초면 끝나는 일이다.
 
 ```bash
-for r in BS_CASE_MANAGEMENT BS_CLOUD_RUN BS_CRM BS_MAIN_HOMEPAGE_V2; do
+for r in BS_CASE_MANAGEMENT BS_CLOUD_RUN BS_CRM BS_MAIN_HOMEPAGE_V2 BS_MAINBOARD; do
   echo "===== $r ====="
   git -C ~/JS_Project/BS/$r log \
     --since="YYYY-MM-DD 00:00" --until="YYYY-MM-DD 23:59:59" \
@@ -65,17 +66,18 @@ done
 - `lawwin-info/main-homepage-v2` — 홈페이지 V2
 - `lawwin-info/case-management` — 사건관리 앱
 - `lawwin-info/centrex-gcs` — 배포/인프라
+- `lawwin-info/main-board` — 사내 포털
 
 ```bash
 # 금일 생성된 이슈 — 본문(body)까지 한 번에 받는다
-for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
+for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs lawwin-info/main-board; do
   echo "===== $R ====="
   gh issue list -R $R --state all --search "created:YYYY-MM-DD" \
     --json number,title,author,createdAt,state,body
 done
 
 # 금일 달린 코멘트 — 이슈번호·작성자·본문을 한 번에
-for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs; do
+for R in lawwin-info/main-homepage-v2 lawwin-info/case-management lawwin-info/centrex-gcs lawwin-info/main-board; do
   echo "===== $R ====="
   gh api "repos/$R/issues/comments?since=YYYY-MM-DDT00:00:00Z&per_page=100" \
     --jq '.[] | "### #\(.issue_url|split("/")|last) | \(.user.login) | \(.created_at)\n\(.body)\n"'
