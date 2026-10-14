@@ -2,6 +2,15 @@
 
 2025년 개인 개발과 학습을 시작해 팀 프로젝트의 검색·인증·공통 UI 구현으로 경험을 넓혔습니다.
 
+## 런앤점프 컴퍼니 · 기업 홈페이지
+
+**공개 코드 기여 기간** 2026.05–08 · **기술** Next.js App Router, TypeScript, Tailwind CSS, GSAP, Lenis
+
+- **콘텐츠와 공통화:** 회사소개·사업별 콘텐츠 페이지를 구현하고, 회사정보·메뉴 데이터와 타입을 정의한 탭·콘텐츠 블록을 분리했습니다.
+- **화면과 생명주기:** 모바일 메뉴·카드 배치를 조정하고, 스크롤 효과에 모션 감소 설정과 컴포넌트 해제 시 ticker·Lenis·IntersectionObserver 정리를 적용했습니다.
+- **공개 자료:** [코드](https://github.com/sorrybro2/runandjump-company) · [배포 사이트](https://runandjump-five.vercel.app)
+- **확인 근거:** 로컬 `~/JS_Project/Project/runandjump`의 본인 author 커밋과 `lib/data.ts`, `ContentBlocks.tsx`, `TabMenu.tsx`, `SmoothScroll.tsx`, `SideBookmarkNav.tsx`를 2026-10-14 대조했습니다. README의 DB·관리자·결제 연동은 향후 작업 예시로, 구현 경력에 포함하지 않습니다.
+
 ## 내 냉장고를 구해줘 · 팀 프로젝트
 
 **기여 기간** 2026.01–04 · **기술** React, Vite, React Router, Context, Axios

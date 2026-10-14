@@ -1,0 +1,53 @@
+[
+  {
+    "id": "homepage-v2",
+    "url": "https://bslawwin.co.kr",
+    "finalUrl": "https://bslawwin.co.kr/",
+    "title": "법무법인 법승 | 형사전문변호사",
+    "status": 200,
+    "capturedOn": "2026-10-14",
+    "viewport": {
+      "width": 1440,
+      "height": 850
+    },
+    "screenshotClip": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 460
+    },
+    "capture": "Public page, unauthenticated browser, no form submission"
+  },
+  {
+    "id": "legacy-homepage",
+    "url": "https://lawwin.co.kr",
+    "finalUrl": "https://www.lawwin.co.kr/seoul",
+    "title": "서초형사변호사 | 성범죄 경제 마약 | 법무법인 법승",
+    "status": 200,
+    "capturedOn": "2026-10-14",
+    "viewport": {
+      "width": 1440,
+      "height": 850
+    },
+    "screenshotClip": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 460
+    },
+    "capture": "Public page, unauthenticated browser, no form submission"
+  },
+  {
+    "id": "runandjump",
+    "url": "https://runandjump-five.vercel.app",
+    "finalUrl": "https://runandjump-five.vercel.app/",
+    "title": "런앤점프 컴퍼니 — 노력맨 진낙식",
+    "status": 200,
+    "capturedOn": "2026-10-14",
+    "viewport": {
+      "width": 1440,
+      "height": 850
+    },
+    "capture": "Public page, unauthenticated browser, no form submission"
+  }
+]

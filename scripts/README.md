@@ -1,5 +1,22 @@
 # 포트폴리오와 경력기술서 출력
 
+## 회사별 지원 자료 보관
+
+`node scripts/render-asteromorph.cjs`는 `경력기술서/지원서/아스테로모프_CV.md`와
+`아스테로모프_포트폴리오.md`에서 CV 2쪽과 포트폴리오 7쪽을 생성합니다.
+최종 HTML·PDF는 `output/pdf/아스테로모프/`, 페이지 검증 결과와 미리보기는
+Git에서 제외되는 `tmp/pdfs/asteromorph/`에 저장됩니다.
+2026-10-14에 해당 회사 지원을 중단했으며, 작성 자료는 다른 지원서 편집의 참고용으로 보관합니다.
+
+공개 사이트 캡처는 `node scripts/capture-asteromorph-public.cjs`로 갱신합니다.
+로그인이나 폼 제출 없이 홈페이지 V2·기존 홈페이지·런앤점프를 캡처하고,
+`assets/portfolio/asteromorph/manifest.json`에 주소·캡처일·응답 상태를 기록합니다.
+사내 화면은 기존 `assets/portfolio/local-captures/`의 실제 소스와 샘플 데이터 캡처를 사용합니다.
+렌더러는 기존 문서와 같은 모듈을 사용하고, `MARKED_MODULE`, `PLAYWRIGHT_MODULE`,
+`PDFJS_MODULE` 환경변수로 모듈 위치를 지정할 수 있습니다.
+
+## 공통 문서 출력
+
 2026-10-12에 만든 민간 풀스택 개선본·평가 문서는 `node scripts/render-fullstack-review.cjs`,
 실제 소스의 로컬 캡처를 넣은 문서는 `node scripts/render-capture-portfolio.cjs`로 생성합니다.
 [검토 문서 안내](../경력기술서/검토/README.md)에 편집 소스·결과물·캡처 근거가 정리돼 있습니다.
