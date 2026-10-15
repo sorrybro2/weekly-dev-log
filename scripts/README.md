@@ -1,5 +1,23 @@
 # 포트폴리오와 경력기술서 출력
 
+## 토스플레이스 Node.js Developer 지원 자료 (2026-10-15)
+
+`node scripts/render-tossplace.cjs`는 `scripts/tossplace-content.cjs`의 문안으로 두 파일을 만듭니다.
+하나만 다시 만들 때는 뒤에 `resume` 또는 `deck`을 붙입니다.
+
+- `output/pdf/토스플레이스/진솔_이력서_경력기술서_토스플레이스.pdf`: A4 5쪽. 1쪽 이력서, 2쪽부터 경력기술서
+- `output/pdf/토스플레이스/진솔_포트폴리오_토스플레이스.pdf`: 16:9 16장
+- 같은 이름의 HTML, 그리고 Git에서 제외되는 `tmp/pdfs/tossplace/`의 페이지 미리보기와 페이지별 텍스트
+
+문안의 수치는 `portfolio/프로젝트_지표.md`에서만 가져옵니다. 사내 화면은 `assets/portfolio/local-captures/`의
+합성 데이터 캡처를 씁니다. 공개 사례의 요약과 FAQ 화면은 `node scripts/capture-tossplace-public.cjs`로
+`assets/portfolio/tossplace/`에 다시 찍고, 주소와 캡처일을 `manifest.json`에 남깁니다.
+
+렌더러는 슬라이드 넘침과 바닥 글씨 침범, 이력서 1쪽 넘침, 2쪽이 경력기술서로 시작하는지를 확인합니다.
+공개 필터(`public-document.cjs`)와 50MB 업로드 한도도 검사합니다.
+**`font-variant-numeric: tabular-nums`와 `ol` 기본 번호는 쓰지 않습니다.** Pretendard의 고정폭 숫자 글리프는
+PDF 텍스트에서 사용자 정의 문자로 저장돼, 채용 시스템이 숫자와 쉼표를 읽지 못합니다. 렌더러가 이런 문자를 찾으면 실패합니다.
+
 ## 회사별 지원 자료 보관
 
 `node scripts/render-asteromorph.cjs`는 `경력기술서/지원서/아스테로모프_CV.md`와
